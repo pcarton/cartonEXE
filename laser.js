@@ -60,14 +60,32 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         console.log(data);
         console.log(data.message); // lets take a closer look
 
-        //This is how to send the data to be processed by the python
-        var moderator = spawn('python', ['hammer.py']);
-        moderator.stdin.write(JSON.stringify(data.message));
-        moderator.stdin.end();
+        moderate(data);
     });
 
     // Listen to socket errors, you'll need to handle these!
     socket.on('error', error => {
         console.error('Socket error', error);
     });
+}
+
+function moderate(data){
+  //This is how to send the data to be processed by the python
+  var moderator = spawn('python', ['hammer.py']);
+  moderator.stdin.write(JSON.stringify(data.message));
+  moderator.stdin.end();
+
+  moderator.stdout.on('data', function(data){
+    if(data === "timeout"){
+      //TODO
+    }else if(data === "ban"){
+      //TODO
+    }else if(data === "purge"){
+      //TODO
+    }
+  });
+
+  moderator.stdout.on('end', function(){
+    return;
+  });
 }
