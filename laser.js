@@ -6,7 +6,7 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
-const debug = true;
+const debug = false;
 
 let userInfo;
 
@@ -24,11 +24,6 @@ var channelId = -1;
 
 //Get virii's channel id
 client.request('GET', 'users/search','virii333')
-.then(response => {
-    if(debug) console.log(response.body);
-    userInfo = response.body;
-    return client.chat.join(response.body.channel.id);
-})
 .then(response =>{
   client.request('GET', 'users/'+response.body.id)
   .then(response =>{
