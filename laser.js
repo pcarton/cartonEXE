@@ -84,7 +84,7 @@ function moderate(socket,messageData){
     if(debug){
       console.log("Message Data is:",messageData.toString());
       console.log("User is:", user);
-      console.log("Action to take:",action)
+      console.log("Action to take:",action);
     }
     if(action === "timeout"){
       if(debug){
