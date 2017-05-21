@@ -94,21 +94,21 @@ function moderate(socket,messageData){
         console.log("Need to timeout",user);
       }else{
         socket.timeout(user,config.timeoutDuration);
-        socket.msg("@"+user+": "+response);
+        if(!config.silentBans) socket.msg("@"+user+": "+response);
       }
     }else if(action === "ban"){
       if(debug){
         console.log("Need to ban",user);
       }else{
         socket.timeout(user,config.banDuration);
-        socket.msg("@"+user+": "+response);
+        if(!config.silentBans) socket.msg("@"+user+": "+response);
       }
     }else if(action === "purge"){
       if(debug){
         console.log("Need to purge",user);
       }else{
         socket.purge(user);
-        socket.msg("@"+user+": "+response);
+        if(!config.silentBans) socket.msg("@"+user+": "+response);
       }
     }else if(action === "nothing"){
       if(debug){console.log("No action to take");}
