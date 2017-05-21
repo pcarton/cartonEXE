@@ -9,11 +9,11 @@ def read_in():
 #returns a "nothing", "timeout", "purge", or "ban"
 def moderate(lines):
     actions = "nothing"
-    if lines.find("blacklist") != -1 :
+    if lines.find("blacklist") != -1:
         actions = "ban"
-    elif lines.find("spam") != -1 :
+    elif lines.find("spam") != -1:
         actions = "timeout";
-    elif lines.find("annoy") != -1 :
+    elif lines.find("annoy") != -1:
         ations = "purge"
     return actions
 
@@ -27,4 +27,5 @@ def main():
     print(actions)
 
 #start process
-main()
+if __name__ == '__main__':
+    main()
