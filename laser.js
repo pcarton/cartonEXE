@@ -20,35 +20,20 @@ client.use('oauth',{
   },
 });
 
-var channelId = -1;
-
-var query = {
-  query: "Virii333",
-  limit: 1,
-  fields: "username"
-};
-//Get virii's channel id
-client.request('GET', 'users/search',query)
-.then(response =>{
-  if(debug) console.log(response.body);
-  client.request('GET', 'users/'+response.body[0].id)
-  .then(response =>{
-    //if(debug) console.log(response.body);
-    //channelId = response.body.channel.id;
-  });
-});
-
 client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
     userInfo = response.body;
-    return client.chat.join(response.body.channel.id);
+    return client.request('GET','users/'+userInfo.id+'/follows')
+})
+.then(response =>{
+  return client.chat.join(response.body[0].id);
 })
 .then(response => {
     const body = response.body;
     if(debug) console.log(body);
     if(channelId !== -1){
-      return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
+      return createChatSocket(userInfo.id, , body.endpoints, body.authkey);
     }else{
       return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
     }
