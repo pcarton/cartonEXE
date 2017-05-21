@@ -71,35 +71,36 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
     });
 }
 
-function moderate(socket,data){
+function moderate(socket,messageData){
   if(debug) console.log("In moderate function");
   //This is how to send the data to be processed by the python
   var moderator = spawn('python', ['hammer.py']);
-  moderator.stdin.write(messageToString(data.message.message));
+  moderator.stdin.write(messageToString(messageData.message.message));
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
     if(debug){
-      console.log("Data is:",data.toString());
-      console.log("User is:",data.user_name);
+      console.log("Message Data is:",messageData.toString());
+      console.log("User is:",messageData.user_name);
+      console.log("Action to take:",data.toString())
     }
     if(data.toString() === "timeout"){
       if(debug){
-        console.log("Need to timeout",data.user_name);
+        console.log("Need to timeout",messageData.user_name);
       }else{
-        socket.timeout(data.user_name,config.timeoutDuration);
+        socket.timeout(messageData.user_name,config.timeoutDuration);
       }
     }else if(data.toString() === "ban"){
       if(debug){
-        console.log("Need to ban",data.user_name);
+        console.log("Need to ban",messageData.user_name);
       }else{
-        socket.timeout(data.user_name,config.banDuration);
+        socket.timeout(messageData.user_name,config.banDuration);
       }
     }else if(data.toString() === "purge"){
       if(debug){
         console.log("Need to purge",data.user_name);
       }else{
-        socket.purge(data.user_name);
+        socket.purge(messageData.user_name);
       }
     }else if(data.toString() === "nothing"){
       if(debug){console.log("No action to take");}
