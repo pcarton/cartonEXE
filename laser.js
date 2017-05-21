@@ -81,13 +81,13 @@ function moderate(socket,data){
   moderator.stdout.on('data', function(data){
     if(data === "timeout"){
       if(debug) console.log("Need to timeout");
-      socket.timeout(data.user_name,config.timeoutDuration);
+      else socket.timeout(data.user_name,config.timeoutDuration);
     }else if(data === "ban"){
       if(debug) console.log("Need to ban");
-      socket.timeout(data.user_name,config.banDuration);
+      else socket.timeout(data.user_name,config.banDuration);
     }else if(data === "purge"){
       if(debug) console.log("Need to purge");
-      socket.purge(data.user_name);
+      else socket.purge(data.user_name);
     }else if(data === "nothing"){
       if(debug) console.log("No action to take");
       //THIS SPACE INTINTIONALLY LEFT BLANK
@@ -95,7 +95,7 @@ function moderate(socket,data){
   });
 
   moderator.stdout.on('end', function(){
-    return;
+    if(debug) console.log("Finished moderate parse");
   });
 }
 
