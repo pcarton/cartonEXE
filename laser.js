@@ -20,7 +20,7 @@ client.use('oauth',{
   },
 });
 
-client.request('GET', 'users/virii333')
+client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
     userInfo = response.body;
