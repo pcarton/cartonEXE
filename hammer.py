@@ -14,11 +14,13 @@ def moderate(lines):
     responseMsg = ""
     if lines.find("blacklist") != -1:
         actions = "ban"
-        responseMsg = ""
+        responseMsg = "you have been banned for Blacklisted content"
     elif lines.find("spam") != -1:
         actions = "timeout";
+        responseMsg = "You have been timed out for spam"
     elif lines.find("annoy") != -1:
         actions = "purge"
+        responseMsg = "You have been purged"
     return actions, responseMsg
 
 def main():
