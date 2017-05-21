@@ -4,7 +4,7 @@ import sys, json
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
-    return lines
+    return lines[0]
 
 #returns a "nothing", "timeout", "purge", or "ban"
 def moderate(lines):
@@ -14,7 +14,7 @@ def moderate(lines):
     elif lines.find("spam") != -1:
         actions = "timeout";
     elif lines.find("annoy") != -1:
-        ations = "purge"
+        actions = "purge"
     return actions
 
 def main():
