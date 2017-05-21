@@ -25,8 +25,10 @@ var channelId = -1;
 //Get virii's channel id
 client.request('GET', 'users/search','virii333')
 .then(response =>{
+  if(debug) console.log(response.body);
   client.request('GET', 'users/'+response.body[0].id)
   .then(response =>{
+    if(debug) console.log(response.body);
     channelId = response.body.channel.id;
   });
 });
