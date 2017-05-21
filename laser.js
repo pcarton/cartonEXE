@@ -23,8 +23,9 @@ client.use('oauth',{
 var channelId = -1;
 
 var query = {
-  query: 'virii333',
-  limit: 1
+  query: "Virii333",
+  limit: 1,
+  fields: "username"
 };
 //Get virii's channel id
 client.request('GET', 'users/search',query)
