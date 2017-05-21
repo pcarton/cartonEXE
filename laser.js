@@ -45,7 +45,11 @@ client.request('GET', 'users/current')
 .then(response => {
     const body = response.body;
     if(debug) console.log(body);
-    return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
+    if(channelId !== -1 && !debug){
+      return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
+    }else{
+      return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
+    }
 })
 .catch(error => {
       console.log("Something went wrong:", error);
