@@ -6,7 +6,7 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
-const debug = false;
+const debug = true;
 
 let userInfo;
 
@@ -22,13 +22,13 @@ client.use('oauth',{
 
 client.request('GET', 'users/current')
 .then(response => {
-    console.log(response.body);
+    if(debug) console.log(response.body);
     userInfo = response.body;
     return client.chat.join(response.body.channel.id);
 })
 .then(response => {
     const body = response.body;
-    console.log(body);
+    if(debug) console.log(body);
     return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
 })
 .catch(error => {
@@ -48,7 +48,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 
     socket.auth(channelId, userId, authkey)
     .then(() => {
-        console.log('You are now authenticated!');
+        if(debug) console.log('You are now authenticated!');
         // Send a chat message
         return socket.call('msg', ['Hello world!']);
     })
@@ -58,9 +58,9 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 
     // Listen to chat messages, note that you will also receive your own!
     socket.on('ChatMessage', data => {
-        console.log('We got a ChatMessage packet!');
-        console.log(data);
-        console.log(data.message); // lets take a closer look
+        if(debug) console.log('We got a ChatMessage packet!');
+        if(debug) console.log(data);
+        if(debug) console.log(data.message); // lets take a closer look
 
         moderate(socket,data);
     });
@@ -72,6 +72,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 }
 
 function moderate(socket,data){
+  if(debug) console.log("In moderate function");
   //This is how to send the data to be processed by the python
   var moderator = spawn('python', ['hammer.py']);
   moderator.stdin.write(messageToString(data.message));
