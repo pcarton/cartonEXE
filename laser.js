@@ -6,7 +6,7 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
-const debug = false;
+const debug = true;
 
 let userInfo;
 
@@ -40,7 +40,7 @@ client.request('GET', 'users/current')
 .then(response => {
     const body = response.body;
     if(debug) console.log(body);
-    if(channelId !== -1 && !debug){
+    if(channelId !== -1){
       return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
     }else{
       return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
