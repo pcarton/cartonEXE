@@ -9,6 +9,7 @@ const spawn = require('child_process').spawn;
 const debug = true;
 
 let userInfo;
+let channelId = -1;
 
 const client = new BeamClient();
 
@@ -24,16 +25,17 @@ client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
     userInfo = response.body;
-    return client.request('GET','users/'+userInfo.id+'/follows')
+    return client.request('GET','users/'+userInfo.id+'/follows');
 })
 .then(response =>{
-  return client.chat.join(response.body[0].id);
+  channelId = response.body[0].id;
+  return client.chat.join(channelId);
 })
 .then(response => {
     const body = response.body;
     if(debug) console.log(body);
     if(channelId !== -1){
-      return createChatSocket(userInfo.id, , body.endpoints, body.authkey);
+      return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
     }else{
       return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
     }
