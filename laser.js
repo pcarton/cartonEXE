@@ -27,7 +27,7 @@ client.request('GET', 'users/search','virii333')
 .then(response =>{
   client.request('GET', 'users/'+response.body.id)
   .then(response =>{
-    channelId = response.body.channel.id;
+    channelId = response.body[0].channel.id;
   });
 });
 
