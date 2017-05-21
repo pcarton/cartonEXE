@@ -1,4 +1,6 @@
 # Moderation module, determines actions to take on individual messages
+#TODO add moderator/brodcaster checks
+#TODO add regex and keyword detection
 import sys, json
 
 #Read data from stdin
