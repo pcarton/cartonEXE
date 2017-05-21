@@ -80,13 +80,13 @@ function moderate(socket,data){
 
   moderator.stdout.on('data', function(data){
     if(data === "timeout"){
-      if(debug) console.log("Need to timeout");
+      if(debug) console.log("Need to timeout",data.user_name);
       else socket.timeout(data.user_name,config.timeoutDuration);
     }else if(data === "ban"){
-      if(debug) console.log("Need to ban");
+      if(debug) console.log("Need to ban",data.user_name);
       else socket.timeout(data.user_name,config.banDuration);
     }else if(data === "purge"){
-      if(debug) console.log("Need to purge");
+      if(debug) console.log("Need to purge",data.user_name);
       else socket.purge(data.user_name);
     }else if(data === "nothing"){
       if(debug) console.log("No action to take");
