@@ -83,7 +83,10 @@ function moderate(socket,messageData){
   moderator.stdout.on('data', function(data){
     var pythonOut = data.toString().split(" ",1);
     var action = pythonOut[0].trim();
-    var response = pythonOut[1].trim();
+    var response = null;
+    if(pythonOut[1]){
+      response = pythonOut[1].trim();
+    }
     var user = messageData.user_name;
     if(debug){
       console.log("User is:", user);
