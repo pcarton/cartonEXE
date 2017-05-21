@@ -20,6 +20,8 @@ client.use('oauth',{
   },
 });
 
+//TODO use a GET users/search to get the id of virii, then users/{id} to get his channel
+
 client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
