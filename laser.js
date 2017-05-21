@@ -79,26 +79,25 @@ function moderate(socket,messageData){
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
-    var action = data.toString();
+    var action = data.toString().trim();
     var user = messageData.user_name;
     if(debug){
-      console.log("Message Data is:",messageData.toString());
       console.log("User is:", user);
       console.log("Action to take:",action);
     }
-    if(action == "timeout"){
+    if(action === "timeout"){
       if(debug){
         console.log("Need to timeout",user);
       }else{
         socket.timeout(user,config.timeoutDuration);
       }
-    }else if(action == "ban"){
+    }else if(action === "ban"){
       if(debug){
         console.log("Need to ban",user);
       }else{
         socket.timeout(user,config.banDuration);
       }
-    }else if(action == "purge"){
+    }else if(action === "purge"){
       if(debug){
         console.log("Need to purge",user);
       }else{
