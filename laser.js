@@ -13,7 +13,7 @@ let userInfo;
 const client = new BeamClient();
 
 //OAuth gives permision for all following actions
-client.user('oauth',{
+client.use('oauth',{
   tokens:{
     access: config.OAuth,
     expires: Date.now() + (365 * 24 *60 *60 *1000)
