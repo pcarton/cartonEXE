@@ -79,30 +79,32 @@ function moderate(socket,messageData){
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
+    var action = data.toString();
+    var user = messageData.user_name;
     if(debug){
       console.log("Message Data is:",messageData.toString());
-      console.log("User is:",messageData.user_name);
-      console.log("Action to take:",data.toString())
+      console.log("User is:", user);
+      console.log("Action to take:",action)
     }
-    if(data.toString() === "timeout"){
+    if(action === "timeout"){
       if(debug){
-        console.log("Need to timeout",messageData.user_name);
+        console.log("Need to timeout",user);
       }else{
-        socket.timeout(messageData.user_name,config.timeoutDuration);
+        socket.timeout(user,config.timeoutDuration);
       }
-    }else if(data.toString() === "ban"){
+    }else if(action === "ban"){
       if(debug){
-        console.log("Need to ban",messageData.user_name);
+        console.log("Need to ban",user);
       }else{
-        socket.timeout(messageData.user_name,config.banDuration);
+        socket.timeout(user,config.banDuration);
       }
-    }else if(data.toString() === "purge"){
+    }else if(action === "purge"){
       if(debug){
-        console.log("Need to purge",data.user_name);
+        console.log("Need to purge",user);
       }else{
-        socket.purge(messageData.user_name);
+        socket.purge(user);
       }
-    }else if(data.toString() === "nothing"){
+    }else if(action === "nothing"){
       if(debug){console.log("No action to take");}
       //THIS SPACE INTINTIONALLY LEFT BLANK
     }
