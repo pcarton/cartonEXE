@@ -20,7 +20,21 @@ client.use('oauth',{
   },
 });
 
-//TODO use a GET users/search to get the id of virii, then users/{id} to get his channel
+var channelId = -1;
+
+//Get virii's channel id
+client.request('GET', 'users/search','virii333')
+.then(response => {
+    if(debug) console.log(response.body);
+    userInfo = response.body;
+    return client.chat.join(response.body.channel.id);
+})
+.then(response =>{
+  client.request('GET', 'users/'+response.body.id)
+  .then(response =>{
+    channelId = response.body.channel.id;
+  });
+});
 
 client.request('GET', 'users/current')
 .then(response => {
