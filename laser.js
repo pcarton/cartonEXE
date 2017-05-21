@@ -62,7 +62,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         console.log(data);
         console.log(data.message); // lets take a closer look
 
-        moderate(data);
+        moderate(socket,data);
     });
 
     // Listen to socket errors, you'll need to handle these!
@@ -71,7 +71,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
     });
 }
 
-function moderate(data){
+function moderate(socket,data){
   //This is how to send the data to be processed by the python
   var moderator = spawn('python', ['hammer.py']);
   moderator.stdin.write(JSON.stringify(data.message));
@@ -80,16 +80,16 @@ function moderate(data){
   moderator.stdout.on('data', function(data){
     if(data === "timeout"){
       if(debug) console.log("Need to timeout");
-      //TODO
+      socket.timeout(data.user_name,config.timeoutDuration);
     }else if(data === "ban"){
       if(debug) console.log("Need to ban");
-      //TODO
+      socket.timeout(data.user_name,config.banDuration);
     }else if(data === "purge"){
       if(debug) console.log("Need to purge");
-      //TODO
+      socket.purge(data.user_name);
     }else if(data === "nothing"){
       if(debug) console.log("No action to take");
-      //THIS SPAE INTINTIONALLY LEFT BLANK
+      //THIS SPACE INTINTIONALLY LEFT BLANK
     }
   });
 
