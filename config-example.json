@@ -1,3 +1,4 @@
 {
   "OAuth":"PUT OAUTH TOKEN HERE",
+  "timeoutDuration":600
 }
