@@ -86,19 +86,19 @@ function moderate(socket,messageData){
       console.log("User is:", user);
       console.log("Action to take:",action);
     }
-    if(action === "timeout"){
+    if(action == "timeout"){
       if(debug){
         console.log("Need to timeout",user);
       }else{
         socket.timeout(user,config.timeoutDuration);
       }
-    }else if(action === "ban"){
+    }else if(action == "ban"){
       if(debug){
         console.log("Need to ban",user);
       }else{
         socket.timeout(user,config.banDuration);
       }
-    }else if(action === "purge"){
+    }else if(action == "purge"){
       if(debug){
         console.log("Need to purge",user);
       }else{
