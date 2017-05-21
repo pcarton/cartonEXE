@@ -1,3 +1,4 @@
+# Moderation module, determines actions to take on individual messages
 import sys, json
 
 #Read data from stdin
@@ -5,8 +6,9 @@ def read_in():
     lines = sys.stdin.readlines()
     return json.loads(lines)
 
+#returns a "nothing", "timeout", "purge", or "ban"
 def moderate(lines):
-    actions = "" # empty string if no action to take
+    actions = "nothing"
 
     return actions
 
