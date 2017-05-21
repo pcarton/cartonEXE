@@ -79,17 +79,17 @@ function moderate(socket,data){
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
-    if(debug) console.log("Data is:",data);
-    if(data === "timeout"){
+    if(debug) console.log("Data is:",data.toString());
+    if(data.toString() === "timeout"){
       if(debug) console.log("Need to timeout",data.user_name);
       else socket.timeout(data.user_name,config.timeoutDuration);
-    }else if(data === "ban"){
+    }else if(data.toString() === "ban"){
       if(debug) console.log("Need to ban",data.user_name);
       else socket.timeout(data.user_name,config.banDuration);
-    }else if(data === "purge"){
+    }else if(data.toString() === "purge"){
       if(debug) console.log("Need to purge",data.user_name);
       else socket.purge(data.user_name);
-    }else if(data === "nothing"){
+    }else if(data.toString() === "nothing"){
       if(debug) console.log("No action to take");
       //THIS SPACE INTINTIONALLY LEFT BLANK
     }
