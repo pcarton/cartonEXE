@@ -22,8 +22,11 @@ client.use('oauth',{
 
 var channelId = -1;
 
+var query = {
+  query : 'virii333'
+};
 //Get virii's channel id
-client.request('GET', 'users/search','virii333')
+client.request('GET', 'users/search',query)
 .then(response =>{
   if(debug) console.log(response.body);
   client.request('GET', 'users/'+response.body[0].id)
