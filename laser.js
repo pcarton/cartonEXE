@@ -81,11 +81,12 @@ function moderate(socket,messageData){
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
-    var pythonOut = data.toString().split(" ",1);
-    var action = pythonOut[0].trim();
-    var response = null;
-    if(pythonOut[1]){
-      response = pythonOut[1].trim();
+    var pythonOut = data.toString();
+    var action = pythonOut.split(" ")[0].trim();
+    var indexOfSpace = pythonOut.indexOf(" ");
+    var response = pythonOut.substr(indexOfSpace);
+    if(indexOfSpace === -1){
+      response = "";
     }
     var user = messageData.user_name;
     if(debug){
