@@ -4,12 +4,17 @@ import sys, json
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
-    return json.loads(lines)
+    return lines
 
 #returns a "nothing", "timeout", "purge", or "ban"
 def moderate(lines):
     actions = "nothing"
-
+    if lines.find("blacklist") != -1 :
+        actions = "ban"
+    elif lines.find("spam") != -1 :
+        actions = "timeout";
+    elif lines.find("annoy") != -1 :
+        ations = "purge"
     return actions
 
 def main():
@@ -22,5 +27,4 @@ def main():
     print(actions)
 
 #start process
-if __name__ == '__main__':
-    main()
+main()
