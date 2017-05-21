@@ -59,9 +59,9 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         console.log('We got a ChatMessage packet!');
         console.log(data);
         console.log(data.message); // lets take a closer look
-        
+
         //This is how to send the data to be processed by the python
-        var moderator = spawn('python', ['moderate-module.py']);
+        var moderator = spawn('python', ['hammer.py']);
         moderator.stdin.write(JSON.stringify(data.message));
         moderator.stdin.end();
     });
