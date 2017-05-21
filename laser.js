@@ -33,7 +33,7 @@ client.request('GET', 'users/search',query)
   if(debug) console.log(response.body);
   client.request('GET', 'users/'+response.body[0].id)
   .then(response =>{
-    if(debug) console.log(response.body);
+    //if(debug) console.log(response.body);
     //channelId = response.body.channel.id;
   });
 });
