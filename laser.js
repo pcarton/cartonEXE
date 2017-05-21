@@ -6,6 +6,8 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
+const debug = false;
+
 let userInfo;
 
 const client = new BeamClient();
@@ -77,11 +79,17 @@ function moderate(data){
 
   moderator.stdout.on('data', function(data){
     if(data === "timeout"){
+      if(debug) console.log("Need to timeout");
       //TODO
     }else if(data === "ban"){
+      if(debug) console.log("Need to ban");
       //TODO
     }else if(data === "purge"){
+      if(debug) console.log("Need to purge");
       //TODO
+    }else if(data === "nothing"){
+      if(debug) console.log("No action to take");
+      //THIS SPAE INTINTIONALLY LEFT BLANK
     }
   });
 
