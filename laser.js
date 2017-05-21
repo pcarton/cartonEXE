@@ -75,7 +75,7 @@ function moderate(socket,data){
   if(debug) console.log("In moderate function");
   //This is how to send the data to be processed by the python
   var moderator = spawn('python', ['hammer.py']);
-  moderator.stdin.write(messageToString(data.message));
+  moderator.stdin.write(messageToString(data.message.message));
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
