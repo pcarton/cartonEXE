@@ -74,7 +74,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 function moderate(socket,data){
   //This is how to send the data to be processed by the python
   var moderator = spawn('python', ['hammer.py']);
-  moderator.stdin.write(JSON.stringify(data.message));
+  moderator.stdin.write(messageToString(data.message));
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
@@ -96,4 +96,14 @@ function moderate(socket,data){
   moderator.stdout.on('end', function(){
     return;
   });
+}
+
+function messageToString(array){
+  var result = "";
+  for(var index in array){
+    var element = array[index];
+    result += element;
+  }
+  if(debug) console.log("messageToString is: ", result);
+  return result;
 }
