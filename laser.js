@@ -103,7 +103,7 @@ function messageToString(array){
   var result = "";
   for(var index in array){
     var element = array[index];
-    result += element;
+    result += element.text;
   }
   if(debug) console.log("messageToString is: ", result);
   return result;
