@@ -11,22 +11,24 @@ def read_in():
 #returns a "nothing", "timeout", "purge", or "ban"
 def moderate(lines):
     actions = "nothing"
+    responseMsg = ""
     if lines.find("blacklist") != -1:
         actions = "ban"
+        responseMsg = ""
     elif lines.find("spam") != -1:
         actions = "timeout";
     elif lines.find("annoy") != -1:
         actions = "purge"
-    return actions
+    return actions, responseMsg
 
 def main():
     #get our data as an array from read_in()
     lines = read_in()
 
-    actions = moderate(lines)
+    actions, response = moderate(lines)
 
-    #return the sum to the output stream
-    print(actions)
+    #return to the output stream
+    print(actions + " " + response)
 
 #start process
 if __name__ == '__main__':

@@ -81,33 +81,38 @@ function moderate(socket,messageData){
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
-    var action = data.toString().trim();
+    var action = data.toString().split(" ")[0].trim();
+    var response = data.toString().split(" ")[1].trim();
     var user = messageData.user_name;
     if(debug){
       console.log("User is:", user);
       console.log("Action to take:",action);
+      console.log("Response is: ","@"+user+": "+response);
     }
     if(action === "timeout"){
       if(debug){
         console.log("Need to timeout",user);
       }else{
         socket.timeout(user,config.timeoutDuration);
+        socket.msg("@"+user+": "+response);
       }
     }else if(action === "ban"){
       if(debug){
         console.log("Need to ban",user);
       }else{
         socket.timeout(user,config.banDuration);
+        socket.msg("@"+user+": "+response);
       }
     }else if(action === "purge"){
       if(debug){
         console.log("Need to purge",user);
       }else{
         socket.purge(user);
+        socket.msg("@"+user+": "+response);
       }
     }else if(action === "nothing"){
       if(debug){console.log("No action to take");}
-      //THIS SPACE INTINTIONALLY LEFT BLANK
+      //THIS SPACE INTENTIONALLY LEFT BLANK
     }
   });
 
