@@ -103,7 +103,8 @@ function moderate(socket,messageData){
 
   //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
-  var toPython = messageData.user_name + " " + messageToString(messageData.message.message);
+  var msg = messageToString(messageData.message.message);
+  var toPython = messageData.user_name + " " + msg;
   if(debug) console.log("Input to python:", toPython);
   moderator.stdin.write(toPython);
   moderator.stdin.end();
@@ -131,13 +132,15 @@ function moderate(socket,messageData){
       }else{
         socket.call('timeout',[user,config.timeoutDuration]);
         if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
+        console.log("Timing out",user,"for message:",msg);
       }
     }else if(action === "ban"){
       if(debug){
         console.log("Need to ban",user);
       }else{
-        socket.call('ban',[user]);
+        socket.call('msg',["/ban @"+user]);
         if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
+        console.log("Banning",user,"for message:",msg);
       }
     }else if(action === "purge"){
       if(debug){
@@ -145,6 +148,7 @@ function moderate(socket,messageData){
       }else{
         socket.call('purge',[user]);
         if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
+        console.log("Purging",user,"for message:",msg);
       }
     }else if(action === "nothing"){
       if(debug){console.log("No action to take");}
