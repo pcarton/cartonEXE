@@ -42,6 +42,7 @@ client.request('GET', 'users/current')
     const body = response.body;
     if(debug) console.log(body);
     if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
+      console.log("Cannot moderate this chat");
       return;
     }
     if(!debug){
