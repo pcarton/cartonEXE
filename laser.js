@@ -6,7 +6,7 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
-const debug = true;
+const debug = false;
 
 let userInfo;
 let channelId = -1;
@@ -33,7 +33,7 @@ client.request('GET', 'users/current')
   if(debug){
     return client.chat.join(userInfo.channel.id);
   }else{
-    if(response.body){
+    if(response.body[0]){
       channelId = response.body[0].id;
       console.log("Joining",response.body[0].name);
       return client.chat.join(channelId);
