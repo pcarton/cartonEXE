@@ -164,11 +164,15 @@ function purge(socket,user,response,msg){
   }
 }
 
-function timeout(socket,user,response,msg){
+function timeout(socket,user,response,msg,duration){
   if(debug){
     console.log("Need to timeout",user);
   }else{
-    socket.call('timeout',[user,config.timeoutDuration]);
+    if(duration){
+      socket.call('timeout',[user,duration]);
+    }else{
+      socket.call('timeout',[user,config.timeoutDuration]);
+    }
     if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
     console.log("Timing out",user,"for message:",msg);
   }
