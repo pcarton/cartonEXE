@@ -29,11 +29,15 @@ client.request('GET', 'users/current')
 })
 .then(response =>{
   channelId = response.body[0].id;
+  if(debug) console.log(response.body[0].name);
   return client.chat.join(channelId);
 })
 .then(response => {
     const body = response.body;
     if(debug) console.log(body);
+    if(!body.roles.includes('Mod')){
+      return;
+    }
     if(channelId !== -1){
       return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
     }else{
