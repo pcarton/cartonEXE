@@ -15,16 +15,45 @@ def moderate(toParse):
     lines = toParse[1]
     actions = "nothing"
     responseMsg = ""
-    if lines.find("blacklist") != -1:
+    banBool, banMsg = banCheck(lines)
+    timeoutBool, timeoutMsg = timeoutCheck(lines)
+    purgeBool, purgeMsg = purgeCheck(lines)
+    if banBool:
         actions = "ban"
-        responseMsg = "You have been banned for Blacklisted content"
-    elif lines.find("spam") != -1:
+        responseMsg = banMsg
+    elif timeoutBool:
         actions = "timeout";
-        responseMsg = "You have been timed out for spam"
-    elif lines.find("annoy") != -1:
+        responseMsg = timeoutMsg
+    elif purgeBool:
         actions = "purge"
-        responseMsg = "You have been purged"
+        responseMsg = purgeMsg
     return actions, user, responseMsg
+
+def banCheck(message):
+    result = False
+    msg = "You have been banned for"
+    #TODO replace with real code
+    if(lines.find("blacklist") != -1):
+        result = True
+        msg += " blacklisted content"
+    return result
+
+def timeoutCheck(message):
+    result = False
+    msg = "You have been timed-out for"
+    #TODO replace with real code
+    if(lines.find("spam") != -1):
+        result = True
+        msg += " spam"
+    return result
+
+def purgeCheck(message):
+    result = False
+    msg = "You have been purged"
+    #TODO replace with real code
+    if(lines.find("annoy") != -1):
+        result = True
+    return result
 
 def main():
     #get our data as an array from read_in()
