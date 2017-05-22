@@ -31,8 +31,12 @@ client.request('GET', 'users/current')
 .then(response =>{
   //TODO modify to join all followed channels
   channelId = response.body[0].id;
-  if(debug) console.log(response.body[0].name);
-  return client.chat.join(channelId);
+  if(debug){
+    console.log(response.body[0].name);
+    return client.chat.join(userInfo.channel.id);
+  }else{
+    return client.chat.join(channelId);
+  }
 })
 .then(response => {
     const body = response.body;
@@ -40,7 +44,7 @@ client.request('GET', 'users/current')
     if(!body.roles.includes('Mod')){
       return;
     }
-    if(channelId !== -1 && !debug){
+    if(!debug){
       return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
     }else{
       return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
@@ -89,7 +93,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 function moderate(socket,messageData){
   //This is how to send the data to be processed by the python
   var moderator = spawn('python', ['hammer.py']);
-  
+
   //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
   moderator.stdin.write(messageData.user_name, messageToString(messageData.message.message));
