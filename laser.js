@@ -97,7 +97,7 @@ function moderate(socket,messageData){
 
   //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
-  moderator.stdin.write(messageData.user_name, messageToString(messageData.message.message));
+  moderator.stdin.write(messageData.user_name + " " + messageToString(messageData.message.message));
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
