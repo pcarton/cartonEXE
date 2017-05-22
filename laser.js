@@ -74,7 +74,8 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
     .then(() => {
         if(debug) console.log('You are now authenticated!');
         // Send a chat message
-        return socket.call('msg', ['Hello world!']);
+        console.log("Joined chatroom");
+        return socket.call('msg', ['BOOTING UP...']);
     })
     .catch(error => {
         console.log('Oh no! An error occurred!', error);
