@@ -36,7 +36,7 @@ def banCheck(message):
     if(lines.find("blacklist") != -1):
         result = True
         msg += " blacklisted content"
-    return result
+    return result, msg
 
 def timeoutCheck(message):
     result = False
@@ -45,7 +45,7 @@ def timeoutCheck(message):
     if(lines.find("spam") != -1):
         result = True
         msg += " spam"
-    return result
+    return result, msg
 
 def purgeCheck(message):
     result = False
@@ -53,7 +53,7 @@ def purgeCheck(message):
     #TODO replace with real code
     if(lines.find("annoy") != -1):
         result = True
-    return result
+    return result, msg
 
 def main():
     #get our data as an array from read_in()
