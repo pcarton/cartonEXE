@@ -32,16 +32,16 @@ client.request('GET', 'users/current')
   //TODO modify to join all followed channels
   channelId = response.body[0].id;
   if(debug){
-    console.log(response.body[0].name);
     return client.chat.join(userInfo.channel.id);
   }else{
+    console.log("Joining",response.body[0].name);
     return client.chat.join(channelId);
   }
 })
 .then(response => {
     const body = response.body;
     if(debug) console.log(body);
-    if(!body.roles.includes('Mod')){
+    if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
       return;
     }
     if(!debug){
