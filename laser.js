@@ -139,7 +139,7 @@ function moderate(socket,messageData){
       if(debug){
         console.log("Need to ban",user);
       }else{
-        socket.call('msg',["/ban @"+user]);
+        socket.call('timeout',[user,config.banDuration]); //need to timeout for 1 to unban
         if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
         console.log("Banning",user,"for message:",msg);
       }
