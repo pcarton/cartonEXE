@@ -81,8 +81,10 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log('We got a ChatMessage packet!');
         if(debug) console.log(data);
         if(debug) console.log(data.message); // lets take a closer look
+        if(!data.user_roles.includes('Mod') && !data.user_roles.includes('Owner')){
+          moderate(socket,data);
+        }
 
-        moderate(socket,data);
     });
 
     // Listen to socket errors, you'll need to handle these!
