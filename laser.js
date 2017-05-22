@@ -179,6 +179,10 @@ function timeout(socket,user,response,msg,duration){
   }
 }
 
+function unban(socket,user){
+  timeout(socket,user,"You have been unbanned", "<TO UNBAN>",1);
+}
+
 function messageToString(array){
   var result = "";
   for(var index in array){
