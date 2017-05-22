@@ -33,7 +33,7 @@ def banCheck(message):
     result = False
     msg = "You have been banned for"
     #TODO replace with real code
-    if(lines.find("blacklist") != -1):
+    if(message.find("blacklist") != -1):
         result = True
         msg += " blacklisted content"
     return result, msg
@@ -42,7 +42,7 @@ def timeoutCheck(message):
     result = False
     msg = "You have been timed-out for"
     #TODO replace with real code
-    if(lines.find("spam") != -1):
+    if(message.find("spam") != -1):
         result = True
         msg += " spam"
     return result, msg
@@ -51,7 +51,7 @@ def purgeCheck(message):
     result = False
     msg = "You have been purged"
     #TODO replace with real code
-    if(lines.find("annoy") != -1):
+    if(message.find("annoy") != -1):
         result = True
     return result, msg
 
