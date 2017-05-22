@@ -164,6 +164,7 @@ function purge(socket,user,response,msg){
   }
 }
 
+//To unban, use a duration of 1 with this function
 function timeout(socket,user,response,msg,duration){
   if(debug){
     console.log("Need to timeout",user);
