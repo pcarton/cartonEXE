@@ -6,6 +6,9 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
+//This is how to send the data to be processed by the python
+var moderator = spawn('python', ['hammer.py']);
+
 const debug = true;
 
 let userInfo;
@@ -87,21 +90,20 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 }
 
 function moderate(socket,messageData){
+  //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
-  //This is how to send the data to be processed by the python
-  var moderator = spawn('python', ['hammer.py']);
-  moderator.stdin.write(messageToString(messageData.message.message));
+  moderator.stdin.write(user, messageToString(messageData.message.message));
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
     var pythonOut = data.toString();
     var action = pythonOut.split(" ")[0].trim();
+    var user = pythonOut.split(" ")[1].trim();
     var indexOfSpace = pythonOut.indexOf(" ");
     var response = pythonOut.substr(indexOfSpace);
     if(indexOfSpace === -1){
       response = "";
     }
-    var user = messageData.user_name;
     if(debug){
       console.log("User is:", user);
       console.log("Action to take:",action);
