@@ -11,8 +11,8 @@ def read_in():
 
 #returns a "nothing", "timeout", "purge", or "ban"
 def moderate(toParse):
-    user = toParse[1]
-    lines = toParse[0]
+    user = toParse[0]
+    lines = toParse[1]
     actions = "nothing"
     responseMsg = ""
     if lines.find("blacklist") != -1:
