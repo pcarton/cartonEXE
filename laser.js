@@ -49,7 +49,7 @@ client.request('GET', 'users/current')
       console.log("Cannot moderate this chat");
       return;
     }
-    if(!debug){
+    if(!debug && channelId != -1){
       return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
     }else{
       return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
