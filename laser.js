@@ -21,6 +21,7 @@ client.use('oauth',{
   },
 });
 
+//get following channel and join its chat
 client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
@@ -28,6 +29,7 @@ client.request('GET', 'users/current')
     return client.request('GET','users/'+userInfo.id+'/follows');
 })
 .then(response =>{
+  //TODO modify to join all followed channels
   channelId = response.body[0].id;
   if(debug) console.log(response.body[0].name);
   return client.chat.join(channelId);
@@ -105,6 +107,7 @@ function moderate(socket,messageData){
       console.log("Action to take:",action);
       console.log("Response is: ","@"+user+": "+response);
     }
+    //Parse the actions and take action if needed
     if(action === "timeout"){
       if(debug){
         console.log("Need to timeout",user);
