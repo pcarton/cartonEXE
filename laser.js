@@ -30,10 +30,10 @@ client.request('GET', 'users/current')
 })
 .then(response =>{
   //TODO modify to join all followed channels
-  channelId = response.body[0].id;
   if(debug){
     return client.chat.join(userInfo.channel.id);
   }else{
+    channelId = response.body[0].id;
     console.log("Joining",response.body[0].name);
     return client.chat.join(channelId);
   }
