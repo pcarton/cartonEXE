@@ -103,13 +103,14 @@ function moderate(socket,messageData){
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
-    var pythonOut = data.toString();
+    var pythonOut = data.toString().trim();
     if(debug) console.log("From python:",pythonOut);
-    var action = pythonOut.split(" ")[0].trim();
-    var user = pythonOut.split(" ")[1].trim();
-    var indexOfSpace = pythonOut.indexOf(" ");
-    var response = pythonOut.substr(indexOfSpace);
-    if(indexOfSpace === -1){
+    var action = pythonOut.split(" ")[0];
+    var user = pythonOut.split(" ")[1];
+    var indexOfSpace1 = pythonOut.indexOf(" ");
+    var indexOfSpace2 = pythonOut.indexOf(" ",indexOfSpace1+1);
+    var response = pythonOut.substr(indexOfSpace2);
+    if(indexOfSpace2 === -1){
       response = "";
     }
     if(debug){
