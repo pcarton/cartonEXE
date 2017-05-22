@@ -104,6 +104,7 @@ function moderate(socket,messageData){
 
   moderator.stdout.on('data', function(data){
     var pythonOut = data.toString();
+    if(debug) console.log("From python:",pythonOut);
     var action = pythonOut.split(" ")[0].trim();
     var user = pythonOut.split(" ")[1].trim();
     var indexOfSpace = pythonOut.indexOf(" ");
@@ -155,6 +156,6 @@ function messageToString(array){
     var element = array[index];
     result += element.text;
   }
-  if(debug) console.log("messageToString is: ", result);
+  if(debug) console.log("messageToString is:", result);
   return result;
 }
