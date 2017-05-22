@@ -129,22 +129,22 @@ function moderate(socket,messageData){
       if(debug){
         console.log("Need to timeout",user);
       }else{
-        socket.timeout(user,config.timeoutDuration);
-        if(!config.silentBans) socket.msg("@"+user+": "+response);
+        socket.call('timeout',[user,config.timeoutDuration]);
+        if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
       }
     }else if(action === "ban"){
       if(debug){
         console.log("Need to ban",user);
       }else{
-        socket.timeout(user,config.banDuration);
-        if(!config.silentBans) socket.msg("@"+user+": "+response);
+        socket.call('timeout',[user,config.banDuration]);
+        if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
       }
     }else if(action === "purge"){
       if(debug){
         console.log("Need to purge",user);
       }else{
-        socket.purge(user);
-        if(!config.silentBans) socket.msg("@"+user+": "+response);
+        socket.call('purge',[user]);
+        if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
       }
     }else if(action === "nothing"){
       if(debug){console.log("No action to take");}
