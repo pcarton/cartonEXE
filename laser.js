@@ -93,7 +93,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 
 function moderate(socket,messageData){
   //This is how to send the data to be processed by the python
-  var moderator = spawn('python', ['hammer.py']);
+  var moderator = spawn('python3', ['hammer.py']);
 
   //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
