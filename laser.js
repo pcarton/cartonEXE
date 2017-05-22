@@ -136,7 +136,7 @@ function moderate(socket,messageData){
       if(debug){
         console.log("Need to ban",user);
       }else{
-        socket.call('timeout',[user,config.banDuration]);
+        socket.call('ban',[user]);
         if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
       }
     }else if(action === "purge"){
