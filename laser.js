@@ -33,9 +33,13 @@ client.request('GET', 'users/current')
   if(debug){
     return client.chat.join(userInfo.channel.id);
   }else{
-    channelId = response.body[0].id;
-    console.log("Joining",response.body[0].name);
-    return client.chat.join(channelId);
+    if(response.body){
+      channelId = response.body[0].id;
+      console.log("Joining",response.body[0].name);
+      return client.chat.join(channelId);
+    }else{
+      return client.chat.join(userInfo.channel.id);
+    }
   }
 })
 .then(response => {
