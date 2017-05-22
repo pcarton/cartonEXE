@@ -40,7 +40,7 @@ client.request('GET', 'users/current')
     if(!body.roles.includes('Mod')){
       return;
     }
-    if(channelId !== -1){
+    if(channelId !== -1 && !debug){
       return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
     }else{
       return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
