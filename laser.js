@@ -128,29 +128,11 @@ function moderate(socket,messageData){
     }
     //Parse the actions and take action if needed
     if(action === "timeout"){
-      if(debug){
-        console.log("Need to timeout",user);
-      }else{
-        socket.call('timeout',[user,config.timeoutDuration]);
-        if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
-        console.log("Timing out",user,"for message:",msg);
-      }
+      timeout(socket,user,response,msg);
     }else if(action === "ban"){
-      if(debug){
-        console.log("Need to ban",user);
-      }else{
-        socket.call('timeout',[user,config.banDuration]); //need to timeout for 1 to unban
-        if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
-        console.log("Banning",user,"for message:",msg);
-      }
+      ban(socket,user,response,msg);
     }else if(action === "purge"){
-      if(debug){
-        console.log("Need to purge",user);
-      }else{
-        socket.call('purge',[user]);
-        if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
-        console.log("Purging",user,"for message:",msg);
-      }
+      purge(socket,user,response,msg);
     }else if(action === "nothing"){
       if(debug){console.log("No action to take");}
       //THIS SPACE INTENTIONALLY LEFT BLANK
@@ -160,6 +142,36 @@ function moderate(socket,messageData){
   moderator.stdout.on('end', function(){
     if(debug) console.log("Finished moderate parse");
   });
+}
+
+function ban(socket,user,response,msg){
+  if(debug){
+    console.log("Need to ban",user);
+  }else{
+    socket.call('timeout',[user,config.banDuration]); //need to timeout for 1 to unban
+    if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
+    console.log("Banning",user,"for message:",msg);
+  }
+}
+
+function purge(socket,user,response,msg){
+  if(debug){
+    console.log("Need to purge",user);
+  }else{
+    socket.call('purge',[user]);
+    if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
+    console.log("Purging",user,"for message:",msg);
+  }
+}
+
+function timeout(socket,user,response,msg){
+  if(debug){
+    console.log("Need to timeout",user);
+  }else{
+    socket.call('timeout',[user,config.timeoutDuration]);
+    if(!config.silentBans) socket.call('msg',["@"+user+": "+response]);
+    console.log("Timing out",user,"for message:",msg);
+  }
 }
 
 function messageToString(array){
