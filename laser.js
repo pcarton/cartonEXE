@@ -86,9 +86,11 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log('We got a ChatMessage packet!');
         if(debug) console.log(data);
         if(debug) console.log(data.message); // lets take a closer look
-        if(!data.user_roles.includes('Mod') && !data.user_roles.includes('Owner')){
+        var roles = data.user_roles;
+        if(!roles.includes('Mod') && !roles.includes('Owner')){
           moderate(socket,data);
         }
+        //commands(socket,data,roles);
 
     });
 
@@ -191,4 +193,10 @@ function messageToString(array){
   }
   if(debug) console.log("messageToString is:", result);
   return result;
+}
+
+
+function commands(socket,messageData,roles){
+  var msg = messageToString(messageData.message.message);
+  //TODO send all info to python script incase it needs to interface with other files/database
 }
