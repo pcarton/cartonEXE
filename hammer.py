@@ -11,8 +11,8 @@ debug = True
 #Get the config data
 def loadConfig():
     data = open('config.json')
-    json = json.loads(data)
-    blacklist = json.blacklist
+    config = json.loads(data)
+    blacklist = config.blacklist
     if debug:
         print("Blacklist is:")
         print(blacklist)
@@ -71,7 +71,7 @@ def purgeCheck(message):
 
 def main():
     loadConfig()
-    
+
     #get our data as an array from read_in()
     toParse = read_in()
 
