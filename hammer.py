@@ -10,9 +10,10 @@ debug = True
 
 #Get the config data
 def loadConfig():
+    global blacklist
     with open('config.json') as data:
         config = json.load(data)
-        global blacklist = config["blacklist"]
+        blacklist = config["blacklist"]
         data.close()
 
 #Read data from stdin
