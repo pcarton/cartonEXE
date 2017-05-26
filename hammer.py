@@ -3,6 +3,19 @@
 # Expects info in form 'username messagetext'
 #TODO add regex and keyword detection
 import sys, json
+import profanityfilter
+
+blacklist = []
+debug = True
+
+#Get the config data
+def loadConfig():
+    data = open('config.json')
+    json = json.loads(data)
+    blacklist = json.blacklist
+    if debug:
+        print("Blacklist is:")
+        print(blacklist)
 
 #Read data from stdin
 def read_in():
@@ -32,10 +45,11 @@ def moderate(toParse):
 def banCheck(message):
     result = False
     msg = "You have been banned for"
-    #TODO replace with real code
-    if(message.find("blacklist") != -1):
+    profanityfilter.define_words(blacklist)
+    if(not profanityfilter.is_clean(message)):
         result = True
         msg += " blacklisted content"
+    profanityfilter.restore_words()
     return result, msg
 
 def timeoutCheck(message):
@@ -56,6 +70,8 @@ def purgeCheck(message):
     return result, msg
 
 def main():
+    loadConfig()
+    
     #get our data as an array from read_in()
     toParse = read_in()
 
