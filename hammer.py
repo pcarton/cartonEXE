@@ -12,11 +12,8 @@ debug = True
 def loadConfig():
     with open('config.json') as data:
         config = json.load(data)
-        blacklist = config["blacklist"]
+        global blacklist = config["blacklist"]
         data.close()
-    if debug:
-        print("Blacklist is:")
-        print(blacklist)
 
 #Read data from stdin
 def read_in():
@@ -46,8 +43,10 @@ def moderate(toParse):
 def banCheck(message):
     result = False
     msg = "You have been banned for"
-    print(profanityfilter.define_words(blacklist))
+    profanityfilter.define_words(blacklist)
     if debug:
+        print("Blacklist is:")
+        print(blacklist)
         print("Filter is using these words:")
         print(profanityfilter.get_bad_words())
     if(profanityfilter.is_profane(message)):
