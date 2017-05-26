@@ -6,7 +6,7 @@ import sys, json
 import profanityfilter
 
 blacklist = []
-debug = True
+debug = False
 
 #Get the config data
 def loadConfig():
