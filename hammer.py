@@ -10,12 +10,14 @@ debug = True
 
 #Get the config data
 def loadConfig():
-    data = open('config.json')
-    config = json.loads(data)
-    blacklist = config.blacklist
+    with open('config.json') as data:
+        config = json.load(data)
+        blacklist = config.blacklist
+        data.close()
     if debug:
         print("Blacklist is:")
         print(blacklist)
+
 
 #Read data from stdin
 def read_in():
