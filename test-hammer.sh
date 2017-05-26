@@ -10,5 +10,5 @@ echo "PCarton test message with ban content : meany" | python3 hammer.py
 echo "PCarton test message with ban content : testWord"
 echo "PCarton test message with ban content : testWord" | python3 hammer.py
 
-echo "PCarton test message with ban content : Testword"y
+echo "PCarton test message with ban content : Testword"
 echo "PCarton test message with ban content : Testword" | python3 hammer.py
