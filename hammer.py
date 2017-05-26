@@ -12,7 +12,7 @@ debug = True
 def loadConfig():
     with open('config.json') as data:
         config = json.load(data)
-        blacklist = config.blacklist
+        blacklist = config["blacklist"]
         data.close()
     if debug:
         print("Blacklist is:")
