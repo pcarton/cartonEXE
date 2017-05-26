@@ -2,5 +2,10 @@
   "OAuth":"PUT OAUTH TOKEN HERE",
   "timeoutDuration":600,
   "banDuration":31536000000,
-  "silentBans":false
+  "silentBans":false,
+  "blacklist":[
+    "blacklisted1",
+    "blacklisted2",
+    "blacklisted3"
+  ]
 }
