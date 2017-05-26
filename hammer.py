@@ -18,7 +18,6 @@ def loadConfig():
         print("Blacklist is:")
         print(blacklist)
 
-
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
@@ -48,7 +47,10 @@ def banCheck(message):
     result = False
     msg = "You have been banned for"
     profanityfilter.define_words(blacklist)
-    if(not profanityfilter.is_clean(message)):
+    if debug:
+        print("Filter is using these words:")
+        print(profanityfilter.get_bad_words())
+    if(profanityfilter.is_profane(message)):
         result = True
         msg += " blacklisted content"
     profanityfilter.restore_words()
