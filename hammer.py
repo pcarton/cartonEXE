@@ -2,8 +2,11 @@
 # Returns info to the driver as a string in the form 'action user responseMsg'
 # Expects info in form 'username messagetext'
 #TODO add regex and keyword detection
-import sys, json
+import sys, json, re
 import profanityfilter
+
+linkCheck = "(https?:\/\/)?([\da-z\.]+)\.([a-z\.]{2,6})([/\w\.-]*)*\/?"
+linkRegEx = re.compile(linkCheck)
 
 blacklist = []
 debug = False
@@ -43,7 +46,7 @@ def moderate(toParse):
 
 def banCheck(message):
     result = False
-    msg = "You have been banned for"
+    msg = "You have been banned for "
     profanityfilter.define_words(blacklist)
     if debug:
         print("Blacklist is:")
@@ -52,24 +55,27 @@ def banCheck(message):
         print(profanityfilter.get_bad_words())
     if(profanityfilter.is_profane(message)):
         result = True
-        msg += " blacklisted content"
+        msg += "blacklisted content"
     profanityfilter.restore_words()
     return result, msg
 
 def timeoutCheck(message):
     result = False
-    msg = "You have been timed-out for"
+    msg = "You have been timed-out for "
     #TODO replace with real code
-    if(message.find("spam") != -1):
+    if message.find("spam") != -1 :
         result = True
-        msg += " spam"
+        msg += "spam"
+    elif linkRegEx.search(message) != None: #TODO add logic to allow permiting
+        result = True
+        msg += "linking"
     return result, msg
 
 def purgeCheck(message):
     result = False
     msg = "You have been purged"
     #TODO replace with real code
-    if(message.find("annoy") != -1):
+    if message.find("annoy") != -1 :
         result = True
     return result, msg
 
