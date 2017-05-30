@@ -106,7 +106,9 @@ function moderate(socket,messageData){
 
   //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
-  var msg = messageToString(messageData.message.message);
+  var msgArr = messageToString(messageData.message.message);
+  var msg = msgArr[0];
+  var hasLink = msgArr[1]; //TODO make link handler
   var toPython = messageData.user_name + " " + msg;
   if(debug) console.log("Input to python:", toPython);
   moderator.stdin.write(toPython);
@@ -187,16 +189,20 @@ function unban(socket,user){
 
 function messageToString(array){
   var result = "";
+  var hasLink = false;
   for(var index in array){
     var element = array[index];
     result += element.text;
+    if(element.type === "link"){
+      hasLink = true;
+    }
   }
   if(debug) console.log("messageToString is:", result);
-  return result;
+  return [result, hasLink];
 }
 
 
 function commands(socket,messageData,roles){
-  var msg = messageToString(messageData.message.message);
+  var msg = messageToString(messageData.message.message)[0];
   //TODO send all info to python script incase it needs to interface with other files/database
 }
