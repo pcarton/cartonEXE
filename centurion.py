@@ -1,5 +1,5 @@
 #Command handling module -  used for call-response type commands and interfacing with local data
-# Returns info to the driver as a string in the form 'user responseMsg'
+# Returns info to the driver as a string in the form 'isValid user responseMsg'
 # Expects info in form 'username highestRole messagetext'
 import sys
 
@@ -18,8 +18,8 @@ def parseCommand(input):
 
 def main():
     toParse = read_in()
-    user, response = parseCommand(toParse)
-    print(user + " " + response)
+    idValid, user, response = parseCommand(toParse)
+    print(isValid + " " + user + " " + response)
 
 #start process
 if __name__ == '__main__':
