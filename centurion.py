@@ -72,7 +72,7 @@ def store(command,message,role):
 
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
-    conn = PyMySQL.connect(dbAddr,)
+    conn = PyMySQL.connect(dbAddr,dbUser,dbPass,db)
 
 def main():
     loadConfig()
