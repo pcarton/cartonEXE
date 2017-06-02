@@ -43,7 +43,6 @@ def parseCommand(input):
         #TODO handle builtins
     else:
         response, neededRole = retrieve(message) #returns None, 'Root' if not in DB
-        #TODO finish this method
         if(hasAccess(role,neededRole)):
             return response
         else:
@@ -55,7 +54,7 @@ def retrieve(message):
     roleNeeded = 'Root'
 
     if debug:
-        print("Message is :" + message)
+        print("Command is :" + message)
 
     query = "SELECT command, role, response FROM commands WHERE command={}"
 
@@ -87,7 +86,14 @@ def store(command,message,role):
     global conn
     if conn == None:
         connect()
-    #TODO store the new command
+    update = "INSERT INTO commands(command, role, response) VALUES({0},{1},{2});"
+
+    cursor = conn.cursor()
+    try:
+        cursor.execute(update.format(command, role, message))
+        conn.commit()
+    except:
+        conn.rollback()
 
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
