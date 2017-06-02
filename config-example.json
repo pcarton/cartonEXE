@@ -8,5 +8,7 @@
     "blacklisted2",
     "blacklisted3"
   ],
-  "debug":true
+  "debug":true,
+  "databaseURL":"PUT_DATABASE_ADDRESS_HERE",
+  "databasePassword":"PUT_DATABASE_PASSWORD_HERE"
 }
