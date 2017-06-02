@@ -51,10 +51,21 @@ def retrieve(message):
     global conn
     response = None
     roleNeeded = 'Root'
+
+    if debug:
+        print("Message is :" + message)
+
+    query = "SELECT command, role, response FROM commands WHERE command={}"
+
     if conn == None:
         connect()
     cursor = conn.cursor()
-    #TODO select query
+    cursor.execute(query.format(message))
+    results = cursor.fetchone()
+
+    response = results[3]
+    neededRole = results[2]
+    
     return response, neededRole
 
 def hasAccess(roleHad, roleNeeded):
