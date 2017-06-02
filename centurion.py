@@ -65,14 +65,14 @@ def retrieve(message):
 
     response = results[3]
     neededRole = results[2]
-    
+
     return response, neededRole
 
 def hasAccess(roleHad, roleNeeded):
     if(roleHad == roleNeeded):
         return True
     else:
-        return None #TODO actually implent
+        return None #TODO actually implent where higher tiers count
 
 def store(command,message,role):
     global conn
