@@ -6,6 +6,7 @@ import sys
 import PyMySQL
 
 builtins = []
+conn = None
 
 #returns an array of the three inputs
 #eg [username, role, message]
@@ -30,9 +31,13 @@ def parseCommand(input):
             return None
 
 def retrieve(message):
+    global conn
     response = None
     roleNeeded = 'Root'
-    #TODO finish this method
+    if conn == None:
+        #TODO connect to database
+    else:
+        #TODO store the new command
     return response, neededRole
 
 def hasAccess(roleHad, roleNeeded):
@@ -41,10 +46,20 @@ def hasAccess(roleHad, roleNeeded):
     else:
         return None #TODO actually implent
 
+def store(command,message,role):
+    global conn
+    if conn == None:
+        #TODO connect to database
+    else:
+        #TODO store the new command
+
+
 def main():
     toParse = read_in()
-    idValid, user, response = parseCommand(toParse)
-    print(isValid + " " + user + " " + response)
+    action, user, response = parseCommand(toParse)
+    if conn != None:
+        conn.close()
+    print(action + " " + user + " " + response)
 
 #start process
 if __name__ == '__main__':
