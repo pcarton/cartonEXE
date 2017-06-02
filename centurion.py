@@ -2,6 +2,8 @@
 # Returns info to the driver as a string in the form 'action user responseMsg'
 # valid actions: ban timeout purge unban respond
 # Expects info in form 'username highestRole messagetext'
+# Valid roles for module ( may need to be altered by main service interface)
+# Caster Mod Sub Follower Normal (in descending order)
 import sys
 import PyMySQL
 
