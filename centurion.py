@@ -7,6 +7,19 @@ import PyMySQL
 
 builtins = []
 conn = None
+dbAddr = ""
+dbPass = ""
+debug = False
+
+#Get the config data
+def loadConfig():
+    global dbAddr, dbPass, debug
+    with open('config.json') as data:
+        config = json.load(data)
+        debug = config["debug"]
+        dbAddr = config["databaseURL"]
+        dbPass = config["databasePassword"]
+        data.close()
 
 #returns an array of the three inputs
 #eg [username, role, message]
@@ -35,7 +48,7 @@ def retrieve(message):
     response = None
     roleNeeded = 'Root'
     if conn == None:
-        #TODO connect to database
+        connect()
     else:
         #TODO store the new command
     return response, neededRole
@@ -49,12 +62,15 @@ def hasAccess(roleHad, roleNeeded):
 def store(command,message,role):
     global conn
     if conn == None:
-        #TODO connect to database
+        connect()
     else:
         #TODO store the new command
 
+def connect():
+    #TODO
 
 def main():
+    loadConfig()
     toParse = read_in()
     action, user, response = parseCommand(toParse)
     if conn != None:
