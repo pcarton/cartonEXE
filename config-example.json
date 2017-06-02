@@ -10,5 +10,7 @@
   ],
   "debug":true,
   "databaseURL":"PUT_DATABASE_ADDRESS_HERE",
-  "databasePassword":"PUT_DATABASE_PASSWORD_HERE"
+  "databasePassword":"PUT_DATABASE_PASSWORD_HERE",
+  "databaseUser":"PUT_DATABASE_USERNAME_HERE",
+  "databaseName":"PUT_DATABASE_NAME_HERE"
 }
