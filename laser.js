@@ -6,7 +6,7 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
-const debug = false;
+const debug = config.debug;
 
 let userInfo;
 let channelId = -1;

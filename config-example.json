@@ -7,5 +7,6 @@
     "blacklisted1",
     "blacklisted2",
     "blacklisted3"
-  ]
+  ],
+  "debug":true
 }
