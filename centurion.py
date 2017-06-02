@@ -71,10 +71,17 @@ def retrieve(message):
     return response, neededRole
 
 def hasAccess(roleHad, roleNeeded):
-    if(roleHad == roleNeeded):
+    if(roleHad == roleNeeded or roleHad == "Caster"):
         return True
     else:
-        return None #TODO actually implent where higher tiers count
+        if roleHad == "Mod" and roleNeeded != "Caster":
+            return True
+        elif roleHad == "Sub" and roleNeeded != "Caster" and roleNeeded != "Mod":
+            return True
+        elif roleHad == "Follower" and roleNeeded != "Caster" and roleNeeded != "Mod" and roleNeeded != "Sub":
+            return True
+        else:
+            return False
 
 def store(command,message,role):
     global conn
