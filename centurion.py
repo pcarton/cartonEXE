@@ -1,8 +1,11 @@
-#Command handling module -  used for call-response type commands and interfacing with local data
-# Returns info to the driver as a string in the form 'isValid user responseMsg'
+# Command handling module -  used for call-response type commands and interfacing with local data
+# Returns info to the driver as a string in the form 'action user responseMsg'
+# valid actions: ban timeout purge unban respond
 # Expects info in form 'username highestRole messagetext'
 import sys
 import PyMySQL
+
+builtins = []
 
 #returns an array of the three inputs
 #eg [username, role, message]
@@ -12,15 +15,19 @@ def read_in():
 
 #returns the user and the response to the command
 def parseCommand(input):
+    global builtins
     user = input[0]
     role = input[1]
     message = input[2]
-    response, neededRole = retrieve(message) #returns None, 'Root' if not in DB
-    #TODO finish this method
-    if(hasAccess(role,neededRole)):
-        return response
+    if message in builtins:
+        #TODO handle builtins
     else:
-        return None
+        response, neededRole = retrieve(message) #returns None, 'Root' if not in DB
+        #TODO finish this method
+        if(hasAccess(role,neededRole)):
+            return response
+        else:
+            return None
 
 def retrieve(message):
     response = None
