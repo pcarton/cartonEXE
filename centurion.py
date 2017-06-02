@@ -2,6 +2,7 @@
 # Returns info to the driver as a string in the form 'isValid user responseMsg'
 # Expects info in form 'username highestRole messagetext'
 import sys
+import PyMySQL
 
 #returns an array of the three inputs
 #eg [username, role, message]
