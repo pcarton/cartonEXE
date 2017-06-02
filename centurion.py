@@ -14,7 +14,24 @@ def parseCommand(input):
     user = input[0]
     role = input[1]
     message = input[2]
+    response, neededRole = retrieve(message) #returns None, 'Root' if not in DB
     #TODO finish this method
+    if(hasAccess(role,neededRole)):
+        return response
+    else:
+        return None
+
+def retrieve(message):
+    response = None
+    roleNeeded = 'Root'
+    #TODO finish this method
+    return response, neededRole
+
+def hasAccess(roleHad, roleNeeded):
+    if(roleHad == roleNeeded):
+        return True
+    else:
+        return None #TODO actually implent
 
 def main():
     toParse = read_in()
