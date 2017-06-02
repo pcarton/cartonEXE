@@ -7,7 +7,7 @@
 import sys
 import PyMySQL
 
-builtins = []
+builtins = ["!add","!ban","!purge","!timeout","!unban","!remove"]
 conn = None
 dbAddr = ""
 dbUser = ""
