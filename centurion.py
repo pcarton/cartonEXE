@@ -53,8 +53,8 @@ def retrieve(message):
     roleNeeded = 'Root'
     if conn == None:
         connect()
-    else:
-        #TODO store the new command
+    cursor = conn.cursor()
+    #TODO select query
     return response, neededRole
 
 def hasAccess(roleHad, roleNeeded):
@@ -67,8 +67,7 @@ def store(command,message,role):
     global conn
     if conn == None:
         connect()
-    else:
-        #TODO store the new command
+    #TODO store the new command
 
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
