@@ -1,7 +1,6 @@
 # Moderation module, determines actions to take on individual messages
 # Returns info to the driver as a string in the form 'action user responseMsg'
 # Expects info in form 'username messagetext'
-#TODO add regex and keyword detection
 import sys, json, re
 import profanityfilter
 
