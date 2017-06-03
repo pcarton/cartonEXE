@@ -1,7 +1,7 @@
 # Command handling module -  used for call-response type commands and interfacing with local data
 # Returns info to the driver as a string in the form 'action user responseMsg'
 # valid actions: ban timeout purge unban respond
-# Expects info in form 'username highestRole messagetext'
+# Expects info in form 'username highestRole command args'
 # Valid roles for module ( may need to be altered by main service interface)
 # Caster Mod Sub Follower Normal (in descending order)
 import sys
@@ -31,24 +31,25 @@ def loadConfig():
 #eg [username, role, message]
 def read_in():
     lines = sys.stdin.readlines()
-    return lines[0].split(maxsplit=2)
+    return lines[0].split(maxsplit=3)
 
 #returns the user and the response to the command
 def parseCommand(input):
     global builtins
     user = input[0]
     role = input[1]
-    message = input[2]
-    if message in builtins:
+    command = input[2]
+    args = input[3]
+    if command in builtins:
         #TODO handle builtins
     else:
-        response, neededRole = retrieve(message) #returns None, 'Root' if not in DB
+        response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole)):
             return response
         else:
             return None
 
-def retrieve(message):
+def retrieve(command):
     #Load globals needed
     global conn
     #prepare default return values
@@ -57,7 +58,7 @@ def retrieve(message):
 
     #debug text
     if debug:
-        print("Command is :" + message)
+        print("Command is :" + command)
 
     #make the SQL statement
     query = "SELECT command, role, response FROM commands WHERE command={}"
@@ -66,7 +67,7 @@ def retrieve(message):
         connect()
     #create a cursor to execute SELECT query
     cursor = conn.cursor()
-    cursor.execute(query.format(message))
+    cursor.execute(query.format(command))
     results = cursor.fetchone()
 
     #store results in the return vals
