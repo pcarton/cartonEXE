@@ -49,29 +49,38 @@ def parseCommand(input):
             return None
 
 def retrieve(message):
+    #Load globals needed
     global conn
+    #prepare default return values
     response = None
     roleNeeded = 'Root'
 
+    #debug text
     if debug:
         print("Command is :" + message)
 
+    #make the SQL statement
     query = "SELECT command, role, response FROM commands WHERE command={}"
-
+    #make sure we have a connection to the DB
     if conn == None:
         connect()
+    #create a cursor to execute SELECT query
     cursor = conn.cursor()
     cursor.execute(query.format(message))
     results = cursor.fetchone()
 
+    #store results in the return vals
     response = results[3]
     neededRole = results[2]
 
     return response, neededRole
 
+#Returns bool of if roleHad is higher than or equal to roleNeeded
 def hasAccess(roleHad, roleNeeded):
+    #check if equal or if highest role
     if(roleHad == roleNeeded or roleHad == "Caster"):
         return True
+    #check the other roles that they are above the needed
     else:
         if roleHad == "Mod" and roleNeeded != "Caster":
             return True
@@ -83,18 +92,24 @@ def hasAccess(roleHad, roleNeeded):
             return False
 
 def store(command,message,role):
+    #Load globals needed
     global conn
+    #make sure we have a connection to DB
     if conn == None:
         connect()
+    #Make the SQL statement
     update = "INSERT INTO commands(command, role, response) VALUES({0},{1},{2});"
 
+    #Create cursor to execute query
     cursor = conn.cursor()
+    #try the insert, rollback if error
     try:
         cursor.execute(update.format(command, role, message))
         conn.commit()
     except:
         conn.rollback()
 
+#gets a connection to the DB and stores it globally
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
     conn = PyMySQL.connect(dbAddr,dbUser,dbPass,db)
@@ -103,6 +118,7 @@ def main():
     loadConfig()
     toParse = read_in()
     action, user, response = parseCommand(toParse)
+    #Close the connection before terminating thread
     if conn != None:
         conn.close()
     print(action + " " + user + " " + response)
