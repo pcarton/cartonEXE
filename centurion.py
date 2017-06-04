@@ -53,7 +53,7 @@ def parseCommand(input):
                     return "respond", user, "Error storing new command in database"
             except IndexError as e:
                 if debug:
-                    print(e):
+                    print(e)
                 return "respond", user, "Invalid new command. Expected '!newCmd','requiredRole','response'"
         elif command == "!remove":
             #TODO handle this and other builtins
@@ -117,7 +117,7 @@ def store(command,message,role):
     if conn == None:
         connect()
     #Make the SQL statement
-    update = "INSERT INTO commands(command, role, response) VALUES({0},{1},{2});"
+    update = "INSERT INTO commands(command, role, response) VALUES({0},{1},{2})"
 
     #Create cursor to execute query
     cursor = conn.cursor()
