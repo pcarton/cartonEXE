@@ -117,7 +117,7 @@ def store(command,message,role):
     if conn == None:
         connect()
     #Make the SQL statement
-    update = "INSERT INTO commands(command, role, response) VALUES({0},{1},{2})"
+    update = "INSERT INTO commands(command, role, response) VALUES('{0}','{1}','{2}')"
 
     #Create cursor to execute query
     cursor = conn.cursor()
