@@ -62,7 +62,7 @@ def parseCommand(input):
         elif command == "!remove":
             #TODO handle this and other builtins
             testResp = retrieve(args)
-            if testResp != None:
+            if testResp == None:
                 return "respond", user, "That command does not exist"
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
@@ -92,10 +92,14 @@ def retrieve(command):
     cursor.execute(query.format(command))
     results = cursor.fetchone()
 
-    #store results in the return vals
-    response = results[2]
-    neededRole = results[1]
-    retrivedCommand = results[0]
+    try:
+        #store results in the return vals
+        response = results[2]
+        neededRole = results[1]
+        retrivedCommand = results[0]
+    except Exception as e:
+        if debug:
+            print(e)
 
     if debug:
         print("SQL is: " + query.format(command))
