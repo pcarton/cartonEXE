@@ -203,6 +203,66 @@ function messageToString(array){
 
 
 function commands(socket,messageData,roles){
+  if(debug) console.log("In commands function");
   var msg = messageToString(messageData.message.message)[0];
+  var role = "Normal";
+  var username = messageData.user_name;
   //TODO send all info to python script incase it needs to interface with other files/database
+  if(msg.charAt(0) != '!'){
+    return;
+  }else{
+    role = parseRoles(roles);
+    var handleCmds = spawn('python3', ['centurion.py']);
+    var toPython = username + " " + role + " " + msg;
+    if(debug) console.log("Input to python:", toPython);
+    handleCmds.stdin.write(toPython);
+    handleCmds.stdin.end();
+
+    handleCmds.stdout.on('data', function(data){
+      var pythonOut = data.toString().trim();
+      if(debug) console.log("From python:",pythonOut);
+      var action = pythonOut.split(" ")[0];
+      var user = pythonOut.split(" ")[1];
+      var indexOfSpace1 = pythonOut.indexOf(" ");
+      var indexOfSpace2 = pythonOut.indexOf(" ",indexOfSpace1+1);
+      var response = pythonOut.substr(indexOfSpace2);
+      if(indexOfSpace2 === -1){
+        response = "";
+      }
+      if(debug){
+        console.log("User is:", user);
+        console.log("Action to take:",action);
+        console.log("Response is: ","@"+user+": "+response);
+      }
+      //Parse the actions and take action if needed
+      if(action === "timeout"){
+        timeout(socket,user,response,msg);
+      }else if(action === "ban"){
+        ban(socket,user,response,msg);
+      }else if(action === "purge"){
+        purge(socket,user,response,msg);
+      }else if(action === "respond"){
+        socket.call('msg', [response]);
+      }else if(action === "unban"){
+        unban(socket,user);
+      }else if(action === "nothing"){
+        if(debug){console.log("No action to take");}
+        //THIS SPACE INTENTIONALLY LEFT BLANK
+      }
+    });
+
+    handleCmds.stdout.on('end', function(){
+      if(debug) console.log("Finished moderate parse");
+    });
+  }
+
+}
+
+function parseRoles(roleArr){
+  var result = "Normal";
+  for(var index in roleArr){
+    var role = roleArr[index];
+    //TODO parse the Mixer roles
+  }
+  return result;
 }
