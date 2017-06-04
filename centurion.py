@@ -158,7 +158,7 @@ def hasAccess(roleHad, roleNeeded):
 def store(command,message,role):
     #Load globals needed
     global conn, roles
-    if(command[0] != "!" or role not in roles)
+    if(command[0] != "!" or not role in roles):
         return False
     #make sure we have a connection to DB
     if conn == None:
