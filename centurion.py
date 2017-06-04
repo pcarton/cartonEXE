@@ -91,7 +91,9 @@ def retrieve(command):
     cursor = conn.cursor()
     cursor.execute(query.format(command))
     results = cursor.fetchone()
-
+    if debug:
+        print("SQL is: " + query.format(command))
+        print("Result is:"+results)
     #store results in the return vals
     response = results[3]
     neededRole = results[2]
