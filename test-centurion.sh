@@ -16,3 +16,6 @@ echo "PCarton Mod !add !testingInvalidArgs Mod" | python3 centurion.py
 
 echo "PCarton Mod !add !testingInvalidArgs Hello World"
 echo "PCarton Mod !add !testingInvalidArgs Hello World" | python3 centurion.py
+
+echo "PCarton Mod !add"
+echo "PCarton Mod !add" | python3 centurion.py
