@@ -62,9 +62,14 @@ def parseCommand(input):
                 return "respond", user, "Invalid new command. Expected '!newCmd','requiredRole','response'"
         elif command == "!remove":
             #TODO handle this and other builtins
-            testResp = retrieve(args)
+            testResp, testRole = retrieve(args)
             if testResp == None:
                 return "respond", user, "That command does not exist"
+            else:
+                if delete(args):
+                    return "respond", user, "Command {} successfully removed".format(args)
+                else:
+                    return "respond", user, "Error removing command {} in database".format(args)
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole)):
@@ -111,6 +116,27 @@ def retrieve(command):
 
 
     return response, neededRole
+
+def delete(command):
+    #Load globals needed
+    global conn
+    #make sure we have a connection to DB
+    if conn == None:
+        connect()
+    #Make the SQL statement
+    remove = "DELETE FROM commands WHERE command='{}'"
+    #Create cursor to execute query
+    cursor = conn.cursor()
+    #try the insert, rollback if error
+    try:
+        cursor.execute(remove.format(command))
+        conn.commit()
+        return True
+    except Exception as e:
+        if debug:
+            print(e)
+        conn.rollback()
+        return False
 
 #Returns bool of if roleHad is higher than or equal to roleNeeded
 def hasAccess(roleHad, roleNeeded):
