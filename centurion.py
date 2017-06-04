@@ -157,7 +157,7 @@ def connect():
 def main():
     loadConfig()
     toParse = read_in()
-    action, user, response = parseCommand(toParse)
+    action, user, response = parseCommand(toParse.strip())
     #Close the connection before terminating thread
     if conn != None:
         conn.close()
