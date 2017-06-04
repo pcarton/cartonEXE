@@ -79,7 +79,7 @@ def retrieve(command):
         print("Command is :" + command)
 
     #make the SQL statement
-    query = "SELECT command, role, response FROM commands WHERE command={}"
+    query = "SELECT command, role, response FROM commands WHERE command='{}'"
     #make sure we have a connection to the DB
     if conn == None:
         connect()
