@@ -5,7 +5,7 @@
 # Valid roles for module ( may need to be altered by main service interface)
 # Caster Mod Sub Follower Normal (in descending order)
 import sys
-import PyMySQL
+import pymysql
 
 builtins = ["!add","!ban","!purge","!timeout","!unban","!remove"]
 conn = None
