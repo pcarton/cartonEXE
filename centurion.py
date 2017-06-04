@@ -31,7 +31,8 @@ def loadConfig():
 #eg [username, role, message]
 def read_in():
     lines = sys.stdin.readlines()
-    return lines[0].split(maxsplit=3)
+    line = lines[0].strip()
+    return line.split(maxsplit=3)
 
 #returns the user and the response to the command
 def parseCommand(input):
@@ -157,7 +158,7 @@ def connect():
 def main():
     loadConfig()
     toParse = read_in()
-    action, user, response = parseCommand(toParse.strip())
+    action, user, response = parseCommand(toParse)
     #Close the connection before terminating thread
     if conn != None:
         conn.close()
