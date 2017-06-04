@@ -76,7 +76,7 @@ def retrieve(command):
     global conn
     #prepare default return values
     response = None
-    roleNeeded = 'Root'
+    neededRole = 'Root'
     retrivedCommand = command
 
     #debug text
