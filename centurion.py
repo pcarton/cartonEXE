@@ -60,7 +60,7 @@ def parseCommand(input):
             except IndexError as e:
                 if debug:
                     print(e)
-                return "respond", user, "Invalid new command. Expected Format: !newCmd requiredRole response"
+                return "respond", user, "Invalid new command. Expected Format: '!newCmd requiredRole response'"
         elif command == "!remove":
             #TODO handle this and other builtins
             testResp, testRole = retrieve(args)
