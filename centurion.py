@@ -51,7 +51,9 @@ def parseCommand(input):
                     return "respond", user, "New command {} successfully stored".format(newCmd)
                 else:
                     return "respond", user, "Error storing new command in database"
-            except IndexError:
+            except IndexError as e:
+                if debug:
+                    print(e):
                 return "respond", user, "Invalid new command. Expected '!newCmd','requiredRole','response'"
         elif command == "!remove":
             #TODO handle this and other builtins
@@ -124,7 +126,9 @@ def store(command,message,role):
         cursor.execute(update.format(command, role, message))
         conn.commit()
         return True
-    except:
+    except Exception as e:
+        if debug:
+            print(e)
         conn.rollback()
         return False
 
