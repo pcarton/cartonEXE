@@ -17,7 +17,7 @@ debug = False
 
 #Get the config data
 def loadConfig():
-    global dbAddr, dbPass, dbUser, db debug
+    global dbAddr, dbPass, dbUser, db, debug
     with open('config.json') as data:
         config = json.load(data)
         debug = config["debug"]
@@ -47,7 +47,7 @@ def parseCommand(input):
                 newCmd = argArr[0]
                 reqRole = argArr[1]
                 newResponse = argArr[2]
-                if store(newCmd,newResponse,reqRole:
+                if store(newCmd,newResponse,reqRole):
                     return "respond", user, "New command {} successfully stored".format(newCmd)
                 else:
                     return "respond", user, "Error storing new command in database"
@@ -55,6 +55,9 @@ def parseCommand(input):
                 return "respond", user, "Invalid new command. Expected '!newCmd','requiredRole','response'"
         elif command == "!remove":
             #TODO handle this and other builtins
+            testResp = retrieve(args)
+            if testResp != None:
+                return "respond", user, "That command does not exist"
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole)):
