@@ -93,13 +93,16 @@ def retrieve(command):
     results = cursor.fetchone()
 
     #store results in the return vals
-    response = results[3]
-    neededRole = results[2]
+    response = results[2]
+    neededRole = results[1]
+    retrivedCommand = results[0]
 
     if debug:
         print("SQL is: " + query.format(command))
+        print(retrivedCommand)
         print(response)
         print(neededRole)
+
 
     return response, neededRole
 
