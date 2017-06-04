@@ -72,7 +72,7 @@ def parseCommand(input):
                     return "respond", user, "Error removing command {} in database".format(args)
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
-        if(hasAccess(role,neededRole)):
+        if(hasAccess(role,neededRole) and response != None):
             return "respond", user, response
         else:
             return "none", user, ""
