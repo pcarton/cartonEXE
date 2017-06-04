@@ -77,6 +77,7 @@ def retrieve(command):
     #prepare default return values
     response = None
     roleNeeded = 'Root'
+    retrivedCommand = command
 
     #debug text
     if debug:
