@@ -81,7 +81,7 @@ def retrieve(command):
 
     #debug text
     if debug:
-        print("Command is :" + command)
+        print("Command is: " + command)
 
     #make the SQL statement
     query = "SELECT command, role, response FROM commands WHERE command='{}'"
