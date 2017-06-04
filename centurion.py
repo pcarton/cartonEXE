@@ -1,6 +1,6 @@
 # Command handling module -  used for call-response type commands and interfacing with local data
 # Returns info to the driver as a string in the form 'action user responseMsg'
-# valid actions: ban timeout purge unban respond
+# valid actions: ban timeout purge unban respond none
 # Expects info in form 'username highestRole command args'
 # Valid roles for module ( may need to be altered by main service interface)
 # Caster Mod Sub Follower Normal (in descending order)
@@ -41,13 +41,26 @@ def parseCommand(input):
     command = input[2]
     args = input[3]
     if command in builtins:
-        #TODO handle builtins
+        if command == "!add":
+            argArr = args.split(maxsplit=2) #Args are newCmd reqRole response
+            try:
+                newCmd = argArr[0]
+                reqRole = argArr[1]
+                newResponse = argArr[2]
+                if store(newCmd,newResponse,reqRole:
+                    return "respond", user, "New command {} successfully stored".format(newCmd)
+                else:
+                    return "respond", user, "Error storing new command in database"
+            except IndexError:
+                return "respond", user, "Invalid new command. Expected '!newCmd','requiredRole','response'"
+        elif command == "!remove":
+            #TODO handle this and other builtins
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole)):
-            return response
+            return "respond", user, response
         else:
-            return None
+            return "none", user, ""
 
 def retrieve(command):
     #Load globals needed
@@ -107,8 +120,10 @@ def store(command,message,role):
     try:
         cursor.execute(update.format(command, role, message))
         conn.commit()
+        return True
     except:
         conn.rollback()
+        return False
 
 #gets a connection to the DB and stores it globally
 def connect():
