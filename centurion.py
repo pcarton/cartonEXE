@@ -131,7 +131,7 @@ def store(command,message,role):
 #gets a connection to the DB and stores it globally
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
-    conn = PyMySQL.connect(dbAddr,dbUser,dbPass,db)
+    conn = pymysql.connect(dbAddr,dbUser,dbPass,db)
 
 def main():
     loadConfig()
