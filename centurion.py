@@ -4,7 +4,7 @@
 # Expects info in form 'username highestRole command args'
 # Valid roles for module ( may need to be altered by main service interface)
 # Caster Mod Sub Follower Normal (in descending order)
-import sys
+import sys, json
 import pymysql
 
 builtins = ["!add","!ban","!purge","!timeout","!unban","!remove"]
@@ -24,7 +24,7 @@ def loadConfig():
         dbAddr = config["databaseURL"]
         dbPass = config["databasePassword"]
         dbUser = config["databaseUser"]
-        db = confi["databaseName"]
+        db = config["databaseName"]
         data.close()
 
 #returns an array of the three inputs
