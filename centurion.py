@@ -8,6 +8,7 @@ import sys, json
 import pymysql
 
 builtins = ["!add","!ban","!purge","!timeout","!unban","!remove"]
+roles = ["Caster","Mod","Sub","Follwer","Normal"]
 conn = None
 dbAddr = ""
 dbUser = ""
@@ -156,7 +157,9 @@ def hasAccess(roleHad, roleNeeded):
 
 def store(command,message,role):
     #Load globals needed
-    global conn
+    global conn, roles
+    if(command[0] != "!" or role not in roles)
+        return False
     #make sure we have a connection to DB
     if conn == None:
         connect()
