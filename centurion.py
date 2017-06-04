@@ -39,7 +39,11 @@ def parseCommand(input):
     user = input[0]
     role = input[1]
     command = input[2]
-    args = input[3]
+    args = None
+    try:
+        args = input[3]
+    except IndexError as e:
+        args = ""
     if command in builtins:
         if command == "!add":
             argArr = args.split(maxsplit=2) #Args are newCmd reqRole response
