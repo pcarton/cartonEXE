@@ -262,7 +262,14 @@ function parseRoles(roleArr){
   var result = "Normal";
   for(var index in roleArr){
     var role = roleArr[index];
-    //TODO parse the Mixer roles
+    //TODO parse the Mixer roles'
+    if(role === "Owner"){
+      result = "Caster";
+    }else if(role === "Mod" && result !== "Caster"){
+      result = "Mod";
+    }else if(role == "User" && result !== "Caster" && result !== "Mod"){
+      result = "User";
+    }
   }
   return result;
 }
