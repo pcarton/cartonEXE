@@ -48,6 +48,8 @@ def parseCommand(input):
         args = ""
     if command in builtins:
         if command == "!add":
+            if role != "Caster" and role !="Mod":
+                return "none", user, ""
             argArr = args.split(maxsplit=2) #Args are newCmd reqRole response
             try:
                 newCmd = argArr[0]
@@ -62,7 +64,8 @@ def parseCommand(input):
                     print(e)
                 return "respond", user, "Invalid new command. Expected Format: '!newCmd requiredRole response'"
         elif command == "!remove":
-            #TODO handle this and other builtins
+            if role != "Caster" and role !="Mod":
+                return "none", user, ""
             testResp, testRole = retrieve(args)
             if testResp == None:
                 return "respond", user, "That command does not exist"
