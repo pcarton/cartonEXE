@@ -90,7 +90,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(!roles.includes('Mod') && !roles.includes('Owner')){
           moderate(socket,data);
         }
-        //commands(socket,data,roles);
+        commands(socket,data,roles);
 
     });
 
@@ -104,7 +104,6 @@ function moderate(socket,messageData){
   //This is how to send the data to be processed by the python
   var moderator = spawn('python3', ['hammer.py']);
 
-  //TODO add moderator/brodcaster checks
   if(debug) console.log("In moderate function");
   var msgArr = messageToString(messageData.message.message);
   var msg = msgArr[0];
@@ -207,7 +206,8 @@ function commands(socket,messageData,roles){
   var msg = messageToString(messageData.message.message)[0];
   var role = "Normal";
   var username = messageData.user_name;
-  //TODO send all info to python script incase it needs to interface with other files/database
+
+  //Send command to python script
   if(msg.charAt(0) != '!'){
     return;
   }else{
@@ -262,7 +262,7 @@ function parseRoles(roleArr){
   var result = "Normal";
   for(var index in roleArr){
     var role = roleArr[index];
-    //TODO parse the Mixer roles'
+    //TODO parse the remaining Mixer roles'
     if(role === "Owner"){
       result = "Caster";
     }else if(role === "Mod" && result !== "Caster"){
