@@ -147,7 +147,7 @@ function moderate(socket,messageData){
   });
 }
 
-function ban(socket,user,response,msg){
+function ban(socket,user,response,msg){ //TODO check that the call completed successfully
   if(debug){
     console.log("Need to ban",user);
   }else{
@@ -157,7 +157,7 @@ function ban(socket,user,response,msg){
   }
 }
 
-function purge(socket,user,response,msg){
+function purge(socket,user,response,msg){ //TODO check that the call completed successfully
   if(debug){
     console.log("Need to purge",user);
   }else{
@@ -168,7 +168,7 @@ function purge(socket,user,response,msg){
 }
 
 //To unban, use a duration of 1 with this function
-function timeout(socket,user,response,msg,duration){
+function timeout(socket,user,response,msg,duration){ //TODO check that the call completed successfully
   if(debug){
     console.log("Need to timeout",user);
   }else{
