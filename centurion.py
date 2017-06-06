@@ -155,6 +155,8 @@ def hasAccess(roleHad, roleNeeded):
             return True
         elif roleHad == "Follower" and roleNeeded != "Caster" and roleNeeded != "Mod" and roleNeeded != "Sub":
             return True
+        elif roleNeeded =="Normal":
+            return True
         else:
             return False
 

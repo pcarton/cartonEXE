@@ -268,7 +268,7 @@ function parseRoles(roleArr){
     }else if(role === "Mod" && result !== "Caster"){
       result = "Mod";
     }else if(role == "User" && result !== "Caster" && result !== "Mod"){
-      result = "User";
+      result = "Normal";
     }
   }
   return result;
