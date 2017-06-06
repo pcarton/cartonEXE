@@ -7,6 +7,8 @@ const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
 const debug = config.debug;
+const moderationModule = config.moderationOn;
+const commandModule = config.commandsOn;
 
 let userInfo;
 let channelId = -1;
@@ -87,11 +89,12 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log(data);
         if(debug) console.log(data.message); // lets take a closer look
         var roles = data.user_roles;
-        if(!roles.includes('Mod') && !roles.includes('Owner')){
+        if(moderationModule && !roles.includes('Mod') && !roles.includes('Owner')){
           moderate(socket,data);
         }
-        commands(socket,data,roles);
-
+        if(commandModule){
+          commands(socket,data,roles);
+        }
     });
 
     // Listen to socket errors, you'll need to handle these!
