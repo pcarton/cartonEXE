@@ -3,6 +3,8 @@
   "timeoutDuration":600,
   "banDuration":31536000000,
   "silentBans":false,
+  "moderationOn":true,
+  "commandsOn":true,
   "blacklist":[
     "blacklisted1",
     "blacklisted2",
