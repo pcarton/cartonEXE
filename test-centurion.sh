@@ -6,7 +6,7 @@ GREEN='\033[1;32m'
 NC='\033[0m'
 
 echo -e "${GREEN}Testing !add, !remove, and database commands $NC"
-echo -e "${LIGHTBLUE}PCarton Mod !add !test Mod Hello World"
+echo -e "${LIGHTBLUE}PCarton Mod !add !test Mod Hello World $NC"
 echo "PCarton Mod !add !test Mod Hello World" | python3 centurion.py
 
 echo -e "${LIGHTBLUE}PCarton Mod !test $NC"
@@ -29,7 +29,7 @@ echo -e "${LIGHTBLUE}PCarton Mod !add $NC"
 echo "PCarton Mod !add" | python3 centurion.py
 
 echo -e "${GREEN}Testing !purge, !timeout, !ban, !unban commands $NC"
-echo " ${LIGHTBLUE}PCarton Mod !purge PCarton $NC"
+echo -e "${LIGHTBLUE}PCarton Mod !purge PCarton $NC"
 echo "PCarton Mod !purge PCarton" | python3 centurion.py
 
 echo -e "${LIGHTBLUE}PCarton Mod !purge $NC"
