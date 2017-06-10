@@ -79,21 +79,29 @@ def parseCommand(input):
                 return "none", user, ""
             if args != None and args != "":
                 return "purge", args, "Purging user: " + args
+            else:
+                return "none", user, ""
         elif command == "!timeout":
             if role != "Caster" and role !="Mod":
                 return "none", user, ""
             if args != None and args != "":
                 return "timeout", args, "Timing out user: " + args
+            else:
+                return "none", user, ""
         elif command == "!ban":
             if role != "Caster" and role !="Mod":
                 return "none", user, ""
             if args != None and args != "":
                 return "ban", args, "Banning user: " + args
+            else:
+                return "none", user, ""
         elif command == "!unban":
             if role != "Caster" and role !="Mod":
                 return "none", user, ""
             if args != None and args != "":
                 return "unban", args, "Unbanning user: " + args
+            else:
+                return "none", user, ""
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole) and response != None):
