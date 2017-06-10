@@ -5,7 +5,7 @@ LIGHTBLUE='\033[1;34m'
 GREEN='\033[1;32m'
 NC='\033[0m'
 
-echo -e {$GREEN}Testing !add, !remove, and database commands
+echo -e $GREEN Testing !add, !remove, and database commands $NC
 echo "PCarton Mod !add !test Mod Hello World"
 echo "PCarton Mod !add !test Mod Hello World" | python3 centurion.py
 
@@ -28,7 +28,7 @@ echo "PCarton Mod !add !testingInvalidArgs Hello World" | python3 centurion.py
 echo "PCarton Mod !add"
 echo "PCarton Mod !add" | python3 centurion.py
 
-echo -e {$GREEN}Testing !purge, !timeout, !ban, !unban commands
+echo -e $GREEN Testing !purge, !timeout, !ban, !unban commands $NC
 echo "PCarton Mod !purge PCarton"
 echo "PCarton Mod !purge PCarton" | python3 centurion.py
 
