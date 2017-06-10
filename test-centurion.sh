@@ -51,4 +51,4 @@ echo "PCarton Mod !unban PCarton"
 echo "PCarton Mod !unban PCarton" | python3 centurion.py
 
 echo "PCarton Mod !unban"
-echo "PCarton Mod !unban" | pytimeoutthon3 centurion.py
+echo "PCarton Mod !unban" | python3 centurion.py
