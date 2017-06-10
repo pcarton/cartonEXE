@@ -76,32 +76,32 @@ def parseCommand(input):
                     return "respond", user, "Error removing command {} in database".format(args)
         elif command == "!purge":
             if role != "Caster" and role !="Mod":
-                return "none", user, ""
+                return "none", user, "Required Role not met"
             if args != None and args != "":
                 return "purge", args, "Purging user: " + args
             else:
-                return "none", user, ""
+                return "none", user, "Invalid Args"
         elif command == "!timeout":
             if role != "Caster" and role !="Mod":
-                return "none", user, ""
+                return "none", user, "Required Role not met"
             if args != None and args != "":
                 return "timeout", args, "Timing out user: " + args
             else:
-                return "none", user, ""
+                return "none", user, "Invalid Args"
         elif command == "!ban":
             if role != "Caster" and role !="Mod":
-                return "none", user, ""
+                return "none", user, "Required Role not met"
             if args != None and args != "":
                 return "ban", args, "Banning user: " + args
             else:
-                return "none", user, ""
+                return "none", user, "Invalid Args"
         elif command == "!unban":
             if role != "Caster" and role !="Mod":
-                return "none", user, ""
+                return "none", user, "Required Role not met"
             if args != None and args != "":
                 return "unban", args, "Unbanning user: " + args
             else:
-                return "none", user, ""
+                return "none", user, "Invalid Args"
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole) and response != None):
