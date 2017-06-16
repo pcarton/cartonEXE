@@ -7,7 +7,7 @@ const config = require('./config.json');
 const spawn = require('child_process').spawn;
 
 const debug = config.debug;
-const moderationModule = config.moderationOn;
+var moderationModule = config.moderationOn;
 const commandModule = config.commandsOn;
 
 let userInfo;
@@ -49,7 +49,7 @@ client.request('GET', 'users/current')
     if(debug) console.log(body);
     if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
       console.log("Cannot moderate this chat");
-      return;
+      moderationModule = false;
     }
     if(!debug && channelId !== -1){
       return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
