@@ -26,7 +26,32 @@ def removePermit(username):
 
 def addPermit(username):
 
+#returns the expiration date of the user's permit, or None if no permit exists
 def getPermit(username):
+    #Load globals needed
+    global conn
+
+    #prepare default return values
+    expir = None
+
+    #make the SQL statement
+    query = "SELECT expiration FROM permits WHERE user='{}'"
+    #make sure we have a connection to the DB
+    if conn == None:
+        connect()
+    #create a cursor to execute SELECT query
+    cursor = conn.cursor()
+    cursor.execute(query.format(username))
+    results = cursor.fetchone()
+
+    try:
+        #store results in the return vals
+        expir = results[0] #TODO turn into datetime obj
+    except Exception as e:
+        if debug:
+            print(e)
+            
+    return expir
 
 def isPermitted(username):
     return not getPermit(username) == None
