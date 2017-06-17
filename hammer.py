@@ -47,16 +47,19 @@ def moderate(toParse):
 def banCheck(message):
     result = False
     msg = "You have been banned for "
-    profanityfilter.define_words(blacklist)
-    if debug:
-        print("Blacklist is:")
-        print(blacklist)
-        print("Filter is using these words:")
-        print(profanityfilter.get_bad_words())
-    if(profanityfilter.is_profane(message)):
-        result = True
-        msg += "blacklisted content"
-    profanityfilter.restore_words()
+    if blacklist:
+        profanityfilter.define_words(blacklist)
+        if debug:
+            print("Blacklist is:")
+            print(blacklist)
+            print("Filter is using these words:")
+            print(profanityfilter.get_bad_words())
+        if(profanityfilter.is_profane(message)):
+            result = True
+            msg += "blacklisted content"
+        profanityfilter.restore_words()
+    else:
+        msg = ""
     return result, msg
 
 def timeoutCheck(message):
