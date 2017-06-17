@@ -107,18 +107,18 @@ function moderate(socket,messageData){
   //This is how to send the data to be processed by the python
   var moderator = spawn('python3', ['hammer.py']);
 
-  if(debug) console.log("In moderate function");
+  if(debug) console.log("MODERATE: In moderate function");
   var msgArr = messageToString(messageData.message.message);
   var msg = msgArr[0];
   var hasLink = msgArr[1]; //TODO make link handler
   var toPython = messageData.user_name + " " + msg;
-  if(debug) console.log("MODERATE: Input to python:", toPython);
+  if(debug) console.log("\tMODERATE: Input to python:", toPython);
   moderator.stdin.write(toPython);
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
     var pythonOut = data.toString().trim();
-    if(debug) console.log("MODERATE: From python:",pythonOut);
+    if(debug) console.log("\tMODERATE: From python:",pythonOut);
     var action = pythonOut.split(" ")[0];
     var user = pythonOut.split(" ")[1];
     var indexOfSpace1 = pythonOut.indexOf(" ");
@@ -199,13 +199,13 @@ function messageToString(array){
       hasLink = true;
     }
   }
-  if(debug) console.log("messageToString is:", result);
+  if(debug) console.log("\tMESSAGE2STRING: messageToString is:", result);
   return [result, hasLink];
 }
 
 
 function commands(socket,messageData,roles){
-  if(debug) console.log("In commands function");
+  if(debug) console.log("COMMANDS: In commands function");
   var msg = messageToString(messageData.message.message)[0];
   var role = "Normal";
   var username = messageData.user_name;
@@ -217,13 +217,13 @@ function commands(socket,messageData,roles){
     role = parseRoles(roles);
     var handleCmds = spawn('python3', ['centurion.py']);
     var toPython = username + " " + role + " " + msg;
-    if(debug) console.log("COMMANDS: Input to python:", toPython);
+    if(debug) console.log("\tCOMMANDS: Input to python:", toPython);
     handleCmds.stdin.write(toPython);
     handleCmds.stdin.end();
 
     handleCmds.stdout.on('data', function(data){
       var pythonOut = data.toString().trim();
-      if(debug) console.log("COMMANDS: From python:",pythonOut);
+      if(debug) console.log("\tCOMMANDS: From python:",pythonOut);
       var action = pythonOut.split(" ")[0];
       var user = pythonOut.split(" ")[1];
       var indexOfSpace1 = pythonOut.indexOf(" ");
