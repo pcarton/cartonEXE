@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS commands;
-
+DROP TABLE IF EXISTS permits;
 
 /*
   Command Table - stores the static command responses
@@ -9,5 +9,15 @@ CREATE TABLE commands(
   command VARCHAR(80) UNIQUE NOT NULL,
   role VARCHAR(10) NOT NULL,
   response VARCHAR(80) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+/*
+  Permit Table - stores the permited users and the expiration time of the permit
+*/
+CREATE TABLE permits(
+  id INT AUTO_INCREMENT NOT NULL,
+  user VARCHAR(32) UNIQUE NOT NULL,
+  expiration TIMESTAMP NOT NULL,
   PRIMARY KEY(id)
 );
