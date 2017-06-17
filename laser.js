@@ -112,13 +112,13 @@ function moderate(socket,messageData){
   var msg = msgArr[0];
   var hasLink = msgArr[1]; //TODO make link handler
   var toPython = messageData.user_name + " " + msg;
-  if(debug) console.log("Input to python:", toPython);
+  if(debug) console.log("MODERATE: Input to python:", toPython);
   moderator.stdin.write(toPython);
   moderator.stdin.end();
 
   moderator.stdout.on('data', function(data){
     var pythonOut = data.toString().trim();
-    if(debug) console.log("From python:",pythonOut);
+    if(debug) console.log("MODERATE: From python:",pythonOut);
     var action = pythonOut.split(" ")[0];
     var user = pythonOut.split(" ")[1];
     var indexOfSpace1 = pythonOut.indexOf(" ");
@@ -128,9 +128,9 @@ function moderate(socket,messageData){
       response = "";
     }
     if(debug){
-      console.log("User is:", user);
-      console.log("Action to take:",action);
-      console.log("Response is: ","@"+user+": "+response);
+      console.log("\tMODERATE: User is:", user);
+      console.log("\tMODERATE: Action to take:",action);
+      console.log("\tMODERATE: Response is: ","@"+user+": "+response);
     }
     //Parse the actions and take action if needed
     if(action === "timeout"){
@@ -217,13 +217,13 @@ function commands(socket,messageData,roles){
     role = parseRoles(roles);
     var handleCmds = spawn('python3', ['centurion.py']);
     var toPython = username + " " + role + " " + msg;
-    if(debug) console.log("Input to python:", toPython);
+    if(debug) console.log("COMMANDS: Input to python:", toPython);
     handleCmds.stdin.write(toPython);
     handleCmds.stdin.end();
 
     handleCmds.stdout.on('data', function(data){
       var pythonOut = data.toString().trim();
-      if(debug) console.log("From python:",pythonOut);
+      if(debug) console.log("COMMANDS: From python:",pythonOut);
       var action = pythonOut.split(" ")[0];
       var user = pythonOut.split(" ")[1];
       var indexOfSpace1 = pythonOut.indexOf(" ");
@@ -233,9 +233,9 @@ function commands(socket,messageData,roles){
         response = "";
       }
       if(debug){
-        console.log("User is:", user);
-        console.log("Action to take:",action);
-        console.log("Response is: ","@"+user+": "+response);
+        console.log("\tCOMMANDS: User is:", user);
+        console.log("\tCOMMANDS: Action to take:",action);
+        console.log("\tCOMMANDS: Response is: ","@"+user+": "+response);
       }
       //Parse the actions and take action if needed
       if(action === "timeout"){
