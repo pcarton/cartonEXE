@@ -140,13 +140,13 @@ function moderate(socket,messageData){
     }else if(action === "purge"){
       purge(socket,user,response,msg);
     }else if(action === "nothing"){
-      if(debug){console.log("No action to take");}
+      if(debug){console.log("\tMODERATE:No action to take");}
       //THIS SPACE INTENTIONALLY LEFT BLANK
     }
   });
 
   moderator.stdout.on('end', function(){
-    if(debug) console.log("Finished moderate parse");
+    if(debug) console.log("MODERATE: Finished moderate parse");
   });
 }
 
@@ -249,13 +249,13 @@ function commands(socket,messageData,roles){
       }else if(action === "unban"){
         unban(socket,user);
       }else if(action === "nothing"){
-        if(debug){console.log("No action to take");}
+        if(debug){console.log("\tCOMMANDS: No action to take");}
         //THIS SPACE INTENTIONALLY LEFT BLANK
       }
     });
 
     handleCmds.stdout.on('end', function(){
-      if(debug) console.log("Finished moderate parse");
+      if(debug) console.log("COMMANDS: Finished command parse");
     });
   }
 
