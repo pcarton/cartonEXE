@@ -22,7 +22,27 @@ def loadConfig():
         db = config["databaseName"]
         data.close()
 
+#returns True if action success, False if exception encountered
 def removePermit(username):
+    #Load globals needed
+    global conn
+    #make sure we have a connection to DB
+    if conn == None:
+        connect()
+    #Make the SQL statement
+    remove = "DELETE FROM permits WHERE user='{}'"
+    #Create cursor to execute query
+    cursor = conn.cursor()
+    #try the insert, rollback if error
+    try:
+        cursor.execute(remove.format(username))
+        conn.commit()
+        return True
+    except Exception as e:
+        if debug:
+            print(e)
+        conn.rollback()
+        return False
 
 def addPermit(username):
 
@@ -50,7 +70,7 @@ def getPermit(username):
     except Exception as e:
         if debug:
             print(e)
-            
+
     return expir
 
 def isPermitted(username):
