@@ -44,7 +44,7 @@ def removePermit(username):
         conn.rollback()
         return False
 
-def addPermit(username):
+def addPermit(username): #TODO
 
 #returns the expiration date of the user's permit, or None if no permit exists
 def getPermit(username):
@@ -80,3 +80,15 @@ def isPermitted(username):
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
     conn = pymysql.connect(dbAddr,dbUser,dbPass,db)
+
+def main():
+    loadConfig()
+    #TODO add the logic/input parsing
+    #Close the connection before terminating thread
+    if conn != None:
+        conn.close()
+    #TODO add the output
+
+#start process
+if __name__ == '__main__':
+    main()
