@@ -14,6 +14,7 @@ CREATE TABLE commands(
 
 /*
   Permit Table - stores the permited users and the expiration time of the permit
+  Timestamp is in format 'YYYY-MM-DD HH:MM:SS'
 */
 CREATE TABLE permits(
   id INT AUTO_INCREMENT NOT NULL,
