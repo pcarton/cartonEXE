@@ -104,7 +104,9 @@ def getPermits(username):
     return expir
 
 def isPermitted(username):
-    return not getPermit(username) == None
+    nullCheck = not getPermit(username) == None
+    hasntExpired = epir > datetime.datetime.utcnow()
+    return nullCheck and hasntExpired
 
 #converts string to python datetime
 def stringToPython(timestamp):
