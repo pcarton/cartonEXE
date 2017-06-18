@@ -102,6 +102,16 @@ def parseCommand(input):
                 return "unban", args, "Unbanning user: " + args
             else:
                 return "none", user, "Invalid Args"
+        elif command == "!permit":
+            if role != "Caster" and role !="Mod":
+                return "none", user, "Required Role not met"
+            if args != None and args != "":
+                if addPermits(username):
+                    return "respond", args, "User " + args + " is allowed to post 1 link in the next 10 minutes"
+                else:
+                    return "respond", args, "Error permiting user"
+            else:
+                return "none", user, "Invalid Args"
     else:
         response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
         if(hasAccess(role,neededRole) and response != None):
