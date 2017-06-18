@@ -76,6 +76,13 @@ def getPermit(username):
 def isPermitted(username):
     return not getPermit(username) == None
 
+#converts string to python datetime
+def stringToPython(string):
+
+#converts python datetime to string
+def pythonToString(datetimeObj):
+    
+
 #gets a connection to the DB and stores it globally
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
