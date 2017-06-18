@@ -1,7 +1,7 @@
 #Link handling module - used for permits and such
 # Returns info to the driver as a string in the form 'action user responseMsg'
 # Expects info in form 'username highestRole messagetext'
-import sys,pymysql
+import sys, pymysql, datetime
 
 conn = None
 dbAddr = ""
@@ -9,6 +9,7 @@ dbUser = ""
 dbPass = ""
 db = ""
 debug = False
+fmt = '%Y-%m-%d %H:%M:%S'
 
 #Get the config data
 def loadConfig():
@@ -66,7 +67,7 @@ def getPermit(username):
 
     try:
         #store results in the return vals
-        expir = results[0] #TODO turn into datetime obj
+        expir = stringToPython(results[0])
     except Exception as e:
         if debug:
             print(e)
@@ -77,11 +78,16 @@ def isPermitted(username):
     return not getPermit(username) == None
 
 #converts string to python datetime
-def stringToPython(string):
+def stringToPython(timestamp):
+    global fmt #global formating string
+    datetimeObj = datetime.datetime.strptime(timestamp,fmt)
+    return datetimeObj
 
 #converts python datetime to string
 def pythonToString(datetimeObj):
-    
+    global fmt #global formating string
+    return datetimeObj.strftime(fmt)
+
 
 #gets a connection to the DB and stores it globally
 def connect():
