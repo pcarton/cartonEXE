@@ -24,7 +24,7 @@ def loadConfig():
         data.close()
 
 #returns True if action success, False if exception encountered
-def removePermit(username):
+def delete(username):
     #Load globals needed
     global conn, debug
     #make sure we have a connection to DB
@@ -45,7 +45,7 @@ def removePermit(username):
         conn.rollback()
         return False
 
-def addPermit(username): #TODO
+def retrieve(username): #TODO
     #Load globals needed
     global conn, debug
 
@@ -77,7 +77,7 @@ def addPermit(username): #TODO
         return False
 
 #returns the expiration date of the user's permit, or None if no permit exists
-def getPermit(username):
+def store(username):
     #Load globals needed
     global conn, debug
 
