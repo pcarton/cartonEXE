@@ -3,6 +3,7 @@
 # Expects info in form 'username messagetext'
 import sys, json, re
 import profanityfilter
+from ganon import removePermits, isPermitted
 
 linkCheck = "(https?:\/\/)?([\da-z\.]+)\.([a-z\.]{2,6})([/\w\.-]*)*\/?"
 linkRegEx = re.compile(linkCheck)
@@ -31,7 +32,7 @@ def moderate(toParse):
     actions = "nothing"
     responseMsg = ""
     banBool, banMsg = banCheck(lines)
-    timeoutBool, timeoutMsg = timeoutCheck(lines)
+    timeoutBool, timeoutMsg = timeoutCheck(user,lines)
     purgeBool, purgeMsg = purgeCheck(lines)
     if banBool:
         actions = "ban"
@@ -62,7 +63,7 @@ def banCheck(message):
         msg = ""
     return result, msg
 
-def timeoutCheck(message):
+def timeoutCheck(username, message):
     result = False
     msg = "You have been timed-out for "
     #TODO replace with real code
@@ -70,8 +71,15 @@ def timeoutCheck(message):
         result = True
         msg += "spam"
     elif linkRegEx.search(message) != None: #TODO add logic to allow permiting
-        result = True
-        msg += "linking"
+        if isPermitted(username):
+            removePermits(username)
+            result = False
+            msg = ""
+        else:
+            result = True
+            msg += "linking"
+    else:
+        msg = ""
     return result, msg
 
 def purgeCheck(message):
