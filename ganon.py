@@ -115,8 +115,9 @@ def isPermitted(username):
     loadConfig()
     if debug:
         print("Checking that user " + username + " is permitted")
-    nullCheck = not getPermit(username) == None
-    hasntExpired = epir > datetime.datetime.utcnow()
+    expir = getPermit(username)
+    nullCheck = not expir == None
+    hasntExpired = expir > datetime.datetime.utcnow()
     return nullCheck and hasntExpired
 
 #converts string to python datetime
