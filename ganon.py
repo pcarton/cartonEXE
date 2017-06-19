@@ -104,7 +104,7 @@ def getPermit(username):
 
     try:
         #store results in the return vals
-        expir = stringToPython(results[0])
+        expir = results[0]
     except Exception as e:
         if debug:
             print(e)
