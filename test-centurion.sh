@@ -52,3 +52,9 @@ echo "PCarton Mod !unban PCarton" | python3 centurion.py
 
 echo -e "${LIGHTBLUE}PCarton Mod !unban $NC"
 echo "PCarton Mod !unban" | python3 centurion.py
+
+echo -e "${LIGHTBLUE}PCarton Mod !permit PCarton $NC"
+echo "PCarton Mod !permit PCarton" | python3 centurion.py
+
+echo -e "${LIGHTBLUE}PCarton Mod !permit $NC"
+echo "PCarton Mod !permit" | python3 centurion.py
