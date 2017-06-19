@@ -116,9 +116,10 @@ def isPermitted(username):
     if debug:
         print("Checking that user " + username + " is permitted")
     expir = getPermit(username)
-    nullCheck = not expir == None
+    if expir == None:
+        return False
     hasntExpired = expir > datetime.datetime.utcnow()
-    return nullCheck and hasntExpired
+    return hasntExpired
 
 #converts string to python datetime
 def stringToPython(timestamp):
