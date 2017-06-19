@@ -77,7 +77,7 @@ def addPermits(username): #TODO
         return False
 
 #returns the expiration date of the user's permit, or None if no permit exists
-def getPermits(username):
+def getPermit(username):
     #Load globals needed
     global conn, debug
 
