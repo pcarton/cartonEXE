@@ -25,6 +25,8 @@ def loadConfig():
 
 #returns True if action success, False if exception encountered
 def removePermits(username):
+    if debug:
+        print("Removing user " + username + "'s permits'")
     #Load globals needed
     global conn, debug
     #make sure we have a connection to DB
@@ -60,6 +62,7 @@ def addPermits(username): #TODO
     time = datetime.datetime.utcnow() + datetime.timedelta(minutes=10)
     timeStr = pythonToString(time)
     if debug:
+        print("Adding new permit with following time to the database:")
         print(time)
         print(timeStr)
 
@@ -78,6 +81,8 @@ def addPermits(username): #TODO
 
 #returns the expiration date of the user's permit, or None if no permit exists
 def getPermit(username):
+    if debug:
+        print("Querying Database for permit")
     #Load globals needed
     global conn, debug
 
@@ -104,6 +109,8 @@ def getPermit(username):
     return expir
 
 def isPermitted(username):
+    if debug:
+        print("Checking that user " + username + " is permitted")
     nullCheck = not getPermit(username) == None
     hasntExpired = epir > datetime.datetime.utcnow()
     return nullCheck and hasntExpired
