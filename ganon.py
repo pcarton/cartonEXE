@@ -25,6 +25,7 @@ def loadConfig():
 
 #returns True if action success, False if exception encountered
 def removePermits(username):
+    loadConfig()
     if debug:
         print("Removing user " + username + "'s permits'")
     #Load globals needed
@@ -47,7 +48,8 @@ def removePermits(username):
         conn.rollback()
         return False
 
-def addPermits(username): #TODO
+def addPermits(username):
+    loadConfig()
     #Load globals needed
     global conn, debug
 
@@ -81,6 +83,7 @@ def addPermits(username): #TODO
 
 #returns the expiration date of the user's permit, or None if no permit exists
 def getPermit(username):
+    loadConfig()
     if debug:
         print("Querying Database for permit")
     #Load globals needed
@@ -109,6 +112,7 @@ def getPermit(username):
     return expir
 
 def isPermitted(username):
+    loadConfig()
     if debug:
         print("Checking that user " + username + " is permitted")
     nullCheck = not getPermit(username) == None
@@ -131,15 +135,3 @@ def pythonToString(datetimeObj):
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
     conn = pymysql.connect(dbAddr,dbUser,dbPass,db)
-
-def main():
-    loadConfig()
-    #TODO add the logic/input parsing
-    #Close the connection before terminating thread
-    if conn != None:
-        conn.close()
-    #TODO add the output
-
-#start process
-if __name__ == '__main__':
-    main()
