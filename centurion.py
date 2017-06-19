@@ -107,7 +107,7 @@ def parseCommand(input):
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
             if args != None and args != "":
-                if addPermits(username):
+                if addPermits(args):
                     return "respond", args, "User " + args + " is allowed to post 1 link in the next 10 minutes"
                 else:
                     return "respond", args, "Error permiting user"
