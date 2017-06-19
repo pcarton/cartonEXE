@@ -58,7 +58,8 @@ def addPermits(username):
         connect()
 
     #Make the SQL statement
-    update = "INSERT INTO permits(user,expiration) VALUES('{0}','{1}')"
+    insert = "INSERT INTO permits(user,expiration) VALUES('{0}','{1}')"
+    update = "UPDATE permits SET expiration = '{1}' WHERE user = '{0}'"
 
     #make the expiration object
     time = datetime.datetime.utcnow() + datetime.timedelta(minutes=10)
@@ -71,15 +72,27 @@ def addPermits(username):
     #Create cursor to execute query
     cursor = conn.cursor()
     #try the insert, rollback if error
-    try:
-        cursor.execute(update.format(username, timeStr))
-        conn.commit()
-        return True
-    except Exception as e:
-        if debug:
-            print(e)
-        conn.rollback()
-        return False
+
+    if getPermit(username) != None:
+        try:
+            cursor.execute(update.format(username, timeStr))
+            conn.commit()
+            return True
+        except Excetion as e:
+            if debug:
+                print(e)
+            conn.rollback()
+            return False
+    else:
+        try:
+            cursor.execute(insert.format(username, timeStr))
+            conn.commit()
+            return True
+        except Exception as e:
+            if debug:
+                print(e)
+            conn.rollback()
+            return False
 
 #returns the expiration date of the user's permit, or None if no permit exists
 def getPermit(username):
