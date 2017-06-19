@@ -8,7 +8,7 @@ import sys, json
 import pymysql
 from ganon import addPermits
 
-builtins = ["!add","!ban","!purge","!timeout","!unban","!remove"]
+builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove"]
 roles = ["Caster","Mod","Sub","Follwer","Normal"]
 conn = None
 dbAddr = ""
