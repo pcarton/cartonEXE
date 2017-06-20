@@ -154,12 +154,12 @@ def connect():
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
-    return lines[0]
+    return lines[0].split(maxsplit=1)
 
 def main():
     loadConfig()
     #get our data as an array from read_in()
-    username= read_in()
+    username= read_in()[0]
     actions = "nothing"
     msg = ""
 
