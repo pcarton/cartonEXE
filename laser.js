@@ -121,7 +121,7 @@ function moderate(socket,messageData){
 
     linkHandler.stdout.on('data', function(data){
       var pythonOut = data.toString().trim();
-      if(debug) console.log("\tMODERATE: From python:",pythonOut);
+      if(debug) console.log("\tLINKHANDLER: From python:",pythonOut);
       var action = pythonOut.split(" ")[0];
       var user = pythonOut.split(" ")[1];
       var indexOfSpace1 = pythonOut.indexOf(" ");
@@ -131,9 +131,9 @@ function moderate(socket,messageData){
         response = "";
       }
       if(debug){
-        console.log("\tMODERATE: User is:", user);
-        console.log("\tMODERATE: Action to take:",action);
-        console.log("\tMODERATE: Response is: ","@"+user+": "+response);
+        console.log("\tLINKHANDLER: User is:", user);
+        console.log("\tLINKHANDLER: Action to take:",action);
+        console.log("\tLINKHANDLER: Response is: ","@"+user+": "+response);
       }
       //Parse the actions and take action if needed
       if(action === "timeout"){
@@ -143,7 +143,7 @@ function moderate(socket,messageData){
       }else if(action === "purge"){
         purge(socket,user,response,msg);
       }else if(action === "nothing"){
-        if(debug){console.log("\tMODERATE:No action to take");}
+        if(debug){console.log("\tLINKHANDLER:No action to take");}
         //THIS SPACE INTENTIONALLY LEFT BLANK
       }
     });
