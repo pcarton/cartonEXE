@@ -104,50 +104,94 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
 }
 
 function moderate(socket,messageData){
-  //This is how to send the data to be processed by the python
-  var moderator = spawn('python3', ['hammer.py']);
-
+  //Prepare data before spawning thread
   if(debug) console.log("MODERATE: In moderate function");
   var msgArr = messageToString(messageData.message.message);
   var msg = msgArr[0];
   var hasLink = msgArr[1]; //TODO make link handler
   var toPython = messageData.user_name + " " + msg;
   if(debug) console.log("\tMODERATE: Input to python:", toPython);
-  moderator.stdin.write(toPython);
-  moderator.stdin.end();
 
-  moderator.stdout.on('data', function(data){
-    var pythonOut = data.toString().trim();
-    if(debug) console.log("\tMODERATE: From python:",pythonOut);
-    var action = pythonOut.split(" ")[0];
-    var user = pythonOut.split(" ")[1];
-    var indexOfSpace1 = pythonOut.indexOf(" ");
-    var indexOfSpace2 = pythonOut.indexOf(" ",indexOfSpace1+1);
-    var response = pythonOut.substr(indexOfSpace2);
-    if(indexOfSpace2 === -1){
-      response = "";
-    }
-    if(debug){
-      console.log("\tMODERATE: User is:", user);
-      console.log("\tMODERATE: Action to take:",action);
-      console.log("\tMODERATE: Response is: ","@"+user+": "+response);
-    }
-    //Parse the actions and take action if needed
-    if(action === "timeout"){
-      timeout(socket,user,response,msg);
-    }else if(action === "ban"){
-      ban(socket,user,response,msg);
-    }else if(action === "purge"){
-      purge(socket,user,response,msg);
-    }else if(action === "nothing"){
-      if(debug){console.log("\tMODERATE:No action to take");}
-      //THIS SPACE INTENTIONALLY LEFT BLANK
-    }
-  });
+  if(hasLink){
+    //This is how to send the data to be processed by the python
+    var linkHandler = spawn('python3', ['ganon.py']);
 
-  moderator.stdout.on('end', function(){
-    if(debug) console.log("MODERATE: Finished moderate parse");
-  });
+    linkHandler.stdin.write(messageData.user_name);
+    linkHandler.stdin.end();
+
+    linkHandler.stdout.on('data', function(data){
+      var pythonOut = data.toString().trim();
+      if(debug) console.log("\tMODERATE: From python:",pythonOut);
+      var action = pythonOut.split(" ")[0];
+      var user = pythonOut.split(" ")[1];
+      var indexOfSpace1 = pythonOut.indexOf(" ");
+      var indexOfSpace2 = pythonOut.indexOf(" ",indexOfSpace1+1);
+      var response = pythonOut.substr(indexOfSpace2);
+      if(indexOfSpace2 === -1){
+        response = "";
+      }
+      if(debug){
+        console.log("\tMODERATE: User is:", user);
+        console.log("\tMODERATE: Action to take:",action);
+        console.log("\tMODERATE: Response is: ","@"+user+": "+response);
+      }
+      //Parse the actions and take action if needed
+      if(action === "timeout"){
+        timeout(socket,user,response,msg);
+      }else if(action === "ban"){
+        ban(socket,user,response,msg);
+      }else if(action === "purge"){
+        purge(socket,user,response,msg);
+      }else if(action === "nothing"){
+        if(debug){console.log("\tMODERATE:No action to take");}
+        //THIS SPACE INTENTIONALLY LEFT BLANK
+      }
+    });
+
+    linkHandler.stdout.on('end', function(){
+      if(debug) console.log("MODERATE: Finished moderate parse");
+    });
+
+  }else{
+    //This is how to send the data to be processed by the python
+    var moderator = spawn('python3', ['hammer.py']);
+
+    moderator.stdin.write(toPython);
+    moderator.stdin.end();
+
+    moderator.stdout.on('data', function(data){
+      var pythonOut = data.toString().trim();
+      if(debug) console.log("\tMODERATE: From python:",pythonOut);
+      var action = pythonOut.split(" ")[0];
+      var user = pythonOut.split(" ")[1];
+      var indexOfSpace1 = pythonOut.indexOf(" ");
+      var indexOfSpace2 = pythonOut.indexOf(" ",indexOfSpace1+1);
+      var response = pythonOut.substr(indexOfSpace2);
+      if(indexOfSpace2 === -1){
+        response = "";
+      }
+      if(debug){
+        console.log("\tMODERATE: User is:", user);
+        console.log("\tMODERATE: Action to take:",action);
+        console.log("\tMODERATE: Response is: ","@"+user+": "+response);
+      }
+      //Parse the actions and take action if needed
+      if(action === "timeout"){
+        timeout(socket,user,response,msg);
+      }else if(action === "ban"){
+        ban(socket,user,response,msg);
+      }else if(action === "purge"){
+        purge(socket,user,response,msg);
+      }else if(action === "nothing"){
+        if(debug){console.log("\tMODERATE:No action to take");}
+        //THIS SPACE INTENTIONALLY LEFT BLANK
+      }
+    });
+
+    moderator.stdout.on('end', function(){
+      if(debug) console.log("MODERATE: Finished moderate parse");
+    });
+  }
 }
 
 function ban(socket,user,response,msg){ //TODO check that the call completed successfully
