@@ -51,10 +51,10 @@ def banCheck(message):
     if blacklist:
         profanityfilter.define_words(blacklist)
         if debug:
-            print("Blacklist is:")
-            print(blacklist)
-            print("Filter is using these words:")
-            print(profanityfilter.get_bad_words())
+            print("Blacklist is:", file=sys.stderr)
+            print(blacklist, file=sys.stderr)
+            print("Filter is using these words:", file=sys.stderr)
+            print(profanityfilter.get_bad_words(), file=sys.stderr)
         if(profanityfilter.is_profane(message)):
             result = True
             msg += "blacklisted content"

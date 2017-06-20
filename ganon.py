@@ -65,9 +65,9 @@ def addPermits(username):
     time = datetime.datetime.utcnow() + datetime.timedelta(minutes=10)
     timeStr = pythonToString(time)
     if debug:
-        print("Adding new permit with following time to the database:")
-        print(time)
-        print(timeStr)
+        print("Adding new permit with following time to the database:", file=sys.stderr)
+        print(time ,file=sys.stderr)
+        print(timeStr, file=sys.stderr)
 
     #Create cursor to execute query
     cursor = conn.cursor()
@@ -98,7 +98,7 @@ def addPermits(username):
 def getPermit(username):
     loadConfig()
     if debug:
-        print("Querying Database for permit")
+        print("Querying Database for permit", file=sys.stderr)
     #Load globals needed
     global conn, debug
 
@@ -127,7 +127,7 @@ def getPermit(username):
 def isPermitted(username):
     loadConfig()
     if debug:
-        print("Checking that user " + username + " is permitted")
+        print("Checking that user " + username + " is permitted", file=sys.stderr)
     expir = getPermit(username)
     if expir == None:
         return False

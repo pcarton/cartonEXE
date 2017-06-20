@@ -62,7 +62,7 @@ def parseCommand(input):
                     return "respond", user, "Error storing new command in database"
             except IndexError as e:
                 if debug:
-                    print(e)
+                    print(e, file=sys.stderr)
                 return "respond", user, "Invalid new command. Expected Format: '!newCmd requiredRole response'"
         elif command == "!remove":
             if role != "Caster" and role !="Mod":
@@ -130,7 +130,7 @@ def retrieve(command):
 
     #debug text
     if debug:
-        print("Command is: " + command)
+        print("Command is: " + command, file=sys.stderr)
 
     #make the SQL statement
     query = "SELECT command, role, response FROM commands WHERE command='{}'"
@@ -149,13 +149,13 @@ def retrieve(command):
         retrivedCommand = results[0]
     except Exception as e:
         if debug:
-            print(e)
+            print(e, file=sys.stderr)
 
     if debug:
-        print("SQL is: " + query.format(command))
-        print(retrivedCommand)
-        print(response)
-        print(neededRole)
+        print("SQL is: " + query.format(command), file=sys.stderr)
+        print(retrivedCommand, file=sys.stderr)
+        print(response, file=sys.stderr)
+        print(neededRole, file=sys.stderr)
 
 
     return response, neededRole
@@ -177,7 +177,7 @@ def delete(command):
         return True
     except Exception as e:
         if debug:
-            print(e)
+            print(e, file=sys.stderr)
         conn.rollback()
         return False
 
@@ -219,7 +219,7 @@ def store(command,message,role):
         return True
     except Exception as e:
         if debug:
-            print(e)
+            print(e, file=sys.stderr)
         conn.rollback()
         return False
 
