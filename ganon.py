@@ -115,12 +115,13 @@ def getPermit(username):
     cursor.execute(query.format(username))
     results = cursor.fetchone()
 
-    try:
-        #store results in the return vals
-        expir = results[0]
-    except Exception as e:
-        if debug:
-            print(e)
+    if results != None:
+        try:
+            #store results in the return vals
+            expir = results[0]
+        except Exception as e:
+            if debug:
+                print(e, file=sys.stderr)
 
     return expir
 
