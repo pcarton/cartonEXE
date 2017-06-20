@@ -27,7 +27,7 @@ def loadConfig():
 def removePermits(username):
     loadConfig()
     if debug:
-        print("Removing user " + username + "'s permits'")
+        print("Removing user " + username + "'s permits", file=sys.stderr)
     #Load globals needed
     global conn, debug
     #make sure we have a connection to DB
