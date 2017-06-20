@@ -90,7 +90,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log(data.message); // lets take a closer look
         var roles = data.user_roles;
         if(moderationModule && !roles.includes('Mod') && !roles.includes('Owner')){
-          moderate(socket,data);
+          moderate(socket,data,roles);
         }
         if(commandModule){
           commands(socket,data,roles);
@@ -103,10 +103,11 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
     });
 }
 
-function moderate(socket,messageData){
+function moderate(socket,messageData,roles){
   //Prepare data before spawning thread
   if(debug) console.log("MODERATE: In moderate function");
   var msgArr = messageToString(messageData.message.message);
+  var role = parseRoles(roles);
   var msg = msgArr[0];
   var hasLink = msgArr[1]; //TODO make link handler
   var toPython = messageData.user_name + " " + msg;
