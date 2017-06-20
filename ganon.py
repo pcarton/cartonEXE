@@ -137,3 +137,28 @@ def pythonToString(datetimeObj):
 def connect():
     global dbAddr, dbPass, dbUser, db, conn
     conn = pymysql.connect(dbAddr,dbUser,dbPass,db)
+
+#Read data from stdin
+def read_in():
+    lines = sys.stdin.readlines()
+    return lines[0]
+
+def main():
+    loadConfig()
+    #get our data as an array from read_in()
+    username= read_in()
+    actions = "nothing"
+    msg = ""
+
+    if isPermitted(username):
+        removePermits(username)
+    else:
+        msg = "Please ask for permission before posting links"
+        actions = "timeout"
+
+    #return to the output stream
+    print(actions + " " + username + " " + msg)
+
+#start process
+if __name__ == '__main__':
+    main()
