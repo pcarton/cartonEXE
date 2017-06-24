@@ -9,7 +9,7 @@ import pymysql
 from ganon import addPermits
 
 builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove"]
-roles = ["Caster","Mod","Sub","Follwer","Normal"]
+roles = ["Caster","Mod","Sub","Follower","Normal"]
 conn = None
 dbAddr = ""
 dbUser = ""
