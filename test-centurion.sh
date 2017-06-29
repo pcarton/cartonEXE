@@ -58,3 +58,19 @@ echo "PCarton Mod !permit PCarton" | python3 centurion.py
 
 echo -e "${LIGHTBLUE}PCarton Mod !permit $NC"
 echo "PCarton Mod !permit" | python3 centurion.py
+
+echo -e "${GREEN}Testing database commands cooldown $NC"
+echo -e "${LIGHTBLUE}PCarton Mod !add !test Mod Hello World $NC"
+echo "PCarton Mod !add !test Mod Hello World" | python3 centurion.py
+
+echo -e "${LIGHTBLUE}PCarton Normal !test $NC"
+echo "PCarton Normal !test" | python3 centurion.py
+
+echo -e "${LIGHTBLUE}PCarton Mod !test $NC"
+echo "PCarton Mod !test" | python3 centurion.py
+Normal
+echo -e "${LIGHTBLUE}PCarton Normal !test $NC"
+echo "PCarton Normal !test" | python3 centurion.py
+
+echo -e "${LIGHTBLUE}PCarton Mod !test $NC"
+echo "PCarton Mod !test" | python3 centurion.py
