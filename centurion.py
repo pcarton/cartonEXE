@@ -117,7 +117,10 @@ def parseCommand(input):
         response, neededRole, lastUsed = retrieve(command) #returns None, 'Root' if not in DB
 
         #see if the command is on cooldown
-        onCooldown = lastUsed + datetime.timedelta(minutes=5) > datetime.datetime.utcnow()
+        if lastUsed == None:
+            onCooldown = False
+        else:
+            onCooldown = lastUsed + datetime.timedelta(minutes=5) > datetime.datetime.utcnow()
 
         if hasAccess(role,neededRole) and response != None and (not onCooldown or role == "Mod" or role == "Caster"):
             updateLastUsed(command)
