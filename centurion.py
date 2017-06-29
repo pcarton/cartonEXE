@@ -4,9 +4,9 @@
 # Expects info in form 'username highestRole command args'
 # Valid roles for module ( may need to be altered by main service interface)
 # Caster Mod Sub Follower Normal (in descending order)
-import sys, json
+import sys, json, datetime
 import pymysql
-from ganon import addPermits
+from ganon import addPermits, pythonToString
 
 builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove"]
 roles = ["Caster","Mod","Sub","Follower","Normal"]
@@ -114,17 +114,50 @@ def parseCommand(input):
             else:
                 return "none", user, "Invalid Args"
     else:
-        response, neededRole = retrieve(command) #returns None, 'Root' if not in DB
-        if(hasAccess(role,neededRole) and response != None):
+        response, neededRole, lastUsed = retrieve(command) #returns None, 'Root' if not in DB
+
+        #see if the command is on cooldown
+        onCooldown = lastUsed + datetime.datetime.timedelta(minutes=5) > datetime.datetime.utcnow()
+
+        if hasAccess(role,neededRole) and response != None and (not onCooldown or role == "Mod" or role == "Caster"):
+            updateLastUsed(command)
             return "respond", user, response
         else:
             return "none", user, ""
+
+
+def updateLastUsed(command):
+    #Load globals needed
+    global conn, debug
+
+    #make sure we have a connection to DB
+    if conn == None:
+        connect()
+
+    #Make the SQL statement
+    update = "UPDATE commands SET lastUsed='{1}' WHERE command = '{0}'"
+    time = datetime.datetime.utcnow()
+    timeStr = pythonToString(time)
+
+    #Create cursor to execute query
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(update.format(command, timeStr))
+        conn.commit()
+        return True
+    except Excetion as e:
+        if debug:
+            print(e)
+        conn.rollback()
+        return False
 
 def retrieve(command):
     #Load globals needed
     global conn
     #prepare default return values
     response = None
+    lastUsed = None
     neededRole = 'Root'
     retrivedCommand = command
 
@@ -133,7 +166,7 @@ def retrieve(command):
         print("Command is: " + command, file=sys.stderr)
 
     #make the SQL statement
-    query = "SELECT command, role, response FROM commands WHERE command='{}'"
+    query = "SELECT command, role, response, lastUsed FROM commands WHERE command='{}'"
     #make sure we have a connection to the DB
     if conn == None:
         connect()
@@ -144,6 +177,7 @@ def retrieve(command):
 
     try:
         #store results in the return vals
+        lastUsed = results[3]
         response = results[2]
         neededRole = results[1]
         retrivedCommand = results[0]
@@ -158,7 +192,7 @@ def retrieve(command):
         print(neededRole, file=sys.stderr)
 
 
-    return response, neededRole
+    return response, neededRole, lastUsed
 
 def delete(command):
     #Load globals needed

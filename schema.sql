@@ -9,6 +9,7 @@ CREATE TABLE commands(
   command VARCHAR(80) UNIQUE NOT NULL,
   role VARCHAR(10) NOT NULL,
   response VARCHAR(80) NOT NULL,
+  lastUsed TIMESTAMP NULL,
   PRIMARY KEY(id)
 );
 
