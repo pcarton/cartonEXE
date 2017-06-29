@@ -67,7 +67,7 @@ def parseCommand(input):
         elif command == "!remove":
             if role != "Caster" and role !="Mod":
                 return "none", user, ""
-            testResp, testRole = retrieve(args)
+            testResp, testRole, lastUsed = retrieve(args)
             if testResp == None:
                 return "respond", user, "That command does not exist"
             else:
@@ -117,7 +117,7 @@ def parseCommand(input):
         response, neededRole, lastUsed = retrieve(command) #returns None, 'Root' if not in DB
 
         #see if the command is on cooldown
-        onCooldown = lastUsed + datetime.datetime.timedelta(minutes=5) > datetime.datetime.utcnow()
+        onCooldown = lastUsed + datetime.timedelta(minutes=5) > datetime.datetime.utcnow()
 
         if hasAccess(role,neededRole) and response != None and (not onCooldown or role == "Mod" or role == "Caster"):
             updateLastUsed(command)
