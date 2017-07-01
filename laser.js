@@ -116,14 +116,14 @@ function moderate(socket,messageData,roles){
   var role = parseRoles(roles);
   var msg = msgArr[0];
   var hasLink = msgArr[1]; //TODO make link handler
-  var toPython = messageData.user_name + " " + msg;
+  var toPython = messageData.user_name + " " + role + " " + msg;
   if(debug) console.log("\tMODERATE: Input to python:", toPython);
 
   if(hasLink){
     //This is how to send the data to be processed by the python
     var linkHandler = spawn('python3', ['ganon.py']);
 
-    linkHandler.stdin.write(messageData.user_name);
+    linkHandler.stdin.write(messageData.user_name + " " + role);
     linkHandler.stdin.end();
 
     linkHandler.stdout.on('data', function(data){

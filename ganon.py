@@ -101,7 +101,7 @@ def getPermit(username):
     loadConfig()
     if debug:
         print("Querying Database for permit", file=sys.stderr)
-    
+
     #prepare default return values
     expir = None
 
@@ -160,13 +160,15 @@ def read_in():
 def main():
     loadConfig()
     #get our data as an array from read_in()
-    username= read_in()[0]
+    lines = read_in()
+    username = lines[0]
+    role = lines[1]
     actions = "nothing"
     msg = ""
 
     if isPermitted(username):
         removePermits(username)
-    else:
+    elif not:
         msg = "Please ask for permission before posting links"
         actions = "timeout"
 

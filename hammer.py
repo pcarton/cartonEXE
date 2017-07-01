@@ -23,12 +23,13 @@ def loadConfig():
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
-    return lines[0].split(maxsplit=1)
+    return lines[0].split(maxsplit=2)
 
 #returns a "nothing", "timeout", "purge", or "ban"
 def moderate(toParse):
     user = toParse[0]
-    lines = toParse[1]
+    role = toParse[1]
+    lines = toParse[2]
     actions = "nothing"
     responseMsg = ""
     banBool, banMsg = banCheck(lines)
