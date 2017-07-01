@@ -132,6 +132,7 @@ def isPermitted(username):
     loadConfig()
     if debug:
         print("Checking that user " + username + " is permitted", file=sys.stderr)
+        print("Whitelisted users are:" + whitelisted, file=sys.stderr)
     if username in whitelisted:
         return True
     expir = getPermit(username)
@@ -173,8 +174,8 @@ def main():
     actions = "nothing"
     msg = ""
     if debug:
-        print("Username:" + username)
-        print("Role:" + role)
+        print("Username:" + username, file=sys.stderr)
+        print("Role:" + role, file=sys.stderr)
 
     if isPermitted(username):
         removePermits(username)
