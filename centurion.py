@@ -150,7 +150,7 @@ def updateLastUsed(command):
     cursor = conn.cursor()
 
     try:
-        cursor.execute(update.format(command, timeStr))
+        cursor.execute(update, (command, timeStr))
         conn.commit()
         return True
     except Excetion as e:
@@ -179,7 +179,7 @@ def retrieve(command):
         connect()
     #create a cursor to execute SELECT query
     cursor = conn.cursor()
-    cursor.execute(query.format(command))
+    cursor.execute(query, (command))
     results = cursor.fetchone()
 
     try:
@@ -213,7 +213,7 @@ def delete(command):
     cursor = conn.cursor()
     #try the insert, rollback if error
     try:
-        cursor.execute(remove.format(command))
+        cursor.execute(remove, (command))
         conn.commit()
         return True
     except Exception as e:
@@ -255,7 +255,7 @@ def store(command,message,role): #TODO sanitize the inputs and add escapes and c
     cursor = conn.cursor()
     #try the insert, rollback if error
     try:
-        cursor.execute(update.format(command, role, message))
+        cursor.execute(update, (command, role, message))
         conn.commit()
         return True
     except Exception as e:

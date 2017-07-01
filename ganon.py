@@ -41,7 +41,7 @@ def removePermits(username):
     cursor = conn.cursor()
     #try the insert, rollback if error
     try:
-        cursor.execute(remove.format(username))
+        cursor.execute(remove, (username))
         conn.commit()
         return True
     except Exception as e:
@@ -77,7 +77,7 @@ def addPermits(username):
 
     if getPermit(username) != None:
         try:
-            cursor.execute(update.format(username, timeStr))
+            cursor.execute(update, (username, timeStr))
             conn.commit()
             return True
         except Excetion as e:
@@ -87,7 +87,7 @@ def addPermits(username):
             return False
     else:
         try:
-            cursor.execute(insert.format(username, timeStr))
+            cursor.execute(insert, (username, timeStr))
             conn.commit()
             return True
         except Exception as e:
@@ -114,7 +114,7 @@ def getPermit(username):
         connect()
     #create a cursor to execute SELECT query
     cursor = conn.cursor()
-    cursor.execute(query.format(username))
+    cursor.execute(query, (username))
     results = cursor.fetchone()
 
     if results != None:
