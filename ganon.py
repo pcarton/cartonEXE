@@ -168,7 +168,7 @@ def main():
 
     if isPermitted(username):
         removePermits(username)
-    elif not:
+    elif not role == "Mod" and not role == "Caster":
         msg = "Please ask for permission before posting links"
         actions = "timeout"
 
