@@ -70,14 +70,6 @@ def timeoutCheck(username, message):
     if message.find("spam") != -1 :
         result = True
         msg += "spam"
-    elif linkRegEx.search(message) != None: #TODO add logic to allow permiting
-        if isPermitted(username):
-            removePermits(username)
-            result = False
-            msg = ""
-        else:
-            result = True
-            msg += "linking"
     else:
         msg = ""
     return result, msg
