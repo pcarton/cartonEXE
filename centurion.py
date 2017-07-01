@@ -236,7 +236,7 @@ def hasAccess(roleHad, roleNeeded):
         else:
             return False
 
-def store(command,message,role):
+def store(command,message,role): #TODO sanitize the inputs and add escapes and change backslash to forward if needed
     #Load globals needed
     global conn, roles
     if(command[0] != "!" or not role in roles):
