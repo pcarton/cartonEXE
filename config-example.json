@@ -10,6 +10,10 @@
     "blacklisted2",
     "blacklisted3"
   ],
+  "linkPosterWhitelist":[
+    "username1",
+    "username2"
+  ],
   "debug":true,
   "databaseURL":"PUT_DATABASE_ADDRESS_HERE",
   "databasePassword":"PUT_DATABASE_PASSWORD_HERE",
