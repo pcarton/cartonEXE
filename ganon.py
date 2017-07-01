@@ -36,7 +36,7 @@ def removePermits(username):
     if conn == None:
         connect()
     #Make the SQL statement
-    remove = "DELETE FROM permits WHERE user='{}'"
+    remove = "DELETE FROM permits WHERE user='%s'"
     #Create cursor to execute query
     cursor = conn.cursor()
     #try the insert, rollback if error
@@ -60,8 +60,8 @@ def addPermits(username):
         connect()
 
     #Make the SQL statement
-    insert = "INSERT INTO permits(user,expiration) VALUES('{0}','{1}')"
-    update = "UPDATE permits SET expiration = '{1}' WHERE user = '{0}'"
+    insert = "INSERT INTO permits(user,expiration) VALUES('%s','%s')"
+    update = "UPDATE permits SET expiration = '%s' WHERE user = '%s'"
 
     #make the expiration object
     time = datetime.datetime.utcnow() + datetime.timedelta(minutes=10)
@@ -108,7 +108,7 @@ def getPermit(username):
     expir = None
 
     #make the SQL statement
-    query = "SELECT expiration FROM permits WHERE user='{}'"
+    query = "SELECT expiration FROM permits WHERE user='%s'"
     #make sure we have a connection to the DB
     if conn == None:
         connect()
