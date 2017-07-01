@@ -158,6 +158,7 @@ def read_in():
     return lines[0].split(maxsplit=1)
 
 def main():
+    global debug
     loadConfig()
     #get our data as an array from read_in()
     lines = read_in()
@@ -165,6 +166,9 @@ def main():
     role = lines[1]
     actions = "nothing"
     msg = ""
+    if debug:
+        print("Username:" + username)
+        print("Role:" + role)
 
     if isPermitted(username):
         removePermits(username)
