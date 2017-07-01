@@ -155,7 +155,8 @@ def connect():
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
-    return lines[0].split(maxsplit=1)
+    line = lines[0].strip()
+    return line.split(maxsplit=1)
 
 def main():
     global debug
@@ -172,7 +173,7 @@ def main():
 
     if isPermitted(username):
         removePermits(username)
-    elif not role == "Mod" and not role == "Caster":
+    elif not (role == "Mod" or role == "Caster"):
         msg = "Please ask for permission before posting links"
         actions = "timeout"
 
