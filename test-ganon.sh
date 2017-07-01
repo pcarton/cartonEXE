@@ -19,3 +19,19 @@ echo "PCarton Mod" | python3 ganon.py
 
 echo -e "${LIGHTBLUE}PCarton Caster $NC"
 echo "PCarton Caster" | python3 ganon.py
+
+
+echo -e "${LIGHTBLUE}StreamJar Normal $NC"
+echo "StreamJar Normal" | python3 ganon.py
+
+echo -e "${LIGHTBLUE}StreamJar Follower $NC"
+echo "StreamJar Follower" | python3 ganon.py
+
+echo -e "${LIGHTBLUE}StreamJar Sub $NC"
+echo "StreamJar Sub" | python3 ganon.py
+
+echo -e "${LIGHTBLUE}StreamJar Mod $NC"
+echo "StreamJar Mod" | python3 ganon.py
+
+echo -e "${LIGHTBLUE}StreamJar Caster $NC"
+echo "StreamJar Caster" | python3 ganon.py
