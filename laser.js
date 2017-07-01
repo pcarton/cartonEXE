@@ -10,6 +10,8 @@ const debug = config.debug;
 var moderationModule = config.moderationOn;
 const commandModule = config.commandsOn;
 
+var deathblossomMode = false;
+
 let userInfo;
 let channelId = -1;
 
@@ -90,7 +92,11 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log(data.message); // lets take a closer look
         var roles = data.user_roles;
         if(moderationModule && !roles.includes('Mod') && !roles.includes('Owner')){
-          moderate(socket,data,roles);
+          if(!deathblossomMode){
+            moderate(socket,data,roles);
+          }else{
+            deathblossom(socket,data,roles);
+          }
         }
         if(commandModule){
           commands(socket,data,roles);
@@ -293,6 +299,17 @@ function commands(socket,messageData,roles){
         socket.call('msg', [response]);
       }else if(action === "unban"){
         unban(socket,user);
+      }else if(action === "deathblossom"){
+        if(!deathblossomMode){
+          console.log("Activating DeathBlossom");
+          socket.call('msg', ["Initializing the DeathBlossom..."]);
+          socket.call('msg', ["Now Banning on sight. Lurking in the shadows is recommended"]);
+          deathblossomMode = true;
+        }else{
+          console.log("Deactivating DeathBlossom");
+          socket.call('msg', ["DeathBlossom Deactivated."]);
+          deathblossomMode = false;
+        }
       }else if(action === "nothing"){
         if(debug){console.log("\tCOMMANDS: No action to take");}
         //THIS SPACE INTENTIONALLY LEFT BLANK
@@ -321,3 +338,10 @@ function parseRoles(roleArr){
   }
   return result;
 }
+
+function deathblossom(socket, messageData, roles){
+  var role = parseRoles(roles);
+  var username = messageData.user_name;
+  timeout(socket, username, null, null, 86400); //Time out for one day
+
+} //TODO

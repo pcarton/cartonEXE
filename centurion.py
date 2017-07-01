@@ -8,7 +8,7 @@ import sys, json, datetime
 import pymysql
 from ganon import addPermits, pythonToString
 
-builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove"]
+builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove","!deathblossom"]
 roles = ["Caster","Mod","Sub","Follower","Normal"]
 conn = None
 dbAddr = ""
@@ -113,6 +113,10 @@ def parseCommand(input):
                     return "respond", args, "Error permiting user"
             else:
                 return "none", user, "Invalid Args"
+        elif command == "!deathblossom":
+            if role != "Caster" and role !="Mod":
+                return "none", user, "Required Role not met"
+            return "deathblossom", user, "Activate deathblossom mode"
     else:
         response, neededRole, lastUsed = retrieve(command) #returns None, 'Root' if not in DB
 
