@@ -25,11 +25,11 @@ def loadConfig():
 
 #returns True if action success, False if exception encountered
 def removePermits(username):
+    #Load globals needed
+    global conn, debug
     loadConfig()
     if debug:
         print("Removing user " + username + "'s permits", file=sys.stderr)
-    #Load globals needed
-    global conn, debug
     #make sure we have a connection to DB
     if conn == None:
         connect()
@@ -96,12 +96,12 @@ def addPermits(username):
 
 #returns the expiration date of the user's permit, or None if no permit exists
 def getPermit(username):
+    #Load globals needed
+    global conn, debug
     loadConfig()
     if debug:
         print("Querying Database for permit", file=sys.stderr)
-    #Load globals needed
-    global conn, debug
-
+    
     #prepare default return values
     expir = None
 
