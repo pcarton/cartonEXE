@@ -9,6 +9,7 @@ dbUser = ""
 dbPass = ""
 db = ""
 debug = False
+whitelisted = []
 fmt = '%Y-%m-%d %H:%M:%S'
 
 #Get the config data
@@ -21,6 +22,7 @@ def loadConfig():
         dbPass = config["databasePassword"]
         dbUser = config["databaseUser"]
         db = config["databaseName"]
+        whitelisted = config["linkPosterWhitelist"]
         data.close()
 
 #returns True if action success, False if exception encountered
@@ -126,9 +128,12 @@ def getPermit(username):
     return expir
 
 def isPermitted(username):
+    global debug, whitelisted
     loadConfig()
     if debug:
         print("Checking that user " + username + " is permitted", file=sys.stderr)
+    if username in whitelisted:
+        return True
     expir = getPermit(username)
     if expir == None:
         return False
