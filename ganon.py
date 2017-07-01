@@ -14,7 +14,7 @@ fmt = '%Y-%m-%d %H:%M:%S'
 
 #Get the config data
 def loadConfig():
-    global dbAddr, dbPass, dbUser, db, debug
+    global dbAddr, dbPass, dbUser, db, debug, whitelisted
     with open('config.json') as data:
         config = json.load(data)
         debug = config["debug"]
