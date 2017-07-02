@@ -9,6 +9,9 @@ echo -e "${GREEN}Testing !add, !remove, and database commands $NC"
 echo -e "${LIGHTBLUE}PCarton Mod !add !test Mod Hello World $NC"
 echo "PCarton Mod !add !test Mod Hello World" | python3 centurion.py
 
+echo -e "${LIGHTBLUE}PCarton Mod !add !testQuotes Mod Say \"Hello\" to the Old Man's Stream $NC"
+echo -e "PCarton Mod !add !testQuotes Mod Say \"Hello\" to the Old Man's Stream" | python3 centurion.py
+
 echo -e "${LIGHTBLUE}PCarton Mod !test $NC"
 echo "PCarton Mod !test" | python3 centurion.py
 
