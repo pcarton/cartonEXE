@@ -67,7 +67,7 @@ def parseCommand(input):
         elif command == "!remove":
             if role != "Caster" and role !="Mod":
                 return "none", user, ""
-            testResp, testRole, lastUsed = delete(args)
+            testResp, testRole, lastUsed = retrieve(args)
             if testResp == None:
                 return "respond", user, "That command does not exist"
             else:
