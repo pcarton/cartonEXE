@@ -67,7 +67,7 @@ def parseCommand(input):
         elif command == "!remove":
             if role != "Caster" and role !="Mod":
                 return "none", user, ""
-            testResp, testRole, lastUsed = retrieve(args)
+            testResp, testRole, lastUsed = delete(args)
             if testResp == None:
                 return "respond", user, "That command does not exist"
             else:
@@ -208,7 +208,7 @@ def delete(command):
     if conn == None:
         connect()
     #Make the SQL statement
-    remove = "DELETE FROM commands WHERE command='{}'"
+    remove = "DELETE FROM commands WHERE command=%s"
     #Create cursor to execute query
     cursor = conn.cursor()
     #try the insert, rollback if error
