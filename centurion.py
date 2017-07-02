@@ -142,7 +142,7 @@ def updateLastUsed(command):
         connect()
 
     #Make the SQL statement
-    update = "UPDATE commands SET lastUsed='%s' WHERE command = '%s'"
+    update = "UPDATE commands SET lastUsed=%s WHERE command = %s"
     time = datetime.datetime.utcnow()
     timeStr = pythonToString(time)
 
@@ -173,7 +173,7 @@ def retrieve(command):
         print("Command is: " + command, file=sys.stderr)
 
     #make the SQL statement
-    query = "SELECT command, role, response, lastUsed FROM commands WHERE command='%s'"
+    query = "SELECT command, role, response, lastUsed FROM commands WHERE command=%s"
     #make sure we have a connection to the DB
     if conn == None:
         connect()
@@ -249,7 +249,7 @@ def store(command,message,role): #TODO sanitize the inputs and add escapes and c
     if conn == None:
         connect()
     #Make the SQL statement
-    update = "INSERT INTO commands(command, role, response) VALUES('%s','%s','%s')"
+    update = "INSERT INTO commands(command, role, response) VALUES(%s,%s,%s)"
 
     #Create cursor to execute query
     cursor = conn.cursor()
