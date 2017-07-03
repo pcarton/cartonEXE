@@ -7,25 +7,25 @@ class centurionTest(unittest.TestCase):
 
     def testLoadConfig(self):
         centurion.loadConfig(self.CONFIG_PATH)
-        configList = ["DBAddrTEST","DBPassTEST","DBUserTEST","DBNameTEST",False]
+        configList = ["localhost","root","root","cartonBotTest",False]
         resultList = [centurion.dbAddr, centurion.dbPass, centurion.dbUser, centurion.db, centurion.debug,]
         self.assertEqual(resultList, configList)
 
     def testLoadConfigAddr(self):
         centurion.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(centurion.dbAddr, "DBAddrTEST")
+        self.assertEqual(centurion.dbAddr, "localhost")
 
     def testLoadConfigPass(self):
         centurion.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(centurion.dbPass, "DBPassTEST")
+        self.assertEqual(centurion.dbPass, "root")
 
     def testLoadConfigUser(self):
         centurion.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(centurion.dbUser, "DBUserTEST")
+        self.assertEqual(centurion.dbUser, "root")
 
     def testLoadConfigName(self):
         centurion.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(centurion.db, "DBNameTEST")
+        self.assertEqual(centurion.db, "cartonBotTest")
 
     def testLoadConfigDebug(self):
         centurion.loadConfig(self.CONFIG_PATH)
@@ -155,6 +155,11 @@ class centurionTest(unittest.TestCase):
         roleHad = "Normal"
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
+
+    def testParseCommandAddCasterNew(self):
+        inputList = ["PCarton","Caster","!add","!testCmdNew Mod blah blah blah"]
+        action, user, response = centurion.parseCommand(inputList)
+        assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
 
 if __name__ == "__main__":
             unittest.main()

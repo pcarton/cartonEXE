@@ -11,8 +11,8 @@
     "StreamJar"
   ],
   "debug":false,
-  "databaseURL":"DBAddrTEST",
-  "databasePassword":"DBPassTEST",
-  "databaseUser":"DBUserTEST",
-  "databaseName":"DBNameTEST"
+  "databaseURL":"localhost",
+  "databasePassword":"root",
+  "databaseUser":"root",
+  "databaseName":"cartonBotTest"
 }
