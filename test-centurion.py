@@ -132,27 +132,27 @@ class centurionTest(unittest.TestCase):
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
     def testHasAccessNormalCaster(self):
-        roleHad = "Caster"
+        roleHad = "Normal"
         roleNeeded = "Caster"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),False)
 
     def testHasAccessNormalMod(self):
-        roleHad = "Caster"
+        roleHad = "Normal"
         roleNeeded = "Mod"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),False)
 
     def testHasAccessNormalSub(self):
-        roleHad = "Caster"
+        roleHad = "Normal"
         roleNeeded = "Sub"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),False)
 
     def testHasAccessNormalFollower(self):
-        roleHad = "Caster"
+        roleHad = "Normal"
         roleNeeded = "Follower"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),False)
 
     def testHasAccessNormalNormal(self):
-        roleHad = "Caster"
+        roleHad = "Normal"
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
