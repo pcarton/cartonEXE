@@ -7,11 +7,9 @@ class centurionTest(unittest.TestCase):
 
     def testLoadConfig(self):
         centurion.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(centurion.dbAddr, "DBAddrTEST")
-        self.assertEqual(centurion.dbPass, "DBPassTEST")
-        self.assertEqual(centurion.dbUser, "DBUserTEST")
-        self.assertEqual(centurion.db, "DBNameTEST")
-        self.assertEqual(centurion.debug, False)
+        configList = ["DBAddrTEST","DBPassTEST","DBUserTEST","DBNameTEST",False]
+        resultList = [centurion.dbAddr, centurion.dbPass, centurion.dbUser, centurion.db, centurion.debug,]
+        self.assertEqual(resultList, configList)
 
 if __name__ == "__main__":
             unittest.main()
