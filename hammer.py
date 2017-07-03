@@ -74,6 +74,7 @@ def timeoutCheck(username, message):
     else:
         msg = ""
     return result, msg
+    return False, ""
 
 def purgeCheck(message):
     result = False
@@ -81,7 +82,8 @@ def purgeCheck(message):
     #TODO replace with real code
     if message.find("annoy") != -1 :
         result = True
-    return result, msg
+    #return result, msg
+    return False, ""
 
 def main():
     loadConfig()
