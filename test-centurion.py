@@ -159,27 +159,27 @@ class centurionTest(unittest.TestCase):
     def testParseCommandAddCasterNew(self):
         inputList = ["PCarton","Caster","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
+        self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
 
     def testParseCommandAddModNew(self):
         inputList = ["PCarton","Mod","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
+        self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
 
     def testParseCommandAddSubNew(self):
         inputList = ["PCarton","Sub","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        assertEqual([action, user, response],["none","PCarton",""])
+        self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddFollowerNew(self):
         inputList = ["PCarton","Follower","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        assertEqual([action, user, response],["none","PCarton",""])
+        self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddNormalNew(self):
         inputList = ["PCarton","Normal","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        assertEqual([action, user, response],["none","PCarton",""])
+        self.assertEqual([action, user, response],["none","PCarton",""])
 
 if __name__ == "__main__":
             unittest.main()
