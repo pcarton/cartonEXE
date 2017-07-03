@@ -17,10 +17,12 @@ dbPass = ""
 db = ""
 debug = False
 
+CONFIG_PATH = 'config.json'
+
 #Get the config data
-def loadConfig():
+def loadConfig(configPath):
     global dbAddr, dbPass, dbUser, db, debug
-    with open('config.json') as data:
+    with open(configPath) as data:
         config = json.load(data)
         debug = config["debug"]
         dbAddr = config["databaseURL"]
@@ -270,7 +272,7 @@ def connect():
     conn = pymysql.connect(dbAddr,dbUser,dbPass,db)
 
 def main():
-    loadConfig()
+    loadConfig(CONFIG_PATH)
     toParse = read_in()
     action, user, response = parseCommand(toParse)
     #Close the connection before terminating thread

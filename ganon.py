@@ -12,10 +12,12 @@ debug = False
 whitelisted = []
 fmt = '%Y-%m-%d %H:%M:%S'
 
+CONFIG_PATH = 'config.json'
+
 #Get the config data
-def loadConfig():
+def loadConfig(configPath):
     global dbAddr, dbPass, dbUser, db, debug, whitelisted
-    with open('config.json') as data:
+    with open(configPath) as data:
         config = json.load(data)
         debug = config["debug"]
         dbAddr = config["databaseURL"]
@@ -167,7 +169,7 @@ def read_in():
 
 def main():
     global debug
-    loadConfig()
+    loadConfig(CONFIG_PATH)
     #get our data as an array from read_in()
     lines = read_in()
     username = lines[0]

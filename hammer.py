@@ -11,10 +11,12 @@ linkRegEx = re.compile(linkCheck)
 blacklist = []
 debug = False
 
+CONFIG_PATH = 'config.json'
+
 #Get the config data
-def loadConfig():
+def loadConfig(configPath):
     global blacklist, debug
-    with open('config.json') as data:
+    with open(configPath) as data:
         config = json.load(data)
         blacklist = config["blacklist"]
         debug = config["debug"]
@@ -86,7 +88,7 @@ def purgeCheck(message):
     return False, ""
 
 def main():
-    loadConfig()
+    loadConfig(CONFIG_PATH)
 
     #get our data as an array from read_in()
     toParse = read_in()
