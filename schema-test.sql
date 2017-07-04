@@ -16,6 +16,12 @@ CREATE TABLE commands(
 /*TODO insert some existing commands to test with*/
 INSERT INTO commands(command, role, response) VALUES("!testCmdExisting", "Mod","TEST FOR EXISTING COMMAND STUFF");
 
+INSERT INTO commands(command, role, response) VALUES("!testRemoveExisting1", "Mod","TEST FOR EXISTING COMMAND STUFF");
+INSERT INTO commands(command, role, response) VALUES("!testRemoveExisting2", "Mod","TEST FOR EXISTING COMMAND STUFF");
+INSERT INTO commands(command, role, response) VALUES("!testRemoveExisting3", "Mod","TEST FOR EXISTING COMMAND STUFF");
+INSERT INTO commands(command, role, response) VALUES("!testRemoveExisting4", "Mod","TEST FOR EXISTING COMMAND STUFF");
+INSERT INTO commands(command, role, response) VALUES("!testRemoveExisting5", "Mod","TEST FOR EXISTING COMMAND STUFF");
+
 /*
   Permit Table - stores the permited users and the expiration time of the permit
   Timestamp is in format 'YYYY-MM-DD HH:MM:SS'
