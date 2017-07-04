@@ -7,12 +7,7 @@ class centurionTest(unittest.TestCase):
     def setUp(self):
         self.CONFIG_PATH = 'config-test.json'
 
-    def testLoadConfig(self):
-        centurion.loadConfig(self.CONFIG_PATH)
-        configList = ["localhost","root","root","cartonBotTest",False]
-        resultList = [centurion.dbAddr, centurion.dbPass, centurion.dbUser, centurion.db, centurion.debug,]
-        self.assertEqual(resultList, configList)
-
+#TESTS FOR IF THE CONFIG LOADED CORRECTLY
     def testLoadConfigAddr(self):
         centurion.loadConfig(self.CONFIG_PATH)
         self.assertEqual(centurion.dbAddr, "localhost")
@@ -33,6 +28,7 @@ class centurionTest(unittest.TestCase):
         centurion.loadConfig(self.CONFIG_PATH)
         self.assertEqual(centurion.debug, False)
 
+#TESTS FOR IF A CASTER HAS ACCESS
     def testHasAccessCasterCaster(self):
         roleHad = "Caster"
         roleNeeded = "Caster"
@@ -58,6 +54,7 @@ class centurionTest(unittest.TestCase):
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
+#TESTS FOR IF A MOD HAS ACCESS
     def testHasAccessModCaster(self):
         roleHad = "Mod"
         roleNeeded = "Caster"
@@ -83,6 +80,7 @@ class centurionTest(unittest.TestCase):
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
+#TESTS FOR IF A SUB HAS ACCESS
     def testHasAccessSubCaster(self):
         roleHad = "Sub"
         roleNeeded = "Caster"
@@ -108,6 +106,7 @@ class centurionTest(unittest.TestCase):
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
+#TESTS FOR IF A FOLLOWER HAS ACCESS
     def testHasAccessFollowerCaster(self):
         roleHad = "Follower"
         roleNeeded = "Caster"
@@ -133,6 +132,7 @@ class centurionTest(unittest.TestCase):
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
+#TESTS FOR IF A NORMAL USER HAS ACCESS
     def testHasAccessNormalCaster(self):
         roleHad = "Normal"
         roleNeeded = "Caster"
@@ -158,6 +158,7 @@ class centurionTest(unittest.TestCase):
         roleNeeded = "Normal"
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
+#TESTS FOR ADDING A NEW COMMAND
     def testParseCommandAddCasterNew(self):
         inputList = ["PCarton","Caster","!add","!testCmdNew1 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
@@ -183,6 +184,7 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
+#TESTS FOR ADDING A COMMAND THAT EXISTS
     def testParseCommandAddCasterExisting(self):
         inputList = ["PCarton","Caster","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
@@ -208,6 +210,7 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
+#TESTS FOR ADDING COMMAND WITHOUT ARGS
     def testParseCommandAddCasterInvalid(self):
         inputList = ["PCarton","Caster","!add","!testCmdNew6"]
         action, user, response = centurion.parseCommand(inputList)
@@ -233,6 +236,7 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
+#TESTS FOR ADDING COMMAND WITHOUT A ROLE
     def testParseCommandAddCasterInvalid2(self):
         inputList = ["PCarton","Caster","!add","!testCmdNew11 blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
@@ -258,7 +262,7 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
-    #TESTS FOR !remove COMMAND
+#TESTS FOR !remove COMMAND
     def testParseCommandRemoveCasterExisting(self):
         inputList = ["PCarton","Caster","!remove","!testRemoveExisting1"]
         action, user, response = centurion.parseCommand(inputList)
