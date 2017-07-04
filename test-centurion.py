@@ -314,5 +314,83 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
+#TESTS FOR PURGE COMMAND
+    def testParseCommandPurgeCaster(self):
+        inputList = ["PCarton","Caster","!purge","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["purge","Garlian","Purging user: Garlian"])
+
+    def testParseCommandPurgeMod(self):
+        inputList = ["PCarton","Mod","!purge","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["purge","Garlian","Purging user: Garlian"])
+
+    def testParseCommandPurgeSub(self):
+        inputList = ["PCarton","Sub","!purge","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandPurgeFollower(self):
+        inputList = ["PCarton","Follower","!purge","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandPurgeNormal(self):
+        inputList = ["PCarton","Normal","!purge","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+#TESTS FOR INVALID PURGE COMMAND
+    def testParseCommandPurgeCasterNoArgs(self):
+        inputList = ["PCarton","Caster","!purge",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandPurgeModNoArgs(self):
+        inputList = ["PCarton","Mod","!purge",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandPurgeSubNoArgs(self):
+        inputList = ["PCarton","Sub","!purge",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandPurgeFollowerNoArgs(self):
+        inputList = ["PCarton","Follower","!purge",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandPurgeNormalNoArgs(self):
+        inputList = ["PCarton","Normal","!purge",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+#TESTS FOR INVALID PURGE COMMAND 2
+    def testParseCommandPurgeCasterBadArgs(self):
+        inputList = ["PCarton","Caster","!purge","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandPurgeModBadArgs(self):
+        inputList = ["PCarton","Mod","!purge","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandPurgeSubBadArgs(self):
+        inputList = ["PCarton","Sub","!purge","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandPurgeFollowerBadArgs(self):
+        inputList = ["PCarton","Follower","!purge","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandPurgeNormalBadArgs(self):
+        inputList = ["PCarton","Normal","!purge","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
 if __name__ == "__main__":
         unittest.main()
