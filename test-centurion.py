@@ -161,13 +161,11 @@ class centurionTest(unittest.TestCase):
     def testParseCommandAddCasterNew(self):
         inputList = ["PCarton","Caster","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        call(['mysql','-uroot','-proot','cartonBotTest','<','schema-test.sql'])
         self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
 
     def testParseCommandAddModNew(self):
         inputList = ["PCarton","Mod","!add","!testCmdNew Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        call(['mysql','-uroot','-proot','cartonBotTest','<','schema-test.sql'])
         self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
 
     def testParseCommandAddSubNew(self):
