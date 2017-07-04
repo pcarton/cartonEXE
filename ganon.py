@@ -53,7 +53,7 @@ def removePermits(username):
         return False
 
 def addPermits(username):
-    loadConfig()
+    loadConfig(CONFIG_PATH)
     #Load globals needed
     global conn, debug
 
