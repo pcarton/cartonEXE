@@ -89,28 +89,28 @@ def parseCommand(input):
         elif command == "!timeout":
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
-            if args != None and args != "":
+            if args != None and args != "" and args.find(" ")==-1:
                 return "timeout", args, "Timing out user: " + args
             else:
                 return "none", user, "Invalid Args"
         elif command == "!ban":
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
-            if args != None and args != "":
+            if args != None and args != "" and args.find(" ")==-1:
                 return "ban", args, "Banning user: " + args
             else:
                 return "none", user, "Invalid Args"
         elif command == "!unban":
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
-            if args != None and args != "":
+            if args != None and args != "" and args.find(" ")==-1:
                 return "unban", args, "Unbanning user: " + args
             else:
                 return "none", user, "Invalid Args"
         elif command == "!permit":
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
-            if args != None and args != "":
+            if args != None and args != "" and args.find(" ")==-1:
                 if addPermits(args):
                     return "respond", args, "User " + args + " is allowed to post 1 link in the next 10 minutes"
                 else:
