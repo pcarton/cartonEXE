@@ -159,14 +159,14 @@ class centurionTest(unittest.TestCase):
         self.assertEqual(centurion.hasAccess(roleHad,roleNeeded),True)
 
     def testParseCommandAddCasterNew(self):
-        inputList = ["PCarton","Caster","!add","!testCmdNew Mod blah blah blah"]
+        inputList = ["PCarton","Caster","!add","!testCmdNew1 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
+        self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew1 successfully stored"])
 
     def testParseCommandAddModNew(self):
         inputList = ["PCarton","Mod","!add","!testCmdNew2 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
-        self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew successfully stored"])
+        self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew2 successfully stored"])
 
     def testParseCommandAddSubNew(self):
         inputList = ["PCarton","Sub","!add","!testCmdNew3 Mod blah blah blah"]
