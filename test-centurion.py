@@ -184,27 +184,27 @@ class centurionTest(unittest.TestCase):
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddCasterExisting(self):
-        inputList = ["PCarton","Caster","!add","!testCmdNew1 Mod blah blah blah"]
+        inputList = ["PCarton","Caster","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Error storing new command in database"])
 
     def testParseCommandAddModExisting(self):
-        inputList = ["PCarton","Mod","!add","!testCmdNew1 Mod blah blah blah"]
+        inputList = ["PCarton","Mod","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Error storing new command in database"])
 
     def testParseCommandAddSubExisting(self):
-        inputList = ["PCarton","Sub","!add","!testCmdNew1 Mod blah blah blah"]
+        inputList = ["PCarton","Sub","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddFollowerExisting(self):
-        inputList = ["PCarton","Follower","!add","!testCmdNew1 Mod blah blah blah"]
+        inputList = ["PCarton","Follower","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddNormalExisting(self):
-        inputList = ["PCarton","Normal","!add","!testCmdNew1 Mod blah blah blah"]
+        inputList = ["PCarton","Normal","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
