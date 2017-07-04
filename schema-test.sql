@@ -14,7 +14,7 @@ CREATE TABLE commands(
 );
 
 /*TODO insert some existing commands to test with*/
-INSERT INTO command(command, role, response) VALUES("!testCmdExisting", "Mod","TEST FOR EXISTING COMMAND STUFF");
+INSERT INTO commands(command, role, response) VALUES("!testCmdExisting", "Mod","TEST FOR EXISTING COMMAND STUFF");
 
 /*
   Permit Table - stores the permited users and the expiration time of the permit
