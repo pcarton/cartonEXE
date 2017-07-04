@@ -208,5 +208,55 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
+    def testParseCommandAddCasterInvalid(self):
+        inputList = ["PCarton","Caster","!add","!testCmdNew6"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
+
+    def testParseCommandAddModInvalid(self):
+        inputList = ["PCarton","Mod","!add","!testCmdNew7"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
+
+    def testParseCommandAddSubInvalid(self):
+        inputList = ["PCarton","Sub","!add","!testCmdNew8"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandAddFollowerInvalid(self):
+        inputList = ["PCarton","Follower","!add","!testCmdNew9"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandAddNormalInvalid(self):
+        inputList = ["PCarton","Normal","!add","!testCmdNew10"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandAddCasterInvalid2(self):
+        inputList = ["PCarton","Caster","!add","!testCmdNew11 blah blah blah"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
+
+    def testParseCommandAddModInvalid2(self):
+        inputList = ["PCarton","Mod","!add","!testCmdNew12 blah blah blah"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
+
+    def testParseCommandAddSubInvalid2(self):
+        inputList = ["PCarton","Sub","!add","!testCmdNew13 blah blah blah"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandAddFollowerInvalid2(self):
+        inputList = ["PCarton","Follower","!add","!testCmdNew14 blah blah blah"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandAddNormalInvalid2(self):
+        inputList = ["PCarton","Normal","!add","!testCmdNew15 blah blah blah"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
 if __name__ == "__main__":
             unittest.main()
