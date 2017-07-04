@@ -396,12 +396,12 @@ class centurionTest(unittest.TestCase):
     def testParseCommandTimeoutCaster(self):
         inputList = ["PCarton","Caster","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
-        self.assertEqual([action, user, response],["purge","Garlian","Timing out user: Garlian"])
+        self.assertEqual([action, user, response],["timeout","Garlian","Timing out user: Garlian"])
 
     def testParseCommandTimeoutMod(self):
         inputList = ["PCarton","Mod","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
-        self.assertEqual([action, user, response],["purge","Garlian","Timing out user: Garlian"])
+        self.assertEqual([action, user, response],["timeout","Garlian","Timing out user: Garlian"])
 
     def testParseCommandTimeoutSub(self):
         inputList = ["PCarton","Sub","!timeout","Garlian"]
