@@ -57,6 +57,8 @@ def parseCommand(input):
             try:
                 newCmd = argArr[0]
                 reqRole = argArr[1]
+                if not reqRole in roles:
+                    return "respond", user, "Invalid new command. Expected Format: '!newCmd requiredRole response'"
                 newResponse = argArr[2]
                 if store(newCmd,newResponse,reqRole): #TODO move this logic to the store cmd?
                     return "respond", user, "New command {} successfully stored".format(newCmd)
