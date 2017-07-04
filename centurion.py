@@ -82,7 +82,7 @@ def parseCommand(input):
         elif command == "!purge":
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
-            if args != None and args != "":
+            if args != None and args != "" and args.find(" ")==-1:
                 return "purge", args, "Purging user: " + args
             else:
                 return "none", user, "Invalid Args"
