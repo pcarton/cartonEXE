@@ -288,5 +288,31 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
+#TESTS FOR INVALID !remove COMMAND
+    def testParseCommandRemoveCasterNotExisting(self):
+        inputList = ["PCarton","Caster","!remove","!testRemoveInvalid"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","That command does not exist"])
+
+    def testParseCommandRemoveModNotExisting(self):
+        inputList = ["PCarton","Mod","!remove","!testRemoveInvalid"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","That command does not exist"])
+
+    def testParseCommandRemoveSubNotExisting(self):
+        inputList = ["PCarton","Sub","!remove","!testRemoveInvalid"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandRemoveFollowerNotExisting(self):
+        inputList = ["PCarton","Follower","!remove","!testRemoveInvalid"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testParseCommandRemoveNormalNotExisting(self):
+        inputList = ["PCarton","Normal","!remove","!testRemoveInvalid"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
 if __name__ == "__main__":
         unittest.main()
