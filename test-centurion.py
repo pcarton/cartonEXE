@@ -392,5 +392,83 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
+#TESTS FOR TIMEOUT COMMAND
+    def testParseCommandTimeoutCaster(self):
+        inputList = ["PCarton","Caster","!timeout","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["purge","Garlian","Timing out user: Garlian"])
+
+    def testParseCommandTimeoutMod(self):
+        inputList = ["PCarton","Mod","!timeout","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["purge","Garlian","Timing out user: Garlian"])
+
+    def testParseCommandTimeoutSub(self):
+        inputList = ["PCarton","Sub","!timeout","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandTimeoutFollower(self):
+        inputList = ["PCarton","Follower","!timeout","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandTimeoutNormal(self):
+        inputList = ["PCarton","Normal","!timeout","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+#TESTS FOR INVALID TIMEOUT COMMAND
+    def testParseCommandTimeoutCasterNoArgs(self):
+        inputList = ["PCarton","Caster","!timeout",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandTimeoutModNoArgs(self):
+        inputList = ["PCarton","Mod","!timeout",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandTimeoutSubNoArgs(self):
+        inputList = ["PCarton","Sub","!timeout",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandTimeoutFollowerNoArgs(self):
+        inputList = ["PCarton","Follower","!timeout",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandTimeoutNormalNoArgs(self):
+        inputList = ["PCarton","Normal","!timeout",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+#TESTS FOR INVALID TIMEOUT COMMAND 2
+    def testParseCommandTimeoutCasterBadArgs(self):
+        inputList = ["PCarton","Caster","!timeout","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandTimeoutModBadArgs(self):
+        inputList = ["PCarton","Mod","!timeout","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandTimeoutSubBadArgs(self):
+        inputList = ["PCarton","Sub","!timeout","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandTimeoutFollowerBadArgs(self):
+        inputList = ["PCarton","Follower","!timeout","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandTimeoutNormalBadArgs(self):
+        inputList = ["PCarton","Normal","!timeout","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
 if __name__ == "__main__":
         unittest.main()
