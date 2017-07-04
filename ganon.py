@@ -31,7 +31,7 @@ def loadConfig(configPath):
 def removePermits(username):
     #Load globals needed
     global conn, debug
-    loadConfig()
+    loadConfig(CONFIG_PATH)
     if debug:
         print("Removing user " + username + "'s permits", file=sys.stderr)
     #make sure we have a connection to DB
@@ -102,7 +102,7 @@ def addPermits(username):
 def getPermit(username):
     #Load globals needed
     global conn, debug
-    loadConfig()
+    loadConfig(CONFIG_PATH)
     if debug:
         print("Querying Database for permit", file=sys.stderr)
 
@@ -131,7 +131,7 @@ def getPermit(username):
 
 def isPermitted(username):
     global debug, whitelisted
-    loadConfig()
+    loadConfig(CONFIG_PATH)
     if debug:
         print("Checking that user " + username + " is permitted", file=sys.stderr)
         print("Whitelisted users are:", file=sys.stderr)
