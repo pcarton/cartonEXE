@@ -470,5 +470,83 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
+#TESTS FOR BAN COMMAND
+    def testParseCommandbanCaster(self):
+        inputList = ["PCarton","Caster","!ban","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["ban","Garlian","Banning user: Garlian"])
+
+    def testParseCommandbanMod(self):
+        inputList = ["PCarton","Mod","!ban","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["ban","Garlian","Banning user: Garlian"])
+
+    def testParseCommandbanSub(self):
+        inputList = ["PCarton","Sub","!ban","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandbanFollower(self):
+        inputList = ["PCarton","Follower","!ban","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandbanNormal(self):
+        inputList = ["PCarton","Normal","!ban","Garlian"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+#TESTS FOR INVALID BAN COMMAND
+    def testParseCommandbanCasterNoArgs(self):
+        inputList = ["PCarton","Caster","!ban",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandbanModNoArgs(self):
+        inputList = ["PCarton","Mod","!ban",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandbanSubNoArgs(self):
+        inputList = ["PCarton","Sub","!ban",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandbanFollowerNoArgs(self):
+        inputList = ["PCarton","Follower","!ban",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandbanNormalNoArgs(self):
+        inputList = ["PCarton","Normal","!ban",""]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+#TESTS FOR INVALID BAN COMMAND 2
+    def testParseCommandbanCasterBadArgs(self):
+        inputList = ["PCarton","Caster","!ban","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandbanModBadArgs(self):
+        inputList = ["PCarton","Mod","!ban","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
+
+    def testParseCommandbanSubBadArgs(self):
+        inputList = ["PCarton","Sub","!ban","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandbanFollowerBadArgs(self):
+        inputList = ["PCarton","Follower","!ban","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandbanNormalBadArgs(self):
+        inputList = ["PCarton","Normal","!ban","Garlian is silly"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
 if __name__ == "__main__":
         unittest.main()
