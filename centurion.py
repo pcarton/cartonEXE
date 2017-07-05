@@ -120,7 +120,7 @@ def parseCommand(input):
         elif command == "!deathblossom":
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
-            return "deathblossom", user, "Activate deathblossom mode"
+            return "deathblossom", user, "Toggled deathblossom mode"
     else:
         response, neededRole, lastUsed = retrieve(command) #returns None, 'Root' if not in DB
 
