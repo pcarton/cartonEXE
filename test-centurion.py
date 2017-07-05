@@ -704,5 +704,31 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
+#TESTS FOR DEATHBLOSSOM COMMAND
+    def testParseCommandDeathBlossomCaster(self):
+        inputList = ["PCarton","Caster","!deathblossom"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["deathblossom","PCarton","Activate deathblossom mode"])
+
+    def testParseCommandDeathBlossomMod(self):
+        inputList = ["PCarton","Mod","!deathblossom"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["deathblossom","PCarton","Activate deathblossom mode"])
+
+    def testParseCommandDeathBlossomSub(self):
+        inputList = ["PCarton","Sub","!deathblossom"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandDeathBlossomFollower(self):
+        inputList = ["PCarton","Follower","!deathblossom"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
+    def testParseCommandDeathBlossomNormal(self):
+        inputList = ["PCarton","Normal","!deathblossom"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
+
 if __name__ == "__main__":
         unittest.main()
