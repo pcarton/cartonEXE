@@ -730,5 +730,135 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
+#TESTS FOR USING CASTER COMMAND IN DATABASE
+    def testAsCasterDBCommandCaster(self):
+        inputList = ["PCarton","Caster","!testExisting1"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF ONE"])
+
+    def testAsModDBCommandCaster(self):
+        inputList = ["PCarton","Mod","!testExisting1"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testAsSubDBCommandCaster(self):
+        inputList = ["PCarton","Sub","!testExisting1"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testAsFollowerDBCommandCaster(self):
+        inputList = ["PCarton","Follower","!testExisting1"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testAsNormalDBCommandCaster(self):
+        inputList = ["PCarton","Normal","!testExisting1"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+#TESTS FOR USING MOD COMMAND IN DATABASE
+    def testAsCasterDBCommandMod(self):
+        inputList = ["PCarton","Caster","!testExisting2"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF TWO"])
+
+    def testAsModDBCommandMod(self):
+        inputList = ["PCarton","Mod","!testExisting2"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF TWO"])
+
+    def testAsSubDBCommandMod(self):
+        inputList = ["PCarton","Sub","!testExisting2"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testAsFollowerDBCommandMod(self):
+        inputList = ["PCarton","Follower","!testExisting2"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testAsNormalDBCommandMod(self):
+        inputList = ["PCarton","Normal","!testExisting2"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+#TESTS FOR USING SUB COMMAND IN DATABASE
+    def testAsCasterDBCommandSub(self):
+        inputList = ["PCarton","Caster","!testExisting3"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF THREE"])
+
+    def testAsModDBCommandSub(self):
+        inputList = ["PCarton","Mod","!testExisting3"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF THREE"])
+
+    def testAsSubDBCommandSub(self):
+        inputList = ["PCarton","Sub","!testExisting3"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF THREE"])
+
+    def testAsFollowerDBCommandSub(self):
+        inputList = ["PCarton","Follower","!testExisting3"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+    def testAsNormalDBCommandSub(self):
+        inputList = ["PCarton","Normal","!testExisting3"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+#TESTS FOR USING FOLLOWER COMMAND IN DATABASE
+    def testAsCasterDBCommandFollower(self):
+        inputList = ["PCarton","Caster","!testExisting4"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
+
+    def testAsModDBCommandFollower(self):
+        inputList = ["PCarton","Mod","!testExisting4"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
+
+    def testAsSubDBCommandFollower(self):
+        inputList = ["PCarton","Sub","!testExisting4"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
+
+    def testAsFollowerDBCommandFollower(self):
+        inputList = ["PCarton","Follower","!testExisting4"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
+
+    def testAsNormalDBCommandFollower(self):
+        inputList = ["PCarton","Normal","!testExisting4"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["none","PCarton",""])
+
+#TESTS FOR USING NORMAL COMMAND IN DATABASE
+    def testAsCasterDBCommandNormal(self):
+        inputList = ["PCarton","Caster","!testExisting5"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
+
+    def testAsModDBCommandNormal(self):
+        inputList = ["PCarton","Mod","!testExisting5"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
+
+    def testAsSubDBCommandNormal(self):
+        inputList = ["PCarton","Sub","!testExisting5"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
+
+    def testAsFollowerDBCommandNormal(self):
+        inputList = ["PCarton","Follower","!testExisting5"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
+
+    def testAsNormalDBCommandNormal(self):
+        inputList = ["PCarton","Normal","!testExisting5"]
+        action, user, response = centurion.parseCommand(inputList)
+        self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
+
 if __name__ == "__main__":
         unittest.main()
