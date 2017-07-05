@@ -6,7 +6,7 @@
 # Caster Mod Sub Follower Normal (in descending order)
 import sys, json, datetime
 import pymysql
-from ganon import addPermits, pythonToString
+import ganon
 
 builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove","!deathblossom"]
 roles = ["Caster","Mod","Sub","Follower","Normal"]
@@ -21,7 +21,8 @@ CONFIG_PATH = 'config.json'
 
 #Get the config data
 def loadConfig(configPath):
-    global dbAddr, dbPass, dbUser, db, debug
+    global dbAddr, dbPass, dbUser, db, debug, CONFIG_PATH
+    CONFIG_PATH = configPath
     with open(configPath) as data:
         config = json.load(data)
         debug = config["debug"]
@@ -30,6 +31,7 @@ def loadConfig(configPath):
         dbUser = config["databaseUser"]
         db = config["databaseName"]
         data.close()
+    ganon.loadConfig(CONFIG_PATH)
 
 #returns an array of the three inputs
 #eg [username, role, message]
@@ -111,7 +113,7 @@ def parseCommand(input):
             if role != "Caster" and role !="Mod":
                 return "none", user, "Required Role not met"
             if args != None and args != "" and args.find(" ")==-1:
-                if addPermits(args):
+                if ganon.addPermits(args):
                     return "respond", args, "User " + args + " is allowed to post 1 link in the next 10 minutes"
                 else:
                     return "respond", args, "Error permiting user"
@@ -148,7 +150,7 @@ def updateLastUsed(command):
     #Make the SQL statement
     update = "UPDATE commands SET lastUsed=%s WHERE command = %s"
     time = datetime.datetime.utcnow()
-    timeStr = pythonToString(time)
+    timeStr = ganon.pythonToString(time)
 
     #Create cursor to execute query
     cursor = conn.cursor()
