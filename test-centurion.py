@@ -160,702 +160,837 @@ class centurionTest(unittest.TestCase):
 
 #TESTS FOR ADDING A NEW COMMAND
     def testParseCommandAddCasterNew(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!add","!testCmdNew1 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew1 successfully stored"])
 
     def testParseCommandAddModNew(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!add","!testCmdNew2 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","New command !testCmdNew2 successfully stored"])
 
     def testParseCommandAddSubNew(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!add","!testCmdNew3 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddFollowerNew(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!add","!testCmdNew4 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddNormalNew(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!add","!testCmdNew5 Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR ADDING A COMMAND THAT EXISTS
     def testParseCommandAddCasterExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Error storing new command in database"])
 
     def testParseCommandAddModExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Error storing new command in database"])
 
     def testParseCommandAddSubExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddFollowerExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddNormalExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!add","!testCmdExisting Mod blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR ADDING COMMAND WITHOUT ARGS
     def testParseCommandAddCasterInvalid(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!add","!testCmdNew6"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
 
     def testParseCommandAddModInvalid(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!add","!testCmdNew7"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
 
     def testParseCommandAddSubInvalid(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!add","!testCmdNew8"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddFollowerInvalid(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!add","!testCmdNew9"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddNormalInvalid(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!add","!testCmdNew10"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR ADDING COMMAND WITHOUT A ROLE
     def testParseCommandAddCasterInvalid2(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!add","!testCmdNew11 blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
 
     def testParseCommandAddModInvalid2(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!add","!testCmdNew12 blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Invalid new command. Expected Format: '!newCmd requiredRole response'"])
 
     def testParseCommandAddSubInvalid2(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!add","!testCmdNew13 blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddFollowerInvalid2(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!add","!testCmdNew14 blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandAddNormalInvalid2(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!add","!testCmdNew15 blah blah blah"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR !remove COMMAND
     def testParseCommandRemoveCasterExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!remove","!testRemoveExisting1"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Command !testRemoveExisting1 successfully removed"])
 
     def testParseCommandRemoveModExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!remove","!testRemoveExisting2"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","Command !testRemoveExisting2 successfully removed"])
 
     def testParseCommandRemoveSubExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!remove","!testRemoveExisting3"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandRemoveFollowerExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!remove","!testRemoveExisting4"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandRemoveNormalExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!remove","!testRemoveExisting5"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR INVALID !remove COMMAND
     def testParseCommandRemoveCasterNotExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!remove","!testRemoveInvalid"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","That command does not exist"])
 
     def testParseCommandRemoveModNotExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!remove","!testRemoveInvalid"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","That command does not exist"])
 
     def testParseCommandRemoveSubNotExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!remove","!testRemoveInvalid"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandRemoveFollowerNotExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!remove","!testRemoveInvalid"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testParseCommandRemoveNormalNotExisting(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!remove","!testRemoveInvalid"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR PURGE COMMAND
     def testParseCommandPurgeCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!purge","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["purge","Garlian","Purging user: Garlian"])
 
     def testParseCommandPurgeMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!purge","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["purge","Garlian","Purging user: Garlian"])
 
     def testParseCommandPurgeSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!purge","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPurgeFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!purge","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPurgeNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!purge","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID PURGE COMMAND
     def testParseCommandPurgeCasterNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!purge",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPurgeModNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!purge",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPurgeSubNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!purge",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPurgeFollowerNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!purge",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPurgeNormalNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!purge",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID PURGE COMMAND 2
     def testParseCommandPurgeCasterBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!purge","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPurgeModBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!purge","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPurgeSubBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!purge","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPurgeFollowerBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!purge","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPurgeNormalBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!purge","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR TIMEOUT COMMAND
     def testParseCommandTimeoutCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["timeout","Garlian","Timing out user: Garlian"])
 
     def testParseCommandTimeoutMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["timeout","Garlian","Timing out user: Garlian"])
 
     def testParseCommandTimeoutSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandTimeoutFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandTimeoutNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!timeout","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID TIMEOUT COMMAND
     def testParseCommandTimeoutCasterNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!timeout",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandTimeoutModNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!timeout",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandTimeoutSubNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!timeout",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandTimeoutFollowerNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!timeout",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandTimeoutNormalNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!timeout",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID TIMEOUT COMMAND 2
     def testParseCommandTimeoutCasterBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!timeout","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandTimeoutModBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!timeout","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandTimeoutSubBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!timeout","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandTimeoutFollowerBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!timeout","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandTimeoutNormalBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!timeout","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR BAN COMMAND
     def testParseCommandBanCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!ban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["ban","Garlian","Banning user: Garlian"])
 
     def testParseCommandBanMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!ban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["ban","Garlian","Banning user: Garlian"])
 
     def testParseCommandBanSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!ban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandBanFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!ban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandBanNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!ban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID BAN COMMAND
     def testParseCommandBanCasterNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!ban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandBanModNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!ban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandBanSubNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!ban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandBanFollowerNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!ban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandBanNormalNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!ban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID BAN COMMAND 2
     def testParseCommandBanCasterBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!ban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandBanModBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!ban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandBanSubBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!ban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandBanFollowerBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!ban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandBanNormalBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!ban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR unban COMMAND
     def testParseCommandUnbanCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!unban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["unban","Garlian","Unbanning user: Garlian"])
 
     def testParseCommandUnbanMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!unban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["unban","Garlian","Unbanning user: Garlian"])
 
     def testParseCommandUnbanSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!unban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandUnbanFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!unban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandUnbanNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!unban","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID unban COMMAND
     def testParseCommandUnbanCasterNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!unban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandUnbanModNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!unban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandUnbanSubNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!unban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandUnbanFollowerNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!unban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandUnbanNormalNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!unban",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID unban COMMAND 2
     def testParseCommandUnbanCasterBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!unban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandUnbanModBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!unban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandUnbanSubBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!unban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandUnbanFollowerBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!unban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandUnbanNormalBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!unban","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR PERMIT COMMAND
     def testParseCommandPermitCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!permit","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","Garlian","User Garlian is allowed to post 1 link in the next 10 minutes"])
 
     def testParseCommandPermitMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!permit","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","Garlian","User Garlian is allowed to post 1 link in the next 10 minutes"])
 
     def testParseCommandPermitSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!permit","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPermitFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!permit","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPermitNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!permit","Garlian"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID PERMIT COMMAND
     def testParseCommandPermitCasterNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!permit",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPermitModNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!permit",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPermitSubNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!permit",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPermitFollowerNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!permit",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPermitNormalNoArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!permit",""]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR INVALID PERMIT COMMAND 2
     def testParseCommandPermitCasterBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!permit","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPermitModBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!permit","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Invalid Args"])
 
     def testParseCommandPermitSubBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!permit","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPermitFollowerBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!permit","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandPermitNormalBadArgs(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!permit","Garlian is silly"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR DEATHBLOSSOM COMMAND
     def testParseCommandDeathBlossomCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["deathblossom","PCarton","Toggled deathblossom mode"])
 
     def testParseCommandDeathBlossomMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["deathblossom","PCarton","Toggled deathblossom mode"])
 
     def testParseCommandDeathBlossomSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandDeathBlossomFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
     def testParseCommandDeathBlossomNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton","Required Role not met"])
 
 #TESTS FOR USING CASTER COMMAND IN DATABASE
     def testAsCasterDBCommandCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!testExisting1"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF ONE"])
 
     def testAsModDBCommandCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!testExisting1"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testAsSubDBCommandCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!testExisting1"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testAsFollowerDBCommandCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!testExisting1"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testAsNormalDBCommandCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!testExisting1"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR USING MOD COMMAND IN DATABASE
     def testAsCasterDBCommandMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!testExisting2"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF TWO"])
 
     def testAsModDBCommandMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!testExisting2"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF TWO"])
 
     def testAsSubDBCommandMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!testExisting2"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testAsFollowerDBCommandMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!testExisting2"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testAsNormalDBCommandMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!testExisting2"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR USING SUB COMMAND IN DATABASE
     def testAsCasterDBCommandSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!testExisting3"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF THREE"])
 
     def testAsModDBCommandSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!testExisting3"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF THREE"])
 
     def testAsSubDBCommandSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!testExisting3"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF THREE"])
 
     def testAsFollowerDBCommandSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!testExisting3"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
     def testAsNormalDBCommandSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!testExisting3"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR USING FOLLOWER COMMAND IN DATABASE
     def testAsCasterDBCommandFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!testExisting4"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
 
     def testAsModDBCommandFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!testExisting4"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
 
     def testAsSubDBCommandFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!testExisting4"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
 
     def testAsFollowerDBCommandFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!testExisting4"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FOUR"])
 
     def testAsNormalDBCommandFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!testExisting4"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["none","PCarton",""])
 
 #TESTS FOR USING NORMAL COMMAND IN DATABASE
     def testAsCasterDBCommandNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Caster","!testExisting5"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
 
     def testAsModDBCommandNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Mod","!testExisting5"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
 
     def testAsSubDBCommandNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Sub","!testExisting5"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
 
     def testAsFollowerDBCommandNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Follower","!testExisting5"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
 
     def testAsNormalDBCommandNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["PCarton","Normal","!testExisting5"]
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
