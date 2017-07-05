@@ -708,12 +708,12 @@ class centurionTest(unittest.TestCase):
     def testParseCommandDeathBlossomCaster(self):
         inputList = ["PCarton","Caster","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
-        self.assertEqual([action, user, response],["deathblossom","PCarton","Activate deathblossom mode"])
+        self.assertEqual([action, user, response],["deathblossom","PCarton","Toggled deathblossom mode"])
 
     def testParseCommandDeathBlossomMod(self):
         inputList = ["PCarton","Mod","!deathblossom"]
         action, user, response = centurion.parseCommand(inputList)
-        self.assertEqual([action, user, response],["deathblossom","PCarton","Activate deathblossom mode"])
+        self.assertEqual([action, user, response],["deathblossom","PCarton","Toggled deathblossom mode"])
 
     def testParseCommandDeathBlossomSub(self):
         inputList = ["PCarton","Sub","!deathblossom"]
