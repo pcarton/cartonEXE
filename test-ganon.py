@@ -1,6 +1,6 @@
 import unittest
 from subprocess import call
-
+import datetime
 import ganon
 
 class ganonTest(unittest.TestCase):
@@ -72,6 +72,14 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         ganon.addPermit("PCarton")
         self.assertEqual(ganon.isPermitted("PCarton"), True)
+
+    def testStringToPython(self):
+        datetimeObj = datetime.datetime(2010,11,12,18,30,35)
+        self.assertEqual(ganon.stringToPython("2010-11-12 18:30:35"), datetimeObj)
+
+    def testPythonToString(self):
+        datetimeObj = datetime.datetime(2010,11,12,18,30,35)
+        self.assertEqual(ganon.pythonToString(datetimeObj),"2010-11-12 18:30:35")
 
 if __name__ == "__main__":
         unittest.main()
