@@ -56,5 +56,22 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.getPermits("TestUser11"), None)
 
+    def testIsPermittedWhitelist(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.isPermitted("TestUser2"), True)
+
+    def testIsPermittedNotInDB(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.isPermitted("TestUser12"), False)
+
+    def testIsPermittedExpired(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.isPermitted("TestUser5"), False)
+
+    def testIsPermittedNotExpired(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        ganon.addPermit("PCarton")
+        self.assertEqual(ganon.isPermitted("PCarton"), True)
+
 if __name__ == "__main__":
         unittest.main()
