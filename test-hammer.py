@@ -10,19 +10,7 @@ class hammerTest(unittest.TestCase):
 #TESTS FOR IF THE CONFIG LOADED CORRECTLY
     def testLoadConfigAddr(self):
         hammer.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(hammer.dbAddr, "localhost")
-
-    def testLoadConfigPass(self):
-        hammer.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(hammer.dbPass, "root")
-
-    def testLoadConfigUser(self):
-        hammer.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(hammer.dbUser, "root")
-
-    def testLoadConfigName(self):
-        hammer.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(hammer.db, "cartonBotTest")
+        self.assertEqual(hammer.blacklist, ["testBlacklist1", "TEST_BLACKLIST2", "TeStBlAcKlIsT3"])
 
     def testLoadConfigDebug(self):
         hammer.loadConfig(self.CONFIG_PATH)
