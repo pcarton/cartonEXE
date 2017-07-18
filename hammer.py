@@ -3,7 +3,7 @@
 # Expects info in form 'username messagetext'
 import sys, json, re
 import profanityfilter
-from ganon import removePermits, isPermitted
+import ganon
 
 linkCheck = "(https?:\/\/)?([\da-z\.]+)\.([a-z\.]{2,6})([/\w\.-]*)*\/?"
 linkRegEx = re.compile(linkCheck)
@@ -23,7 +23,7 @@ def loadConfig(configPath):
         debug = config["debug"]
         data.close()
     ganon.loadConfig(CONFIG_PATH)
-    
+
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
