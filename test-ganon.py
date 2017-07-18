@@ -60,6 +60,10 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.isPermitted("TestUser2"), True)
 
+    def testIsPermittedWhitelistAlt(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.isPermitted("StreamJar"), True)
+
     def testIsPermittedNotInDB(self):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.isPermitted("TestUser12"), False)
