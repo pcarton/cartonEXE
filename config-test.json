@@ -6,6 +6,9 @@
   "moderationOn":false,
   "commandsOn":true,
   "blacklist":[
+    "testBlacklist1",
+    "TEST_BLACKLIST2",
+    "TeStBlAcKlIsT3"
   ],
   "linkPosterWhitelist":[
     "StreamJar",
