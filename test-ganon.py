@@ -32,5 +32,14 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.whitelisted, ["StreamJar","TestUser2"])
 
+    def testRemovePermitsExisting(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.removePermits("TestUser1"), True)
+
+    def testRemovePermitsNotExisting(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.removePermits("TestUser0"), False)
+
+
 if __name__ == "__main__":
         unittest.main()
