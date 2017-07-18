@@ -17,6 +17,7 @@ CONFIG_PATH = 'config.json'
 #Get the config data
 def loadConfig(configPath):
     global dbAddr, dbPass, dbUser, db, debug, whitelisted
+    CONFIG_PATH = configPath
     with open(configPath) as data:
         config = json.load(data)
         debug = config["debug"]
