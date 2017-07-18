@@ -50,7 +50,8 @@ class ganonTest(unittest.TestCase):
 
     def testGetPermitsExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(ganon.getPermit("TestUser4"), "2009-06-11 08:55:36")
+        datetimeObj = datetime.datetime(2009,6,11,8,55,36)
+        self.assertEqual(ganon.getPermit("TestUser4"), datetimeObj)
 
     def testGetPermitsNotExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
