@@ -40,6 +40,13 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.removePermits("TestUser0"), False)
 
+    def testAddPermitsExisting(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.removePermits("TestUser3"), True)
+
+    def testAddPermitsNotExisting(self):
+        ganon.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(ganon.removePermits("TestUser9"), True)
 
 if __name__ == "__main__":
         unittest.main()
