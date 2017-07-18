@@ -8,7 +8,8 @@
   "blacklist":[
   ],
   "linkPosterWhitelist":[
-    "StreamJar"
+    "StreamJar",
+    "TestUser2"
   ],
   "debug":false,
   "databaseURL":"localhost",
