@@ -15,13 +15,15 @@ CONFIG_PATH = 'config.json'
 
 #Get the config data
 def loadConfig(configPath):
-    global blacklist, debug
+    global blacklist, debug, CONFIG_PATH
+    CONFIG_PATH = configPath
     with open(configPath) as data:
         config = json.load(data)
         blacklist = config["blacklist"]
         debug = config["debug"]
         data.close()
-
+    ganon.loadConfig(CONFIG_PATH)
+    
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()
