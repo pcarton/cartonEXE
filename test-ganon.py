@@ -38,7 +38,7 @@ class ganonTest(unittest.TestCase):
 
     def testRemovePermitsNotExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(ganon.addPermits("TestUser0"), False)
+        self.assertEqual(ganon.removePermits("TestUser0"), False)
 
     def testAddPermitsExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
@@ -46,15 +46,15 @@ class ganonTest(unittest.TestCase):
 
     def testAddPermitsNotExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(ganon.removePermits("TestUser9"), True)
+        self.assertEqual(ganon.addPermits("TestUser9"), True)
 
     def testGetPermitsExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(ganon.getPermits("TestUser4"), "2009-06-11 08:55:36")
+        self.assertEqual(ganon.getPermit("TestUser4"), "2009-06-11 08:55:36")
 
     def testGetPermitsNotExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(ganon.getPermits("TestUser11"), None)
+        self.assertEqual(ganon.getPermit("TestUser11"), None)
 
     def testIsPermittedWhitelist(self):
         ganon.loadConfig(self.CONFIG_PATH)
@@ -70,7 +70,7 @@ class ganonTest(unittest.TestCase):
 
     def testIsPermittedNotExpired(self):
         ganon.loadConfig(self.CONFIG_PATH)
-        ganon.addPermit("PCarton")
+        ganon.addPermits("PCarton")
         self.assertEqual(ganon.isPermitted("PCarton"), True)
 
     def testStringToPython(self):
