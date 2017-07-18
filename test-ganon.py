@@ -32,6 +32,7 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.whitelisted, ["StreamJar","TestUser2"])
 
+#TESTS FOR REMOVING PERMITS
     def testRemovePermitsExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.removePermits("TestUser1"), True)
@@ -40,6 +41,7 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.removePermits("TestUser0"), False)
 
+#TESTS FOR ADDING PERMITS
     def testAddPermitsExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.addPermits("TestUser3"), True)
@@ -48,6 +50,7 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.addPermits("TestUser9"), True)
 
+#TESTS FOR GETTING PERMITS
     def testGetPermitsExisting(self):
         ganon.loadConfig(self.CONFIG_PATH)
         datetimeObj = datetime.datetime(2009,6,11,8,55,36)
@@ -57,6 +60,7 @@ class ganonTest(unittest.TestCase):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.getPermit("TestUser11"), None)
 
+#TESTS FOR IS PERMITTED
     def testIsPermittedWhitelist(self):
         ganon.loadConfig(self.CONFIG_PATH)
         self.assertEqual(ganon.isPermitted("TestUser2"), True)
@@ -78,6 +82,7 @@ class ganonTest(unittest.TestCase):
         ganon.addPermits("PCarton")
         self.assertEqual(ganon.isPermitted("PCarton"), True)
 
+#TESTS FOR HELPER METHODS
     def testStringToPython(self):
         datetimeObj = datetime.datetime(2010,11,12,18,30,35)
         self.assertEqual(ganon.stringToPython("2010-11-12 18:30:35"), datetimeObj)
