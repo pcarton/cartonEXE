@@ -37,6 +37,9 @@ def removePermits(username):
     #make sure we have a connection to DB
     if conn == None:
         connect()
+    #Treat the name not in database same as an error
+    if getPermit(username)==None:
+        return False
     #Make the SQL statement
     remove = "DELETE FROM permits WHERE user=%s"
     #Create cursor to execute query
