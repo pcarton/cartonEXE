@@ -41,10 +41,10 @@ CREATE TABLE permits(
 
 /*TODO insert some existing permits to test with*/
 
-INSERT INTO permits(user) VALUES("TestUser1","2009-06-11 08:55:36");
-INSERT INTO permits(user) VALUES("TestUser3","2009-06-11 08:55:36");
-INSERT INTO permits(user) VALUES("TestUser4","2009-06-11 08:55:36");
-INSERT INTO permits(user) VALUES("TestUser5","2009-06-11 08:55:36");
-INSERT INTO permits(user) VALUES("TestUser6","2009-06-11 08:55:36");
-INSERT INTO permits(user) VALUES("TestUser7","2009-06-11 08:55:36");
-INSERT INTO permits(user) VALUES("TestUser8","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser1","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser3","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser4","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser5","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser6","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser7","2009-06-11 08:55:36");
+INSERT INTO permits(user,expiration) VALUES("TestUser8","2009-06-11 08:55:36");
