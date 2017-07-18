@@ -16,6 +16,6 @@ class hammerTest(unittest.TestCase):
         hammer.loadConfig(self.CONFIG_PATH)
         self.assertEqual(hammer.debug, False)
 
-
+    #TODO tests for banCheck, timeoutCheck, and purgeCheck when the criteria is decided
 if __name__ == "__main__":
         unittest.main()
