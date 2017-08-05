@@ -91,10 +91,10 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log(data);
         if(debug) console.log(data.message); // lets take a closer look
         var roles = data.user_roles;
-        if(moderationModule && !roles.includes('Mod') && !roles.includes('Owner')){
-          if(!deathblossomMode){
+        if(!roles.includes('Mod') && !roles.includes('Owner')){
+          if(!deathblossomMode && moderationModule){
             moderate(socket,data,roles);
-          }else{
+          }else if(deathblossomMode){
             deathblossom(socket,data,roles);
           }
         }
