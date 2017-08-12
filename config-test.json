@@ -1,5 +1,5 @@
 {
-  "OAuth":"DStF96e39sjq7FMr3BAlQG02EfzmwdZY2yMCWpHYcswv6AsdDh9Lv2dBVEK2HbWF",
+  "OAuth":"PUT OAUTH TOKEN HERE",
   "timeoutDuration":600,
   "banDuration":31536000000,
   "silentBans":false,
