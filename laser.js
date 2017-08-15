@@ -346,7 +346,7 @@ function log(socket,messageData,roles){
   var role = "Normal";
   var username = messageData.user_name;
 
-  console.log("[CHAT]"+username + ": "+msg); //TODO add timestamp? or only in log?
+  console.log("[CHAT] "+username + ": "+msg); //TODO add timestamp? or only in log?
 
   //TODO connect with python module
 }
