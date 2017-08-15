@@ -91,6 +91,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log(data);
         if(debug) console.log(data.message); // lets take a closer look
         var roles = data.user_roles;
+        log(socket,data,roles);
         if(!roles.includes('Mod') && !roles.includes('Owner')){
           if(!deathblossomMode && moderationModule){
             moderate(socket,data,roles);
@@ -337,6 +338,17 @@ function parseRoles(roleArr){
     }
   }
   return result;
+}
+
+function log(socket,messageData,roles){
+  if(debug) console.log("LOG: In logs function");
+  var msg = messageToString(messageData.message.message)[0];
+  var role = "Normal";
+  var username = messageData.user_name;
+
+  console.log("[CHAT]"+username + ": "+msg); //TODO add timestamp? or only in log?
+
+  //TODO connect with python module
 }
 
 function deathblossom(socket, messageData, roles){
