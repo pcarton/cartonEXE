@@ -21,3 +21,7 @@ def loadConfig(configPath):
         logFile = config["logFile"]
         logExtension = config["logExtension"]
         data.close()
+
+#start process
+if __name__ == '__main__':
+    main()
