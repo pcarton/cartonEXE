@@ -22,3 +22,6 @@ mysql -uroot -proot cartonBotTest < schema-test.sql
 
 echo -e "${GREEN}Testing Hammer $NC"
 python3 test-hammer.py
+
+echo -e "${GREEN}Testing Scribe $NC"
+python3 test-scribe.py
