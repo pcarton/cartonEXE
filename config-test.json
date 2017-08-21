@@ -14,6 +14,8 @@
     "StreamJar",
     "TestUser2"
   ],
+  "logFile":"logFile",
+  "logExtension":"txt",
   "debug":false,
   "databaseURL":"localhost",
   "databasePassword":"root",
