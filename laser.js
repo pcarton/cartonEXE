@@ -208,7 +208,7 @@ function ban(socket,user,response,msg){ //TODO check that the call completed suc
   }else{
     socket.call('timeout',[user,config.banDuration]); //need to timeout for 1 to unban
     if(!config.silentBans && response !== null) socket.call('msg',["@"+user+": "+response]);
-    console.log("Banning",user,"for message:",msg);
+    console.log("[BAN]",user,"Message:",msg);
   }
 }
 
@@ -218,7 +218,7 @@ function purge(socket,user,response,msg){ //TODO check that the call completed s
   }else{
     socket.call('purge',[user]);
     if(!config.silentBans && response !== null) socket.call('msg',["@"+user+": "+response]);
-    console.log("Purging",user,"for message:",msg);
+    console.log("[PURGE]",user,"Message:",msg);
   }
 }
 
@@ -233,7 +233,7 @@ function timeout(socket,user,response,msg,duration){ //TODO check that the call 
       socket.call('timeout',[user,config.timeoutDuration]);
     }
     if(!config.silentBans && response !== null) socket.call('msg',["@"+user+": "+response]);
-    console.log("Timing out",user,"for message:",msg);
+    console.log("[TIMEOUT]",user,"Message:",msg);
   }
 }
 
