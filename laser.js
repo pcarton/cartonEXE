@@ -340,14 +340,16 @@ function parseRoles(roleArr){
   return result;
 }
 
-function log(socket,messageData,roles){
+function log(socket,messageData,roles,action){
   if(debug) console.log("LOG: In logs function");
   var msg = messageToString(messageData.message.message)[0];
-  var role = "Normal";
+  var role = parseRoles(roles);
   var username = messageData.user_name;
-
-  console.log("[CHAT] "+username + ": "+msg); //TODO add timestamp? or only in log?
-
+  if(action){
+    //TODO for the moderation/other actions
+  }else{
+    console.log("[CHAT] "+username + ": "+msg); //TODO add timestamp? or only in log?
+  }
   //TODO connect with python module
 }
 
@@ -356,4 +358,4 @@ function deathblossom(socket, messageData, roles){
   var username = messageData.user_name;
   timeout(socket, username, null, null, 86400); //Time out for one day
 
-} //TODO
+}
