@@ -10,15 +10,15 @@ class scibeTest(unittest.TestCase):
 #TESTS FOR IF THE CONFIG LOADED CORRECTLY
     def testLoadConfigLogFile(self):
         scribe.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(scibe.logFile, "testLog")
+        self.assertEqual(scribe.logFile, "testLog")
 
     def testLoadConfigLogFile(self):
         scribe.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(scibe.logExtension, "txt")
+        self.assertEqual(scribe.logExtension, "txt")
 
     def testLoadConfigDebug(self):
         scribe.loadConfig(self.CONFIG_PATH)
-        self.assertEqual(scibe.debug, False)
+        self.assertEqual(scribe.debug, False)
 
     #TODO rest of tests
 if __name__ == "__main__":
