@@ -1,6 +1,7 @@
 # Logging Module
 # Returns no info to driver
 # Expects info in form 'action username highestRole messagetext'
+# action can be: 'purge', 'timeout', 'ban', 'unban', 'chat'
 import sys, pymysql, datetime, json
 
 debug = False
@@ -10,6 +11,12 @@ logFile = ""
 logExtension = ""
 
 CONFIG_PATH = 'config.json'
+
+#Read data from stdin
+def read_in():
+    lines = sys.stdin.readlines()
+    line = lines[0].strip()
+    return line.split(maxsplit=3)
 
 #Get the config data
 def loadConfig(configPath):
