@@ -995,5 +995,33 @@ class centurionTest(unittest.TestCase):
         action, user, response = centurion.parseCommand(inputList)
         self.assertEqual([action, user, response],["respond","PCarton","TEST FOR EXISTING COMMAND STUFF FIVE"])
 
+#TESTS FOR RETRIEVING A LIST OF commands
+    def testRetrievListCaster(self):
+        centurion.loadConfig(self.CONFIG_PATH)
+        inputList = ["Caster"]
+        commands = centurion.retrieveList(inputList)
+        self.assertEqual(commands,["!testRemoveExisting1","!testExisting1"])
+    def testRetrievListMod(self):
+        centurion.loadConfig(self.CONFIG_PATH)
+        inputList = ["Mod"]
+        commands = centurion.retrieveList(inputList)
+        self.assertEqual(commands,["!testRemoveExisting2","!testExisting2"])
+    def testRetrievListSub(self):
+        centurion.loadConfig(self.CONFIG_PATH)
+        inputList = ["Sub"]
+        commands = centurion.retrieveList(inputList)
+        self.assertEqual(commands,["!testRemoveExisting3","!testExisting3"])
+    def testRetrievListFollower(self):
+        centurion.loadConfig(self.CONFIG_PATH)
+        inputList = ["Follower"]
+        commands = centurion.retrieveList(inputList)
+        self.assertEqual(commands,["!testRemoveExisting4","!testExisting4"])
+    def testRetrievListNormal(self):
+        centurion.loadConfig(self.CONFIG_PATH)
+        inputList = ["Normal"]
+        commands = centurion.retrieveList(inputList)
+        self.assertEqual(commands,["!testRemoveExisting5","!testExisting5"])
+
+
 if __name__ == "__main__":
         unittest.main()
