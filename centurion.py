@@ -226,7 +226,8 @@ def retrieveList(role):
 
     try:
         #store results in the return vals
-        commands += results
+        for row in results:
+            commands += row[0]
     except Exception as e:
         if debug:
             print(e, file=sys.stderr)
