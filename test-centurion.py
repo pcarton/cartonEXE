@@ -814,7 +814,7 @@ class centurionTest(unittest.TestCase):
         centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["Caster"]
         commands = centurion.retrieveList(inputList)
-        self.assertEqual(commands,["!testRemoveExisting1","!testExisting1"])
+        self.assertEqual(commands,["!testCmdExisting","!testRemoveExisting1","!testExisting1"])
     def testRetrievListMod(self):
         centurion.loadConfig(self.CONFIG_PATH)
         inputList = ["Mod"]
