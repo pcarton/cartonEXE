@@ -207,6 +207,39 @@ def retrieve(command):
 
     return response, neededRole, lastUsed
 
+def retrieveList(role):
+    #Load globals needed
+    global conn
+    #prepare default return values
+    commands = []
+
+
+    #make the SQL statement
+    query = "SELECT command FROM commands WHERE role=%s"
+    #make sure we have a connection to the DB
+    if conn == None:
+        connect()
+    #create a cursor to execute SELECT query
+    cursor = conn.cursor()
+    cursor.execute(query, (role))
+    commands = cursor.fetchall()
+
+    try:
+        #store results in the return vals
+        commands += results
+    except Exception as e:
+        if debug:
+            print(e, file=sys.stderr)
+
+    if debug:
+        print("SQL is: " + query.format(command), file=sys.stderr)
+        print(retrivedCommand, file=sys.stderr)
+        print(response, file=sys.stderr)
+        print(neededRole, file=sys.stderr)
+
+
+    return commands
+
 def delete(command):
     #Load globals needed
     global conn
