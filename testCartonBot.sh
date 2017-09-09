@@ -11,6 +11,9 @@ mysql -uroot -proot cartonBotTest < schema-test.sql
 echo -e "${GREEN}Testing Centurion $NC"
 python3 test-centurion.py
 
+echo -e "${GREEN}Testing Centurion Add/Remove $NC"
+python3 test-centurion-add-remove.py
+
 echo -e "${GREEN}Reseting Test Database $NC"
 mysql -uroot -proot cartonBotTest < schema-test.sql
 
