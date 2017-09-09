@@ -222,7 +222,7 @@ def retrieveList(role):
     #create a cursor to execute SELECT query
     cursor = conn.cursor()
     cursor.execute(query, (role))
-    commands = cursor.fetchall()
+    results = cursor.fetchall()
 
     try:
         #store results in the return vals
