@@ -33,8 +33,8 @@ client.request('GET', 'users/current')
     return client.request('GET','channels/'+config.channelUsername);
 })
 .then(response =>{
-  //TODO modify to join all followed channels
   if(debug){
+    console.log(response.body);
     return client.chat.join(userInfo.channel.id);
   }else{
     if(response.body){
