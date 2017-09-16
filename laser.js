@@ -26,7 +26,7 @@ client.use('oauth',{
 });
 
 //get following channel and join its chat
-client.request('GET', 'users/current')
+client.request('GET', 'channels/'+config.channelUsername)
 .then(response => {
     if(debug) console.log(response.body);
     userInfo = response.body;
