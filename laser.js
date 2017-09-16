@@ -3,8 +3,16 @@
 //run 'npm i -S beam-client-node' to get these two things
 const BeamClient = require('beam-client-node');
 const BeamSocket = require('beam-client-node/lib/ws');
-const config = require('./config.json');
 const spawn = require('child_process').spawn;
+
+var config;
+try{
+  config = require(process.argv[2]);
+}catch(e){
+  config = require('./config.json');
+}
+
+
 
 const debug = config.debug;
 var moderationModule = config.moderationOn;
