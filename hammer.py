@@ -11,7 +11,7 @@ linkRegEx = re.compile(linkCheck)
 blacklist = []
 debug = False
 
-CONFIG_PATH = 'config.json'
+CONFIG_PATH = sys.argv[1]
 
 #Get the config data
 def loadConfig(configPath):

@@ -12,7 +12,7 @@ debug = False
 whitelisted = []
 fmt = '%Y-%m-%d %H:%M:%S'
 
-CONFIG_PATH = 'config.json'
+CONFIG_PATH = sys.argv[1]
 
 #Get the config data
 def loadConfig(configPath):

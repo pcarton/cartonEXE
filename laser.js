@@ -6,11 +6,14 @@ const BeamSocket = require('beam-client-node/lib/ws');
 const spawn = require('child_process').spawn;
 
 var config;
+var configPath;
 try{
   config = require('./'+process.argv[2]);
+  configPath = process.argv[2];
 }catch(e){
   console.log(e);
   config = require('./config.json');
+  configPath = "config.json";
 }
 
 
@@ -131,7 +134,7 @@ function moderate(socket,messageData,roles){
 
   if(hasLink){
     //This is how to send the data to be processed by the python
-    var linkHandler = spawn('python3', ['ganon.py']);
+    var linkHandler = spawn('python3', ['ganon.py', configPath]);
 
     linkHandler.stdin.write(messageData.user_name + " " + role);
     linkHandler.stdin.end();
@@ -171,7 +174,7 @@ function moderate(socket,messageData,roles){
 
   }else{
     //This is how to send the data to be processed by the python
-    var moderator = spawn('python3', ['hammer.py']);
+    var moderator = spawn('python3', ['hammer.py', configPath]);
 
     moderator.stdin.write(toPython);
     moderator.stdin.end();
@@ -276,7 +279,7 @@ function commands(socket,messageData,roles){
     return;
   }else{
     role = parseRoles(roles);
-    var handleCmds = spawn('python3', ['centurion.py']);
+    var handleCmds = spawn('python3', ['centurion.py', configPath]);
     var toPython = username + " " + role + " " + msg;
     if(debug) console.log("\tCOMMANDS: Input to python:", toPython);
     handleCmds.stdin.write(toPython);
