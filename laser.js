@@ -25,7 +25,6 @@ client.use('oauth',{
   },
 });
 
-//get following channel and join its chat
 client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
@@ -35,16 +34,12 @@ client.request('GET', 'users/current')
 
 client.request('GET', 'channels/'+config.channelUsername)
 .then(response =>{
-  if(debug){
-    return client.chat.join(userInfo.channel.id);
+  if(response.body[0]){
+    channelId = response.body.id;
+    console.log("Joining",response.body.name);
+    return client.chat.join(channelId);
   }else{
-    if(response.body[0]){
-      channelId = response.body.id;
-      console.log("Joining",response.body.name);
-      return client.chat.join(channelId);
-    }else{
-      return client.chat.join(userInfo.channel.id);
-    }
+    return client.chat.join(userInfo.channel.id);
   }
 })
 .then(response => {
@@ -81,7 +76,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log('You are now authenticated!');
         // Send a chat message
         console.log("Joined chatroom");
-        return socket.call('msg', ['BOOTING UP...']);
+        if(!debug) return socket.call('msg', ['BOOTING UP...']);
     })
     .catch(error => {
         console.log('Oh no! An error occurred!', error);
