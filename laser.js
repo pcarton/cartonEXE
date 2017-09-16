@@ -31,39 +31,39 @@ client.request('GET', 'users/current')
     if(debug) console.log(response.body);
     userInfo = response.body;
     return client.request('GET','users/'+userInfo.id+'/follows');
+});
+
+client.request('GET', 'channels/'+config.channelUsername)
+.then(response =>{
+  if(debug){
+    return client.chat.join(userInfo.channel.id);
+  }else{
+    if(response.body[0]){
+      channelId = response.body.id;
+      console.log("Joining",response.body.name);
+      return client.chat.join(channelId);
+    }else{
+      return client.chat.join(userInfo.channel.id);
+    }
+  }
 })
 .then(response => {
-  client.request('GET', 'channels/'+config.channelUsername)
-  .then(response =>{
-    if(debug){
-      return client.chat.join(userInfo.channel.id);
-    }else{
-      if(response.body[0]){
-        channelId = response.body.id;
-        console.log("Joining",response.body.name);
-        return client.chat.join(channelId);
-      }else{
-        return client.chat.join(userInfo.channel.id);
-      }
+    const body = response.body;
+    if(debug) console.log(body);
+    if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
+      console.log("Cannot moderate this chat");
+      moderationModule = false;
     }
-  })
-  .then(response => {
-      const body = response.body;
-      if(debug) console.log(body);
-      if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
-        console.log("Cannot moderate this chat");
-        moderationModule = false;
-      }
-      if(!debug && channelId !== -1){
-        return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
-      }else{
-        return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
-      }
-  })
-  .catch(error => {
-        console.log("Something went wrong:", error);
-  });
+    if(!debug && channelId !== -1){
+      return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
+    }else{
+      return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
+    }
+})
+.catch(error => {
+      console.log("Something went wrong:", error);
 });
+
 
 /**
  * Creates a beam chat socket and sets up listeners to various chat events.
