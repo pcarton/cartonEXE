@@ -36,14 +36,14 @@ client.request('GET', 'channels/current')
 client.request('GET', 'channels/'+config.channelUsername)
 .then(response =>{
   if(debug){
-    return client.chat.join(userInfo.channel.id);
+    return client.chat.join(userInfo.user.channel.id);
   }else{
     if(response.body[0]){
       channelId = response.body.id;
       console.log("Joining",response.body.name);
       return client.chat.join(channelId);
     }else{
-      return client.chat.join(userInfo.channel.id);
+      return client.chat.join(userInfo.user.channel.id);
     }
   }
 })
