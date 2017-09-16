@@ -25,39 +25,43 @@ client.use('oauth',{
   },
 });
 
+//get following channel and join its chat
 client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
     userInfo = response.body;
-    return client.request('GET','users/'+userInfo.id+'/follows');
-}).then(
-  client.request('GET', 'channels/'+config.channelUsername)
-  .then(response =>{
-    if(response.body[0]){
+    return client.request('GET','channels/'+config.channelUsername);
+})
+.then(response =>{
+  //TODO modify to join all followed channels
+  if(debug){
+    return client.chat.join(userInfo.channel.id);
+  }else{
+    if(response.body){
       channelId = response.body.id;
       console.log("Joining",response.body.name);
       return client.chat.join(channelId);
     }else{
       return client.chat.join(userInfo.channel.id);
     }
-  })
-  .then(response => {
-      const body = response.body;
-      if(debug) console.log(body);
-      if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
-        console.log("Cannot moderate this chat");
-        moderationModule = false;
-      }
-      if(!debug && channelId !== -1){
-        return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
-      }else{
-        return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
-      }
-  })
-).catch(error => {
+  }
+})
+.then(response => {
+    const body = response.body;
+    if(debug) console.log(body);
+    if(!body.roles.includes('Mod') && !body.roles.includes('Owner')){
+      console.log("Cannot moderate this chat");
+      moderationModule = false;
+    }
+    if(!debug && channelId !== -1){
+      return createChatSocket(userInfo.id, channelId, body.endpoints, body.authkey);
+    }else{
+      return createChatSocket(userInfo.id, userInfo.channel.id, body.endpoints, body.authkey);
+    }
+})
+.catch(error => {
       console.log("Something went wrong:", error);
 });
-
 
 /**
  * Creates a beam chat socket and sets up listeners to various chat events.
@@ -75,7 +79,7 @@ function createChatSocket (userId, channelId, endpoints, authkey) {
         if(debug) console.log('You are now authenticated!');
         // Send a chat message
         console.log("Joined chatroom");
-        if(!debug) return socket.call('msg', ['BOOTING UP...']);
+        return socket.call('msg', ['BOOTING UP...']);
     })
     .catch(error => {
         console.log('Oh no! An error occurred!', error);
