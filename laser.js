@@ -32,8 +32,8 @@ client.request('GET', 'channels/'+config.channelUsername)
     console.log(response.body);
   }
   userInfo = response.body;
-  console.log("Joining",response.body[0].name);
-  return client.chat.join(userInfo.channel.id);
+  console.log("Joining",userInfo.user.channel.name);
+  return client.chat.join(userInfo.user.channel.id);
 })
 .then(response => {
     const body = response.body;
