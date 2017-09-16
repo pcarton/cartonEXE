@@ -26,14 +26,26 @@ client.use('oauth',{
 });
 
 //get following channel and join its chat
-client.request('GET', 'channels/'+config.channelUsername)
+client.request('GET', 'channels/current')
 .then(response => {
+    if(debug) console.log(response.body);
+    userInfo = response.body;
+    return client.request('GET','users/'+userInfo.id+'/follows');
+});
+
+client.request('GET', 'channels/'+config.channelUsername)
+.then(response =>{
   if(debug){
-    console.log(response.body);
+    return client.chat.join(userInfo.channel.id);
+  }else{
+    if(response.body[0]){
+      channelId = response.body.id;
+      console.log("Joining",response.body.name);
+      return client.chat.join(channelId);
+    }else{
+      return client.chat.join(userInfo.channel.id);
+    }
   }
-  userInfo = response.body;
-  console.log("Joining",userInfo.user.channel.name);
-  return client.chat.join(userInfo.user.channel.id);
 })
 .then(response => {
     const body = response.body;
