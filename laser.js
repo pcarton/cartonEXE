@@ -28,23 +28,12 @@ client.use('oauth',{
 //get following channel and join its chat
 client.request('GET', 'channels/'+config.channelUsername)
 .then(response => {
-    if(debug) console.log(response.body);
-    userInfo = response.body;
-    return client.request('GET','users/'+userInfo.id+'/follows');
-})
-.then(response =>{
-  //TODO modify to join all followed channels
   if(debug){
-    return client.chat.join(userInfo.channel.id);
-  }else{
-    if(response.body[0]){
-      channelId = response.body[0].id;
-      console.log("Joining",response.body[0].name);
-      return client.chat.join(channelId);
-    }else{
-      return client.chat.join(userInfo.channel.id);
-    }
+    console.log(response.body);
   }
+  userInfo = response.body;
+  console.log("Joining",response.body[0].name);
+  return client.chat.join(userInfo.channel.id);
 })
 .then(response => {
     const body = response.body;
