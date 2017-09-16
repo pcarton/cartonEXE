@@ -7,8 +7,9 @@ const spawn = require('child_process').spawn;
 
 var config;
 try{
-  config = require(process.argv[2]);
+  config = require('./'+process.argv[2]);
 }catch(e){
+  console.log(e);
   config = require('./config.json');
 }
 
