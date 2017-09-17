@@ -1,5 +1,6 @@
 {
   "channelUsername":"USERNAME_OF_BROADCASTER",
+  "joinMessage":false,
   "OAuth":"PUT OAUTH TOKEN HERE",
   "timeoutDuration":600,
   "banDuration":31536000000,
