@@ -1,0 +1,21 @@
+[Unit]
+Description=CartonBot For YourChannel
+Requires=After=mysql.service       # Requires the mysql service to run first
+
+[Service]
+ExecStart=/path/to/node /path/to/cartonEXE/laser.js config.json
+# Required on some systems
+WorkingDirectory=/path/to/cartonEXE/
+Restart=always
+ # Restart service after 10 seconds if node service crashes
+ RestartSec=10
+ # Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cartonbot-channelName
+#User=<alternate user>
+#Group=<alternate group>
+Environment=NODE_ENV=production PORT=1337
+
+[Install]
+WantedBy=multi-user.target
