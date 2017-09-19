@@ -11,8 +11,6 @@ linkRegEx = re.compile(linkCheck)
 blacklist = []
 debug = False
 
-CONFIG_PATH = sys.argv[1]
-
 #Get the config data
 def loadConfig(configPath):
     global blacklist, debug, CONFIG_PATH
@@ -90,7 +88,11 @@ def purgeCheck(message):
     return False, ""
 
 def main():
-    loadConfig(CONFIG_PATH)
+    try:
+        loadConfig(sys.argv[1])
+    except Exception as e:
+        print("Invalid config file given")
+        return -1
 
     #get our data as an array from read_in()
     toParse = read_in()

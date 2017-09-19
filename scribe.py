@@ -10,8 +10,6 @@ fmt = '%Y-%m-%d %H:%M:%S'
 logFile = ""
 logExtension = ""
 
-CONFIG_PATH = 'config.json'
-
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readlines()

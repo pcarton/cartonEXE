@@ -17,8 +17,6 @@ dbPass = ""
 db = ""
 debug = False
 
-CONFIG_PATH = sys.argv[1]
-
 #Get the config data
 def loadConfig(configPath):
     global dbAddr, dbPass, dbUser, db, debug, CONFIG_PATH
@@ -310,7 +308,11 @@ def connect():
     conn = pymysql.connect(dbAddr,dbUser,dbPass,db)
 
 def main():
-    loadConfig(CONFIG_PATH)
+    try:
+        loadConfig(sys.argv[1])
+    except Exception as e:
+        print("Invalid config file given")
+        return -1
     toParse = read_in()
     action, user, response = parseCommand(toParse)
     #Close the connection before terminating thread
