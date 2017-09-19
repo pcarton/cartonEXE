@@ -12,8 +12,6 @@ debug = False
 whitelisted = []
 fmt = '%Y-%m-%d %H:%M:%S'
 
-CONFIG_PATH = sys.argv[1]
-
 #Get the config data
 def loadConfig(configPath):
     global dbAddr, dbPass, dbUser, db, debug, whitelisted, CONFIG_PATH
@@ -173,7 +171,11 @@ def read_in():
 
 def main():
     global debug
-    loadConfig(CONFIG_PATH)
+    try:
+        loadConfig(sys.argv[1])
+    except Exception as e:
+        print("Invalid config file given")
+        return -1
     #get our data as an array from read_in()
     lines = read_in()
     username = lines[0]
