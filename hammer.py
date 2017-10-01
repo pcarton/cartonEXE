@@ -14,15 +14,14 @@ debug = False
 
 #Get the config data
 def loadConfig(configPath):
-    global blacklist,greylist, debug, CONFIG_PATH
-    CONFIG_PATH = configPath
+    global blacklist,greylist, debug
     with open(configPath) as data:
         config = json.load(data)
         blacklist = config["blacklist"]
         greylist = config["greylist"]
         debug = config["debug"]
         data.close()
-    ganon.loadConfig(CONFIG_PATH)
+    ganon.loadConfig(configPath)
 
 #Read data from stdin
 def read_in():
