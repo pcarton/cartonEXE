@@ -10,6 +10,11 @@
     "TEST_BLACKLIST2",
     "TeStBlAcKlIsT3"
   ],
+  "greylist":[
+    "testGreylist1",
+    "TEST_GREYLIST2",
+    "TeStGrEylIsT3"
+  ],
   "linkPosterWhitelist":[
     "StreamJar",
     "TestUser2"

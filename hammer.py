@@ -9,15 +9,17 @@ linkCheck = "(https?:\/\/)?([\da-z\.]+)\.([a-z\.]{2,6})([/\w\.-]*)*\/?"
 linkRegEx = re.compile(linkCheck)
 
 blacklist = []
+greylist = []
 debug = False
 
 #Get the config data
 def loadConfig(configPath):
-    global blacklist, debug, CONFIG_PATH
+    global blacklist,greylist, debug, CONFIG_PATH
     CONFIG_PATH = configPath
     with open(configPath) as data:
         config = json.load(data)
         blacklist = config["blacklist"]
+        greylist = config["greylist"]
         debug = config["debug"]
         data.close()
     ganon.loadConfig(CONFIG_PATH)
@@ -69,14 +71,21 @@ def banCheck(message):
 def timeoutCheck(username, message):
     result = False
     msg = "You have been timed-out for "
-    #TODO replace with real code
-    if message.find("spam") != -1 :
-        result = True
-        msg += "spam"
+    if greylist:
+        profanityfilter.define_words(greylist)
+        if debug:
+            print("Greylist is:", file=sys.stderr)
+            print(blacklist, file=sys.stderr)
+            print("Filter is using these words:", file=sys.stderr)
+            print(profanityfilter.get_bad_words(), file=sys.stderr)
+        if(profanityfilter.is_profane(message)):
+            result = True
+            msg += "unallowed content"
+        profanityfilter.restore_words()
     else:
         msg = ""
+    #TODO also check for spam freqency
     return result, msg
-    return False, ""
 
 def purgeCheck(message):
     result = False

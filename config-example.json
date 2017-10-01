@@ -12,6 +12,11 @@
     "blacklisted2",
     "blacklisted3"
   ],
+  "greylist":[
+    "timeoutWorthy1",
+    "timeoutWorthy2",
+    "timeoutWorthy3",
+  ],
   "linkPosterWhitelist":[
     "username1",
     "username2"
