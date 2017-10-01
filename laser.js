@@ -237,7 +237,8 @@ function purge(socket,user,response,msg){ //TODO check that the call completed s
 }
 
 //To unban, use a duration of 1 with this function
-function timeout(socket,user,response,msg,duration){ //TODO check that the call completed successfully
+function timeout(socket,user,response,msg,duration){
+  //TODO check that the call completed successfully
   if(debug){
     console.log("Need to timeout",user);
   }else{
@@ -252,6 +253,7 @@ function timeout(socket,user,response,msg,duration){ //TODO check that the call 
 }
 
 function unban(socket,user){
+  console.log("[UNBANNED]",user);
   timeout(socket,user,"You have been unbanned", "<TO UNBAN>",1);
 }
 
@@ -316,12 +318,12 @@ function commands(socket,messageData,roles){
         unban(socket,user);
       }else if(action === "deathblossom"){
         if(!deathblossomMode){
-          console.log("Activating DeathBlossom");
+          console.log("[DEATHBLOSSOM ON]");
           socket.call('msg', ["Initializing the DeathBlossom..."]);
           socket.call('msg', ["Now Banning on sight. Lurking in the shadows is recommended"]);
           deathblossomMode = true;
         }else{
-          console.log("Deactivating DeathBlossom");
+          console.log("[DEATHBLOSSOM OFF]");
           socket.call('msg', ["DeathBlossom Deactivated."]);
           deathblossomMode = false;
         }
