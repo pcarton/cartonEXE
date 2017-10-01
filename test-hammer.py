@@ -8,9 +8,13 @@ class hammerTest(unittest.TestCase):
         self.CONFIG_PATH = 'config-test.json'
 
 #TESTS FOR IF THE CONFIG LOADED CORRECTLY
-    def testLoadConfigAddr(self):
+    def testLoadConfigBlacklist(self):
         hammer.loadConfig(self.CONFIG_PATH)
         self.assertEqual(hammer.blacklist, ["testBlacklist1", "TEST_BLACKLIST2", "TeStBlAcKlIsT3"])
+
+    def testLoadConfigGreylist(self):
+        hammer.loadConfig(self.CONFIG_PATH)
+        self.assertEqual(hammer.greylist, ["testGreylist1", "TEST_GREYLIST2", "TeStGrEylIsT3"])
 
     def testLoadConfigDebug(self):
         hammer.loadConfig(self.CONFIG_PATH)
