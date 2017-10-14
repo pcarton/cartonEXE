@@ -1,0 +1,31 @@
+{
+  "name": "cartonEXE",
+  "version": "0.0.1",
+  "description": "ChatBot for streaming services",
+  "main": "laser.js",
+  "scripts": {
+    "pullrun": "git pull && node laser.js",
+    "start": "node laser.js",
+    "test": "(cd tests && bash testCartonBot.sh)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pcarton/cartonEXE.git"
+  },
+  "keywords": [
+    "beam",
+    "twitch",
+    "chat",
+    "stream",
+    "bot"
+  ],
+  "author": "Patrick Carton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pcarton/cartonEXE/issues"
+  },
+  "dependencies": {
+    "beam-client-node": "^0.13.0"
+  },
+  "private":true
+}
