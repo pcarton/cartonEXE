@@ -6,11 +6,12 @@ GREEN='\033[1;32m'
 NC='\033[0m'
 
 #PythonPath STUFF
-CURRENT_DIR = pwd
+CURRENT_DIR = ${PWD}
 PARENT_DIR = ${CURRENT_DIR:0:${#CURRENT_DIR}-6}
-echo PARENT_DIR
-OLD_PYTHONPATH = ${PYTHONPATH}
-PYTHONPATH = "${OLD_PYTHONPATH}:${PARENT_DIR}"
+echo ${PARENT_DIR}
+OLD_PYTHONPATH = '${PYTHONPATH}'
+PYTHONPATH = '${OLD_PYTHONPATH}:${PARENT_DIR}'
+export PYTHONPATH
 
 
 echo -e "${GREEN}Reseting Test Database $NC"
@@ -38,3 +39,4 @@ echo -e "${GREEN}Testing Scribe $NC"
 python3 ../PyMods/Tests/test-scribe.py
 
 PYTHONPATH = ${OLD_PYTHONPATH}
+export PYTHONPATH
