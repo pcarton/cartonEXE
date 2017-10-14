@@ -4,16 +4,16 @@
 const BeamClient = require('beam-client-node');
 const BeamSocket = require('beam-client-node/lib/ws');
 const spawn = require('child_process').spawn;
+const resolve = require('path').resolve;
 
 var config;
 var configPath;
 try{
-  config = require('./'+process.argv[2]);
-  configPath = process.argv[2];
+  configPath = resolve(process.argv[2]);
+  config = require(configPath);
 }catch(e){
   console.log(e);
-  config = require('./config.json');
-  configPath = "config.json";
+  configPath = resolve("config.json");
 }
 
 
