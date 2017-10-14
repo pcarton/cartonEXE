@@ -6,8 +6,12 @@
 # Caster Mod Sub Follower Normal (in descending order)
 import sys, json, datetime
 import pymysql
-sys.path.append('../..')
-from PyMods import ganon
+
+try:
+	import ganon
+except:
+	sys.path.append('../..')
+	from PyMods import ganon
 
 builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove","!deathblossom"]
 roles = ["Caster","Mod","Sub","Follower","Normal"]
