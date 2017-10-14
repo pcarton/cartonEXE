@@ -2,7 +2,7 @@ import unittest
 from subprocess import call
 import datetime
 
-import modules.hammer
+from cartonEXE.modules import hammer
 
 class hammerTest(unittest.TestCase):
     def setUp(self):

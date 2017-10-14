@@ -1,7 +1,7 @@
 import unittest
 from subprocess import call
 
-import modules.centurion
+from cartonEXE.modules import centurion
 
 class centurionTest(unittest.TestCase):
     def setUp(self):
