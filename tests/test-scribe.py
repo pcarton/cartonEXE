@@ -2,7 +2,7 @@ import unittest
 from subprocess import call
 import datetime
 
-from cartonEXE.modules import scribe
+from .. import modules.scribe
 
 class scibeTest(unittest.TestCase):
     def setUp(self):
