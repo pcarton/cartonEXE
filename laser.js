@@ -136,7 +136,7 @@ function moderate(socket,messageData,roles){
 
   if(hasLink){
     //This is how to send the data to be processed by the python
-    var linkHandler = spawn('python3', ['py-modules/ganon.py', configPath]);
+    var linkHandler = spawn('python3', ['PyMods/ganon.py', configPath]);
 
     linkHandler.stdin.write(messageData.user_name + " " + role);
     linkHandler.stdin.end();
@@ -176,7 +176,7 @@ function moderate(socket,messageData,roles){
 
   }else{
     //This is how to send the data to be processed by the python
-    var moderator = spawn('python3', ['py-modules/hammer.py', configPath]);
+    var moderator = spawn('python3', ['PyMods/hammer.py', configPath]);
 
     moderator.stdin.write(toPython);
     moderator.stdin.end();
@@ -283,7 +283,7 @@ function commands(socket,messageData,roles){
     return;
   }else{
     role = parseRoles(roles);
-    var handleCmds = spawn('python3', ['py-modules/centurion.py', configPath]);
+    var handleCmds = spawn('python3', ['PyMods/centurion.py', configPath]);
     var toPython = username + " " + role + " " + msg;
     if(debug) console.log("\tCOMMANDS: Input to python:", toPython);
     handleCmds.stdin.write(toPython);
