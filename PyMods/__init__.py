@@ -3,5 +3,8 @@ import ganon
 import hammer
 import scribe
 
-import sys
-sys.path.append('..')
+from Tests import test-centurion-add-remove
+from Tests import test-centurion
+from Tests import test-ganon
+from Tests import test-hammer
+from Tests import test-scribe
