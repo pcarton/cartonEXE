@@ -3,7 +3,7 @@
 # Expects info in form 'username messagetext'
 import sys, json, re
 import profanityfilter
-import ganon
+from PyMods import ganon
 
 linkCheck = "(https?:\/\/)?([\da-z\.]+)\.([a-z\.]{2,6})([/\w\.-]*)*\/?"
 linkRegEx = re.compile(linkCheck)
