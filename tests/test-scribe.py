@@ -2,7 +2,7 @@ import unittest
 from subprocess import call
 import datetime
 
-from modules import scribe
+import modules.scribe
 
 class scibeTest(unittest.TestCase):
     def setUp(self):

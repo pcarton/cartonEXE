@@ -2,7 +2,7 @@ import unittest
 from subprocess import call
 import datetime
 
-from modules import ganon
+import modules.ganon
 
 class ganonTest(unittest.TestCase):
     def setUp(self):

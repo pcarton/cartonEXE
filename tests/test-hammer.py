@@ -2,7 +2,7 @@ import unittest
 from subprocess import call
 import datetime
 
-from modules import hammer
+import modules.hammer
 
 class hammerTest(unittest.TestCase):
     def setUp(self):
