@@ -6,6 +6,7 @@
 # Caster Mod Sub Follower Normal (in descending order)
 import sys, json, datetime
 import pymysql
+sys.path.append('../..')
 from PyMods import ganon
 
 builtins = ["!permit","!add","!ban","!purge","!timeout","!unban","!remove","!deathblossom"]
