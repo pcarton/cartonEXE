@@ -1,7 +1,7 @@
 import unittest
 from subprocess import call
 
-from src import centurion
+from modules import centurion
 
 class centurionTest(unittest.TestCase):
     def setUp(self):
