@@ -3,27 +3,47 @@
 //run 'npm i -S beam-client-node' to get these two things
 const BeamClient = require('beam-client-node');
 const BeamSocket = require('beam-client-node/lib/ws');
+
 const spawn = require('child_process').spawn;
 const resolve = require('path').resolve;
 
+/*
+  Sets up the runner using the specified config file,
+  or the default file in the same folder
+*/
 var config;
 var configPath;
 try{
   configPath = resolve(process.argv[2]);
   config = require(configPath);
 }catch(e){
+  console.log("Error opening config file");
   console.log(e);
   configPath = resolve("config.json");
+  try{
+    config = require(configPath);
+  }catch(e){
+    console.log("No default config located at \'./config\'");
+    console.log(e);
+  }
 }
 
 
-
+/*
+  Load the config file info
+*/
 const debug = config.debug;
 var moderationModule = config.moderationOn;
 const commandModule = config.commandsOn;
 
+/*
+  Set initial state of deathblossom
+*/
 var deathblossomMode = false;
 
+/*
+  Prepare the userInfo and channelId variables
+*/
 let userInfo;
 let channelId = -1;
 
@@ -37,7 +57,7 @@ client.use('oauth',{
   },
 });
 
-//get following channel and join its chat
+//get following channel then join its chat
 client.request('GET', 'users/current')
 .then(response => {
     if(debug) console.log(response.body);
