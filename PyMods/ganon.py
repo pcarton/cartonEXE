@@ -81,7 +81,7 @@ def addPermits(username):
 
     if getPermit(username) != None:
         try:
-            cursor.execute(update, (username, timeStr))
+            cursor.execute(update, (timeStr,username))
             conn.commit()
             return True
         except Excetion as e:
