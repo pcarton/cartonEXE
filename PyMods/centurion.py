@@ -135,7 +135,7 @@ def parseCommand(input):
         else:
             onCooldown = lastUsed + datetime.timedelta(minutes=5) > datetime.datetime.utcnow()
 
-        if hasAccess(role,neededRole) and response != None and (not onCooldown or role == "Mod" or role == "Caster"):
+        if hasAccess(role,neededRole) and response != None:
             updateLastUsed(command)
             return "respond", user, response
         else:
