@@ -159,7 +159,7 @@ def updateLastUsed(command):
     cursor = conn.cursor()
 
     try:
-        cursor.execute(update, (command, timeStr))
+        cursor.execute(update, (timeStr,command))
         conn.commit()
         return True
     except Excetion as e:
