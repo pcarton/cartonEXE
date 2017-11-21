@@ -29,7 +29,8 @@ function addToRole(message, roleName){
     user.addRole(newRole);
     message.reply('Added you to the ' + roleName + ' Group');
     console.log('ADDED USER '+ user.name + ' TO ROLE '+ roleName);
+  }else{
+    message.reply('Could not add you to the ' + roleName + ' Group due to an error');
+    console.log('[!]ERROR ADDING USER '+ user.name + ' TO ROLE '+ roleName);
   }
-  message.reply('Could not add you to the ' + roleName + ' Group due to an error');
-  console.log('[!]ERROR ADDING USER '+ user.name + ' TO ROLE '+ roleName);
 }
