@@ -26,7 +26,7 @@ function addToRole(message, roleName){
   console.log(roles.size);
   roles.every(function(role){
     console.log(role.name);
-    if(currRoles.indexOf(role) !== -1){
+    if(currRoles.find('name',role.name) !== undefined){
       message.reply('You are already in the ' + roleName + ' Group');
     }else if(role.name === roleName){
       user.addRole(role);
