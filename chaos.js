@@ -41,9 +41,11 @@ function parseCommand(user, userID, channelID, message, evt){
           });
       break;
       case 'getServerID':
+          var channelObj = Discord.Endpoints.CHANNEL(channelID);
+          var serverObj = Discord.Endpoints.SERVERS(channelObj.guild_id);
           bot.sendMessage({
               to: channelID,
-              message: "CHANNELID:" + channelID + ", USERID:" + userID,
+              message: "SERVERID:" + serverObj.id
           });
       break;
       case 'warframe':
