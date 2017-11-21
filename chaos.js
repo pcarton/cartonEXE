@@ -21,8 +21,11 @@ function addToRole(message, roleName){
   var user = message.member;
   var server = message.guild;
   var roles = server.roles;
+  var currRoles = user.roles;
   for(var role in roles){
-    if(role.name === roleName){
+    if(currRoles.indexOf(role) !== -1){
+      message.reply('You are already in the ' + roleName + ' Group');
+    }else if(role.name === roleName){
       user.addRole(role);
       message.reply('Added you to the ' + roleName + ' Group');
       console.log('ADDED USER '+ user.name + ' TO ROLE '+ roleName);
