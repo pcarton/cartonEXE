@@ -19,19 +19,21 @@ client.login(auth.token);
 
 function addToRole(message, roleName){
   var user = message.member;
-  var server = message.guild;
+  var server = message.channel.guild;
   var roles = server.roles;
   var currRoles = user.roles;
-  for(var role in roles){
+  console.log("User:"+user+" Server:"+server);
+  console.log(roles.size);
+  roles.every(function(role){
+    console.log(role.name);
     if(currRoles.indexOf(role) !== -1){
       message.reply('You are already in the ' + roleName + ' Group');
     }else if(role.name === roleName){
       user.addRole(role);
       message.reply('Added you to the ' + roleName + ' Group');
       console.log('ADDED USER '+ user.name + ' TO ROLE '+ roleName);
-      break;
     }
-  }
+  });
   message.reply('Could not add you to the ' + roleName + ' Group due to an error');
   console.log('[!]ERROR ADDING USER '+ user.name + ' TO ROLE '+ roleName);
 }
