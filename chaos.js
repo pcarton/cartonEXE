@@ -10,14 +10,16 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if(message.content === '!warframe'){
-    addToRole(message,"Warframe");
-  }else if(message.content === '!eso'){
-    addToRole(message,"ESO");
-  }else if(message.content === '!diablo'){
-    addToRole(message,"Diablo");
-  }else if(message.content === '!fortnite'){
-    addToRole(message,"Fortnite");
+  if(message.channel.name === "bot"){
+    if(message.content === '!warframe'){
+      addToRole(message,"Warframe");
+    }else if(message.content === '!eso'){
+      addToRole(message,"ESO");
+    }else if(message.content === '!diablo'){
+      addToRole(message,"Diablo");
+    }else if(message.content === '!fortnite'){
+      addToRole(message,"Fortnite");
+    }
   }
 });
 
