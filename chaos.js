@@ -34,9 +34,14 @@ function addToRole(message, roleName){
   console.log(roles.size);
   var newRole = roles.find(role => role.name === roleName);
   if(newRole){
-    user.addRole(newRole);
-    message.reply('Added you to the ' + roleName + ' Group');
-    console.log('ADDED USER '+ user.nickname + ' TO ROLE '+ roleName);
+    var oldRole = currRoles.find(role => role.name === roleName);
+    if(oldRole){
+      message.reply('You are already in the '+ roleName + ' group!');
+    }else{
+      user.addRole(newRole);
+      message.reply('Added you to the ' + roleName + ' Group');
+      console.log('ADDED USER '+ user.nickname + ' TO ROLE '+ roleName);
+    }
   }else{
     message.reply('Could not add you to the ' + roleName + ' Group due to an error');
     console.log('[!]ERROR ADDING USER '+ user.nickname + ' TO ROLE '+ roleName);
