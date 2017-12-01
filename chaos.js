@@ -5,6 +5,12 @@ const auth = require('./auth.json');
 
 const serverID = auth.serverID;
 
+client.on('error', error => {
+  console.log('[Error]');
+  console.log(error);
+  process.exit(1);
+});
+
 client.on('ready', () => {
   console.log('I am ready!');
 });
